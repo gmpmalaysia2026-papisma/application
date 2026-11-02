@@ -1,7 +1,7 @@
 /* Service worker — Aplikasi GMP
  * Tukar VERSI setiap kali fail aplikasi dikemas kini supaya telefon AJK menerima versi baharu.
  */
-const VERSI = 'gmp-v2.1.0';
+const VERSI = 'gmp-v2.1.1';
 const ASET = [
   './',
   './index.html',
@@ -16,7 +16,8 @@ const ASET = [
 const FON = 'gmp-fon';
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VERSI).then(c => c.addAll(ASET)));
+  // Simpan setiap fail berasingan: satu fail yang tiada tidak menggagalkan pemasangan
+  e.waitUntil(caches.open(VERSI).then(c => Promise.all(ASET.map(u => c.add(u).catch(() => null)))));
 });
 
 self.addEventListener('activate', e => {
