@@ -515,7 +515,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.5.0";
+var VERSI = "4.5.1";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -2613,6 +2613,7 @@ function paparMasuk(){
       '</form>'+
       '<div class="kad blok daftar-ajak"><b>Belum ada akaun?</b><p class="nota">Daftar sebagai ahli GMP. Akaun diaktifkan selepas kelulusan Majlis Tertinggi.</p>'+
         '<button class="btn" type="button" data-act="masuk-mod" data-mod="daftar">Daftar ahli baharu</button></div>'+
+      '<div class="kad blok daftar-ajak"><b>Pelajar tahun akhir / UPTA?</b><p class="nota">Daftar sebagai ahli UPTA tanpa perlu cipta akaun.</p><a class="btn" href="#daftar-upta">Daftar UPTA</a></div>'+
       '</section>';
   }
   $("#isi").innerHTML=h; document.title="Aplikasi GMP";
