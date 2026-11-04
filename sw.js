@@ -1,11 +1,12 @@
 /* Service worker — Aplikasi GMP
  * Tukar VERSI setiap kali fail aplikasi dikemas kini supaya telefon AJK menerima versi baharu.
  */
-const VERSI = 'gmp-v2.1.1';
+const VERSI = 'gmp-v4.2.0';
 const ASET = [
   './',
   './index.html',
   './manifest.webmanifest',
+  './config.js',
   './icons/logo.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -47,6 +48,12 @@ self.addEventListener('fetch', e => {
   }
   if (url.origin !== self.location.origin) return;
 
+  // config.js: rangkaian dahulu supaya perubahan URL pelayan berkuat kuasa segera
+  if (url.pathname.endsWith('/config.js')) {
+    e.respondWith(fetch(req).then(res => { const s = res.clone(); caches.open(VERSI).then(c => c.put(req, s)); return res; })
+      .catch(() => caches.match(req)));
+    return;
+  }
   // Navigasi halaman: sentiasa buka cangkerang aplikasi dari simpanan (berfungsi luar talian)
   if (req.mode === 'navigate') {
     e.respondWith(caches.match('./index.html').then(r => r || fetch(req)));
@@ -57,4 +64,23 @@ self.addEventListener('fetch', e => {
     if (res.ok) { const salin = res.clone(); caches.open(VERSI).then(c => c.put(req, salin)); }
     return res;
   })));
+});
+
+/* Notifikasi push (Firebase Cloud Messaging, mesej data) */
+self.addEventListener('push', e => {
+  let p = {}; try { p = e.data ? e.data.json() : {}; } catch (x) {}
+  const d = p.data || p.notification || p || {};
+  e.waitUntil(self.registration.showNotification(d.title || 'Aplikasi GMP', {
+    body: d.body || '', icon: './icons/icon-192.png', badge: './icons/favicon-32.png',
+    tag: 'gmp-' + (d.view || 'utama') + '-' + Date.now(), data: { view: d.view || 'utama' }
+  }));
+});
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  const view = (e.notification.data && e.notification.data.view) || 'utama';
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(senarai => {
+    const c = senarai.find(x => x.url.startsWith(self.registration.scope));
+    if (c) { c.postMessage({ type: 'gmp-buka', view }); return c.focus(); }
+    return self.clients.openWindow(self.registration.scope + '#' + view);
+  }));
 });

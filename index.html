@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#1E6B3C" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141F19" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
+<script src="config.js"></script>
 <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -407,6 +408,89 @@ body.log-masuk main{padding-left:max(16px,env(safe-area-inset-left,0px))}
 .masuk h1 em{font-style:italic;color:var(--green)}
 .masuk .sub{color:var(--ink-2);font-size:14.5px;max-width:34ch}
 .masuk form{width:100%;text-align:left}
+.masuk.lebar{max-width:680px;align-items:stretch;text-align:left}
+.masuk.lebar h1,.masuk.lebar>.sub{text-align:center;align-self:center}
+.kepala-daftar{display:flex}
+.daftar-ajak{width:100%;text-align:left;align-items:flex-start}
+.pautan{background:none;border:0;color:var(--green);font-weight:600;font-size:13.5px;cursor:pointer;padding:6px 0;text-decoration:underline;text-underline-offset:3px}
+fieldset.seksyen{border:0;border-top:1px solid var(--line);margin:0;padding:14px 0 0;display:flex;flex-direction:column;gap:12px;min-width:0}
+fieldset.seksyen:first-child{border-top:0;padding-top:0}
+fieldset.seksyen legend{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:600;padding:0 8px 0 0}
+.setuju{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;font-size:13px;color:var(--ink-2);line-height:1.45;padding:12px;background:var(--surface-2);border-radius:8px;cursor:pointer}
+.setuju input{width:20px;height:20px;accent-color:var(--green);margin:0}
+details.pelayan{font-size:13px;color:var(--ink-2)}
+details.pelayan summary{cursor:pointer;font-weight:600;padding:4px 0}
+details.pelayan .medan{margin-top:8px}
+.peta-pilih{height:260px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface-2);z-index:0;overflow:hidden}
+.peta-besar{height:62vh;min-height:340px;max-height:640px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);z-index:0;overflow:hidden}
+.baris-lokasi{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.titik{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line-2)}
+.titik.t-mt{background:var(--green)}.titik.t-ng{background:var(--gold)}
+.ikut-negeri{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:2px 14px}
+.ikut-negeri button{display:flex;justify-content:space-between;gap:8px;align-items:center;background:none;border:0;border-bottom:1px solid var(--line);padding:9px 2px;font-size:13.5px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left}
+.ikut-negeri button.on{color:var(--green)}
+.ikut-negeri button b{color:var(--ink-2)}
+.leaflet-popup-content .pop{font-family:var(--display);font-size:12.5px;line-height:1.45;color:#16241C}
+.leaflet-popup-content .pop span{color:#4A5A50}
+.leaflet-popup-content .pop hr{border:0;border-top:1px solid #D6DED3;margin:6px 0}
+.leaflet-tooltip.bil-titik{background:transparent;border:0;box-shadow:none;color:#fff;font-family:var(--mono);font-weight:700;font-size:11px;padding:0}
+.leaflet-tooltip.bil-titik::before{display:none}
+.baca.dua{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 16px}
+.baca.dua p{font-size:15px}
+.peranan.ahli{background:var(--surface-2);color:var(--info);border-color:var(--info)}
+.titik.t-ah{background:var(--info)}
+.lencana-dalam{font-family:var(--mono);font-size:10px;background:var(--crit);color:#fff;border-radius:9px;padding:0 6px;vertical-align:2px}
+.kad-push .baris-push{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start}
+.kad-push .baris-push>svg{width:24px;height:24px;color:var(--green);margin-top:2px}
+.kad-push b{font-size:14.5px}
+.acara{display:grid;grid-template-columns:58px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.acara.lepas{opacity:.78}
+.acara-tkh{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;background:var(--green-soft);color:var(--green);padding:8px 0;line-height:1.05;align-self:start}
+.acara-tkh b{font-size:22px;font-weight:800}
+.acara-tkh span{font-family:var(--mono);font-size:10px;margin-top:3px}
+.acara.lepas .acara-tkh{background:var(--surface-2);color:var(--ink-3)}
+.acara-isi{display:flex;flex-direction:column;gap:6px;min-width:0}
+.acara-isi h3{font-size:16px;font-weight:700;line-height:1.3}
+.acara-p{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.acara .lembar-k{padding-top:4px}
+.ikon-sijil{width:36px;height:36px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center}
+.ikon-sijil svg,.btn svg{width:17px;height:17px}
+.senarai-hadir{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;max-height:46vh;overflow:auto}
+.hadir-baris{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.hadir-baris:last-child{border-bottom:0}
+.hadir-baris input{width:22px;height:22px;accent-color:var(--green)}
+.hadir-baris b{font-size:14px;display:block}
+.hadir-baris small{font-size:12px;color:var(--ink-3)}
+.peng{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.peng.penting{border-left:4px solid var(--crit)}
+.peng h3{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25}
+.peng p{font-size:14.5px;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.peng-m{display:flex;gap:4px 10px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);align-items:center}
+.baris-kat{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px;font-weight:600}
+.baris-kat:last-child{border-bottom:0}
+.baris-kat span{display:flex;gap:8px;align-items:center}
+.amaun{font-family:var(--mono);font-weight:600;font-size:14px;white-space:nowrap}
+.amaun.masuk{color:var(--ok)}.amaun.keluar{color:var(--crit)}
+.galeri{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.gbr{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--surface-2);border:1px solid var(--line)}
+.gbr img{width:100%;height:100%;object-fit:cover;display:block}
+.gbr .ikon-btn{position:absolute;top:4px;right:4px;width:28px;height:28px;background:var(--surface);opacity:.92}
+.gbr.tambah{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;color:var(--green);font-size:12px;font-weight:600;border-style:dashed}
+.gbr.tambah svg{width:22px;height:22px}
+.amaran-upta{border-left:4px solid var(--warn,#b7791f);font-size:14px;margin-bottom:12px}
+.jadual-upta{display:grid}
+.jadual-upta .th,.jadual-upta .tr{display:grid;grid-template-columns:minmax(0,1fr) 64px 64px;gap:8px;align-items:center;padding:9px 4px;text-align:left}
+.jadual-upta .th{font-size:12px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+.jadual-upta .th span:not(:first-child),.jadual-upta .tr b{text-align:right}
+.jadual-upta .tr{border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:inherit;font-size:14px;cursor:pointer;width:100%}
+.jadual-upta .tr:last-child{border-bottom:0}
+.jadual-upta .tr.on{background:var(--green-soft);color:var(--green)}
+.ahli.upta h3 .baru{font-size:11px;font-weight:700;color:var(--green);background:var(--green-soft);border-radius:6px;padding:1px 6px;vertical-align:middle}
+.tag-baris{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.tag-ng{font-size:11.5px;padding:2px 7px;border-radius:6px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.tag-ng.saya{background:var(--green-soft);color:var(--green);font-weight:600}
+.tag-ng.tiada{color:var(--crit)}
+.penapis .baris+.baris{margin-top:8px}
 </style>
 </head>
 <body>
@@ -431,7 +515,7 @@ body.log-masuk main{padding-left:max(16px,env(safe-area-inset-left,0px))}
 <script>
 (function(){
 "use strict";
-var VERSI = "2.1.0";
+var VERSI = "4.2.0";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -531,7 +615,7 @@ var JENIS_MES = {maya:"Mesyuarat maya MT",penuh:"Mesyuarat penuh MT + Exco",lain
 var BULAN = ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ogos","Sep","Okt","Nov","Dis"];
 var BULAN_P = ["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember"];
 var HARI = ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"];
-var JENIS = ["orang","tugas","program","kpi","negeri","laporan","aktiviti","ajk","lapbulan","mesyuarat"];
+var JENIS = ["orang","tugas","program","kpi","negeri","laporan","aktiviti","ajk","lapbulan","mesyuarat","ahli","pengumuman","penyertaan","transaksi","upta"];
 
 function binaAsas(){
   var orang = JAWATAN.map(function(j,i){
@@ -544,11 +628,11 @@ function binaAsas(){
   });
   var kpi = KPI.map(function(k,i){return {id:k[0],petunjuk:k[1],sasaran:String(k[2]),semasa:"",unit:k[3],teras:k[4],catatan:"",urutan:String(i+1)};});
   var negeri = NEGERI.map(function(n,i){return {id:slugNegeri(n),nama:n,struktur:"",roadshow:"",aktiviti:"",rekod:"",dipindah:"",catatan:"",urutan:String(i+1)};});
-  return {orang:orang,tugas:[],program:program,kpi:kpi,negeri:negeri,laporan:[],aktiviti:[],ajk:[],lapbulan:[],mesyuarat:[]};
+  return {orang:orang,tugas:[],program:program,kpi:kpi,negeri:negeri,laporan:[],aktiviti:[],ajk:[],lapbulan:[],mesyuarat:[],ahli:[],pengumuman:[],penyertaan:[],transaksi:[],upta:[]};
 }
 
 /* Data contoh — mod demo SAHAJA (tidak pernah dihantar ke Google Sheets) */
-function binaContoh(D){
+function binaContohAsas(D){
   var h=hariIni(), bl=bulanLepas(), bl2=bulanSebelum(bl);
   var set=function(id,o){var n=D.negeri.filter(function(x){return x.id===id;})[0]; if(n) Object.assign(n,o);};
   set("ng-selangor",{struktur:"ya",roadshow:"ya",rekod:"86",dipindah:"52"});
@@ -574,6 +658,18 @@ function binaContoh(D){
     lap("ng-johor",bl,"pembetulan",{ulasan:"Contoh: Sila nyatakan bilangan rekod yang telah dipindah."}),
     lap("ng-selangor",bl2,"lulus"),lap("ng-kedah",bl2,"lulus"),lap("ng-perak",bl2,"dihantar")
   ];
+  var ah=function(id,nama,pr,ng,lat,lng,inst,bid,st,jaw){return {id:"contoh-"+id,emel:"",nama:"Contoh: "+nama,telefon:"",negeri:ng,daerah:"",institusi:inst,bidang:bid,statusProf:st,tahunGrad:"",lat:String(lat),lng:String(lng),peranan:pr,jawatanId:jaw||"",statusAkaun:"aktif"};};
+  D.ahli=[
+    ah("h1","Pengerusi","mt","ng-selangor",3.05,101.45,"KK Meru","Perubatan","Pakar / pensyarah","presiden"),
+    ah("h2","Setiausaha Agong","mt","ng-w-p-kuala-lumpur",3.12,101.68,"HKL","Perubatan","Pegawai (MO / DO / PF / jururawat)","sua"),
+    ah("h3","Ketua Selangor","negeri","ng-selangor",3.21,101.57,"UiTM Sg Buloh","Perubatan","Pegawai Perubatan Siswazah (HO)","ng-selangor"),
+    ah("h4","AJK Selangor","negeri","ng-selangor",3.21,101.57,"UiTM Sg Buloh","Farmasi","Pelajar klinikal"),
+    ah("h5","Ketua Kedah","negeri","ng-kedah",6.12,100.37,"HSB Alor Setar","Pergigian","Pegawai (MO / DO / PF / jururawat)","ng-kedah"),
+    ah("h6","AJK Johor","negeri","ng-johor",1.53,103.66,"HSA Johor Bahru","Kejururawatan","Pegawai (MO / DO / PF / jururawat)"),
+    ah("h7","AJK Kelantan","negeri","ng-kelantan",6.1,102.28,"USM Kubang Kerian","Perubatan","Pelajar praklinikal"),
+    ah("h8","AJK Sabah","negeri","ng-sabah",5.96,116.09,"HQE Kota Kinabalu","Perubatan","Graduan menunggu penempatan")
+  ];
+  D.ahli.push(Object.assign(ah("h9","Pendaftar baharu","","ng-perak",4.6,101.08,"Hospital Raja Permaisuri Bainun","Farmasi","Graduan menunggu penempatan"),{statusAkaun:"menunggu",daftarPada:new Date().toISOString()}));
   D.mesyuarat=[
     {id:"contoh-m1",tarikh:tambahHari(h,-25),jenis:"maya",tajuk:"Contoh: Mesyuarat maya MT",jemputan:"presiden,tp1,sua,suk,bendahari",hadir:"presiden,tp1,sua,bendahari",minit:"",keputusan:"Contoh: Muktamad tarikh ILS 2.0."}
   ];
@@ -634,14 +730,16 @@ var IKON = {
   tambah:'<path d="M12 5v14M5 12h14"/>',
   tutup:'<path d="M6 6l12 12M18 6 6 18"/>',
   cek:'<path d="m5 12.5 4.5 4.5L19 7.5"/>',
-  anak:'<path d="m9 6 6 6-6 6"/>'
+  anak:'<path d="m9 6 6 6-6 6"/>',
+  peta:'<path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/>',
+  profil:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18.5c1.2-2.2 3.2-3.3 5.5-3.3s4.3 1.1 5.5 3.3"/>'
 };
 function svg(n){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IKON[n]+'</svg>';}
 
 /* ======================================================================
    KEADAAN & STOR TEMPATAN
    ====================================================================== */
-var CFG = Object.assign({url:"",kod:"",peranan:"",negeri:"",namaNegeri:"",saya:"",tema:"sistem",demoPeranan:"mt",demoNegeri:"ng-selangor"}, lsGet("gmp.cfg",{}));
+var CFG = Object.assign({url:"",kod:"",token:"",akaun:null,demo:false,api:"",peranan:"",negeri:"",namaNegeri:"",saya:"",tema:"sistem",demoPeranan:"mt",demoNegeri:"ng-selangor"}, lsGet("gmp.cfg",{}));
 var DATA = lsGet("gmp.data",null);
 var OUTBOX = lsGet("gmp.outbox",[]);
 var META = lsGet("gmp.meta",{masa:null,kosong:false});
@@ -656,7 +754,7 @@ if(!DATA){
   DATA = binaAsas();
   if(!CFG.url){ binaContoh(DATA); DATA.tugas = janaTugasan(DATA.program.filter(function(p){return p.id==="P10";})[0], true); }
 }
-if(!CFG.url && !Array.isArray(DATA.aktiviti)) binaContoh(DATA);
+if(!CFG.url && (!Array.isArray(DATA.aktiviti) || !Array.isArray(DATA.ahli) || !Array.isArray(DATA.pengumuman))) binaContoh(DATA);
 JENIS.forEach(function(j){ if(!Array.isArray(DATA[j])) DATA[j]=[]; });
 if(!CFG.url) DATA.tugas.forEach(lengkapTugas);
 
@@ -729,7 +827,7 @@ function bolehUbah(jenis,r){
    SEGERAK DENGAN GOOGLE SHEETS
    ====================================================================== */
 function api(tindakan,tambahan,url,kod){
-  var badan = Object.assign({kod:kod!=null?kod:CFG.kod,tindakan:tindakan},tambahan||{});
+  var badan = Object.assign({kod:kod!=null?kod:CFG.kod,tindakan:tindakan},CFG.token&&kod==null?{token:CFG.token}:{},tambahan||{});
   if(GAS) return new Promise(function(lulus,gagal){
     var t=setTimeout(function(){ gagal(new Error("Tiada jawapan daripada pelayan (60 saat)")); },60000);
     google.script.run
@@ -760,12 +858,14 @@ function segerak(){
     var gagal = (j.hasil||[]).filter(function(h){return !h.ok;});
     if(j.akses){ CFG.peranan=j.akses.peranan; CFG.negeri=j.akses.negeri||""; simpanCfg(); }
     terimaData(j.data);
+    if(CFG.akaun){ var me=cari("ahli",CFG.akaun.id); if(me){ CFG.akaun=me; if(me.jawatanId) CFG.saya=me.jawatanId; simpanCfg(); } }
     META.masa=j.masa; META.kosong=!(j.data.orang||[]).length;
     simpanLokal();
     SEG.status="sedia"; SEG.ralat = gagal.length? gagal.length+" perubahan ditolak: "+gagal[0].ralat : "";
-    render();
+    render(true);
     if(gagal.length) toast("Ditolak pelayan: "+gagal[0].ralat);
   }, function(e){
+    if(CFG.url && /^(AKSES|MENUNGGU|DITOLAK|TIADA_PROFIL|SAHKAN)$/.test(e.kod||"")){ bersihSesi(); keluarFirebase(); UI_MASUK="masuk"; NOTIS_MASUK=e.message; render(); return; }
     SEG.status = e.kod==="AKSES"? "akses" : (navigator.onLine? "ralat" : "luar");
     SEG.ralat = e.message; kemasStatus();
     if(laluan()==="tetapan") render();
@@ -897,18 +997,19 @@ function perluTindakanNg(){
    LALUAN & RANGKA
    ====================================================================== */
 var HALAMAN = {
-  utama:{t:"Utama",i:"utama"}, tugas:{t:"Tugas",i:"tugas"}, tetapan:{t:"Tetapan",i:"tetapan",s:"Google Sheets, kod akses, pasang aplikasi"}, lagi:{t:"Lagi",i:"lagi"},
+  utama:{t:"Utama",i:"utama"}, tugas:{t:"Tugas",i:"tugas"}, tetapan:{t:"Tetapan",i:"tetapan",s:"Akaun, pasang aplikasi, paparan"}, lagi:{t:"Lagi",i:"lagi"},
+  peta:{t:"Peta AJK",i:"peta",s:"Lokasi anggaran ahli berdaftar"}, profil:{t:"Profil saya",i:"profil",s:"Maklumat peribadi & kata laluan"},
   negeri:{t:"Negeri",i:"negeri",mt:1,s:"Pemantauan & skor 15 wilayah"}, semakan:{t:"Semakan",i:"semakan",mt:1,s:"Laporan bulanan negeri"},
   kewangan:{t:"Kewangan",i:"kewangan",mt:1,s:"Bajet vs belanja sebenar"}, mesyuarat:{t:"Mesyuarat",i:"mesyuarat",mt:1,s:"Mesyuarat MT & kehadiran"},
   program:{t:"Program",i:"program",mt:1,s:"21 program blueprint"}, kpi:{t:"KPI",i:"kpi",mt:1,s:"12 petunjuk prestasi"},
-  laporan:{t:"Laporan program",i:"laporan",mt:1,s:"Laporan 14 hari & muhasabah"}, ahli:{t:"Ahli & jawatan",i:"ahli",mt:1,s:"E-mel, telefon, peringatan"},
+  laporan:{t:"Laporan program",i:"laporan",mt:1,s:"Laporan 14 hari & muhasabah"}, ahli:{t:"Ahli",i:"ahli",mt:1,s:"Kelulusan pendaftaran, direktori, jawatan"},
   aktiviti:{t:"Aktiviti",i:"aktiviti",ng:1,s:"Log aktiviti cawangan"}, lapbulan:{t:"Laporan",i:"laporan",ng:1,s:"Laporan bulanan ke Pusat"},
   data:{t:"Data graduan",i:"data",ng:1,s:"Rekod & pemindahan ke PAPISMA negeri"}, ajk:{t:"AJK negeri",i:"ahli",ng:1,s:"Ketua & barisan AJK"},
   kedudukan:{t:"Kedudukan",i:"kedudukan",ng:1,s:"Skor kesiapsiagaan semua negeri"}
 };
 var NAV = {
-  mt:{bawah:["utama","tugas","negeri","semakan","lagi"],rel:["utama","tugas","negeri","semakan","kewangan","mesyuarat","program","kpi","laporan","ahli","|","tetapan"]},
-  ng:{bawah:["utama","aktiviti","lapbulan","tugas","lagi"],rel:["utama","aktiviti","lapbulan","tugas","data","ajk","kedudukan","|","tetapan"]}
+  mt:{bawah:["utama","tugas","negeri","semakan","lagi"],rel:["utama","tugas","negeri","semakan","ahli","peta","kewangan","mesyuarat","program","kpi","laporan","|","profil","tetapan"]},
+  ng:{bawah:["utama","aktiviti","lapbulan","tugas","lagi"],rel:["utama","aktiviti","lapbulan","tugas","peta","data","ajk","kedudukan","|","profil","tetapan"]}
 };
 function laluan(){
   var h=(location.hash||"").replace(/^#\/?/,""), d=HALAMAN[h];
@@ -919,6 +1020,8 @@ function lencana(n){
   if(n==="tugas"){ var k=kiraTugas(isMT()? (CFG.saya?tugasSaya():tugasSkop()) : tugasSkop()).lewat; return k; }
   if(n==="semakan") return DATA.lapbulan.filter(function(l){return l.status==="dihantar";}).length;
   if(n==="lapbulan") return perluTindakanNg();
+  if(n==="ahli") return isMT()? DATA.ahli.filter(function(a){return a.statusAkaun==="menunggu";}).length : 0;
+  if(n==="lagi"){ var nav=NAV[isMT()?"mt":"ng"]; return nav.rel.filter(function(h){return h!=="|"&&h!=="lagi"&&nav.bawah.indexOf(h)<0;}).reduce(function(s,h){return s+lencana(h);},0); }
   return 0;
 }
 function binaNav(){
@@ -937,35 +1040,19 @@ var FAB = {
   mt:{tugas:{t:"Tugasan",a:"tugas-baru"},laporan:{t:"Laporan",a:"laporan-baru"},ahli:{t:"Ahli",a:"ahli-baru"},mesyuarat:{t:"Mesyuarat",a:"mesyuarat-baru"}},
   ng:{tugas:{t:"Tugasan",a:"tugas-baru"},aktiviti:{t:"Aktiviti",a:"aktiviti-baru"},ajk:{t:"AJK",a:"ajk-baru"},lapbulan:{t:"Laporan",a:"lapbulan-baru"}}
 };
-function render(){
-  if(GAS && !CFG.url){ paparMasuk(); return; }
+function render(lembut){
+  if(!CFG.url && !CFG.demo){ paparMasuk(); return; }
   document.body.classList.remove("log-masuk");
   var r=laluan();
   binaNav(); kemasStatus();
+  // segerak latar tidak melukis semula peta/profil (elak hilang suntingan & kedudukan peta)
+  if(lembut && (r==="peta"||r==="profil") && $("#isi").getAttribute("data-hal")===r) return;
   var hal = (isMT()? HAL_MT[r] : HAL_NG[r]) || HAL[r];
-  $("#isi").innerHTML = hal();
+  $("#isi").innerHTML = hal(); $("#isi").setAttribute("data-hal",r);
+  if(PASCA[r]) setTimeout(PASCA[r],0);
   var f=FAB[isMT()?"mt":"ng"][r], fab=$("#fab");
   if(f){ fab.hidden=false; fab.innerHTML=svg("tambah")+f.t; fab.setAttribute("data-act",f.a); } else fab.hidden=true;
   document.title = (r==="utama"?"":HALAMAN[r].t+" · ")+"Aplikasi GMP";
-}
-
-/* Skrin log masuk (mod Apps Script sahaja) */
-function paparMasuk(){
-  document.body.classList.add("log-masuk");
-  $("#fab").hidden=true; $("#nav").innerHTML=""; $("#rel").innerHTML="";
-  $("#brandNama").textContent="GMP Malaysia"; $("#brandSub").textContent="SESI 2026–2028";
-  var pill=$("#segPill"); pill.className="seg-pill"; $("#segTeks").textContent="Belum log masuk";
-  if($("#iKod")) return;
-  $("#isi").innerHTML='<section class="masuk">'+
-    '<img src="data:image/png;base64,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" alt="Logo Generasi Muda PAPISMA" width="150" height="118">'+
-    '<h1>Aplikasi <em>GMP</em></h1>'+
-    '<p class="sub">Sistem kerja Generasi Muda PAPISMA Malaysia, sesi 2026–2028.</p>'+
-    '<form class="kad blok" data-form="sambung" id="fSambung">'+
-      '<div class="medan"><label for="iKod">Kod akses</label><input type="password" id="iKod" required placeholder="GMP-XXXX-XXXX atau SEL-XXXX-XXXX" autocomplete="current-password"></div>'+
-      '<button class="btn utama" type="submit">Masuk</button>'+
-      '<p class="nota">Kod Majlis Tertinggi membuka dashboard MT. Kod negeri membuka sistem AJK negeri itu. Dapatkan kod daripada Setiausaha Agong.</p>'+
-    '</form></section>';
-  document.title="Aplikasi GMP";
 }
 
 /* ======================================================================
@@ -974,7 +1061,7 @@ function paparMasuk(){
 var HAL={}, HAL_MT={}, HAL_NG={};
 
 function amaranMod(){
-  if(!CFG.url) return '<div class="amaran"><span><b>Mod demo · '+(isMT()?"Majlis Tertinggi":"AJK "+esc(namaNegeri(ngSaya())))+'.</b> Rekod bertanda "Contoh" ialah data contoh dalam peranti ini sahaja. Tukar paparan atau sambungkan Google Sheets di Tetapan.</span><a class="btn kecil" href="#tetapan">Tetapan</a></div>';
+  if(!CFG.url) return '<div class="amaran"><span><b>Mod demo · '+(isMT()?"Majlis Tertinggi":"AJK "+esc(namaNegeri(ngSaya())))+'.</b> Rekod bertanda "Contoh" ialah data contoh dalam peranti ini sahaja. Tukar paparan di Tetapan.</span><button class="btn kecil" type="button" data-act="demo-keluar">Log masuk</button></div>';
   if(SEG.status==="akses") return '<div class="amaran bahaya"><span><b>Kod akses ditolak.</b> Kod mungkin telah ditukar. Masukkan kod baharu dalam Tetapan.</span><a class="btn kecil" href="#tetapan">Tetapan</a></div>';
   if(isMT() && META.kosong && SEG.status==="sedia") return '<div class="amaran"><span><b>Google Sheets masih kosong.</b> Isi data asas blueprint (ahli, 21 program, 12 KPI, 15 wilayah) sekali sahaja.</span><button class="btn kecil utama" data-act="isi-asas" type="button">Isi data asas</button></div>';
   return "";
@@ -1112,29 +1199,23 @@ HAL.tetapan = function(){
     '<p class="nota">Di Android (Chrome): menu ⋮ → <b>Pasang aplikasi</b>. Di komputer: ikon pasang di bar alamat.</p>';
   var peranan = isMT()? '<span class="peranan mt">Majlis Tertinggi</span>' : '<span class="peranan">AJK '+esc(namaNegeri(ngSaya()))+'</span>';
   return '<div class="kepala"><div><h1>Tetapan</h1><div class="sub">Versi '+VERSI+' · '+peranan+'</div></div></div>'+amaranMod()+
-    (!sambung? '<section class="blok"><h2>Cuba paparan</h2><div class="kad demo-peranan">'+
-      '<div class="segmen">'+[["mt","Majlis Tertinggi"],["negeri","AJK negeri"]].map(function(m){return '<button type="button" data-act="demo-peranan" data-p="'+m[0]+'" class="'+(CFG.demoPeranan===m[0]?"on":"")+'">'+m[1]+'</button>';}).join("")+'</div>'+
-      (CFG.demoPeranan==="negeri"?'<div class="medan"><label for="demoNg">Negeri</label><select id="demoNg">'+NEGERI.map(function(n){var id=slugNegeri(n);return '<option value="'+id+'"'+(CFG.demoNegeri===id?" selected":"")+'>'+n+'</option>';}).join("")+'</select></div>':'')+
+    (CFG.demo? '<section class="blok"><h2>Cuba paparan</h2><div class="kad demo-peranan">'+
+      '<div class="segmen">'+[["mt","Majlis Tertinggi"],["negeri","AJK negeri"],["ahli","Ahli"]].map(function(m){return '<button type="button" data-act="demo-peranan" data-p="'+m[0]+'" class="'+(CFG.demoPeranan===m[0]?"on":"")+'">'+m[1]+'</button>';}).join("")+'</div>'+
+      (CFG.demoPeranan!=="mt"?'<div class="medan"><label for="demoNg">Negeri</label><select id="demoNg">'+NEGERI.map(function(n){var id=slugNegeri(n);return '<option value="'+id+'"'+(CFG.demoNegeri===id?" selected":"")+'>'+n+'</option>';}).join("")+'</select></div>':'')+
       '<p class="nota">Selepas bersambung dengan Google Sheets, paparan ditentukan oleh kod akses: kod MT membuka dashboard MT, kod negeri membuka sistem negeri itu.</p></div></section>' : '')+
-    (isMT()?'<section class="blok"><h2>Siapa saya</h2><div class="kad blok">'+pilihOrang("pilihSaya",CFG.saya)+
-      '<p class="nota">Menentukan "Tugas saya" dan sapaan. Disimpan dalam peranti ini sahaja.</p><button class="btn" type="button" data-act="tetap-saya">Simpan</button></div></section>':'')+
-    (GAS? '<section class="blok"><h2>Akaun</h2><div class="kad blok">'+
-      '<p><span class="status '+(SEG.status==="sedia"?"siap":SEG.status==="akses"||SEG.status==="ralat"?"sekat":"buat")+'"><i></i>'+esc($("#segTeks").textContent)+'</span></p>'+(SEG.ralat?'<p class="nota" style="color:var(--crit)">'+esc(SEG.ralat)+'</p>':'')+
-      '<p class="nota">Data disimpan terus dalam Google Sheets GMP. Log keluar memadam salinan data dalam peranti ini sahaja.</p>'+
-      '<div class="lembar-k"><button class="btn" type="button" data-act="segerak">Segerak sekarang</button><button class="btn bahaya" type="button" data-act="putus" data-sah="0">Log keluar</button></div></div></section>'+
-      '<section class="blok"><h2>Letak di skrin utama</h2><div class="kad blok"><p class="nota">'+(ios?'Safari: butang Kongsi → <b>Tambah ke Skrin Utama</b>.':'Chrome: menu ⋮ → <b>Tambah ke skrin utama</b>. Di komputer: tanda buku (bookmark) pautan ini.')+'</p>'+
-      '<p class="nota">Versi Apps Script memerlukan internet untuk dibuka. Perubahan yang dibuat semasa sambungan terputus disimpan dalam peranti dan dihantar sebaik sambungan pulih.</p></div></section>'
-    : '<section class="blok"><h2>Google Sheets</h2><form class="kad blok" id="fSambung" data-form="sambung">'+
-      (sambung? '<p><span class="status '+(SEG.status==="sedia"?"siap":SEG.status==="akses"||SEG.status==="ralat"?"sekat":"buat")+'"><i></i>'+esc($("#segTeks").textContent)+'</span></p>'+(SEG.ralat?'<p class="nota" style="color:var(--crit)">'+esc(SEG.ralat)+'</p>':'')
-        : '<p class="nota">Tampal URL aplikasi web Apps Script (berakhir <span class="num">/exec</span>) dan kod akses anda. Kod MT dan kod setiap negeri diberi oleh Setiausaha Agong.</p>')+
-      '<div class="medan"><label for="iUrl">URL aplikasi web</label><input type="url" id="iUrl" required placeholder="https://script.google.com/macros/s/…/exec" value="'+esc(CFG.url)+'" autocomplete="off"></div>'+
-      '<div class="medan"><label for="iKod">Kod akses</label><input type="password" id="iKod" required placeholder="GMP-XXXX-XXXX atau SEL-XXXX-XXXX" value="'+esc(CFG.kod)+'" autocomplete="off"></div>'+
-      '<div class="lembar-k"><button class="btn utama" type="submit">'+(sambung?"Simpan & uji semula":"Sambung")+'</button>'+
-      (sambung?'<button class="btn" type="button" data-act="segerak">Segerak sekarang</button><button class="btn bahaya" type="button" data-act="putus" data-sah="0">Putuskan</button>':'')+'</div>'+
-      (sambung?'<p class="nota">Memutuskan sambungan mengembalikan peranti ini ke mod demo. Data dalam Google Sheets tidak disentuh.</p>':'<p class="nota">Selepas bersambung, data contoh dalam peranti ini digantikan dengan data dari Google Sheets.</p>')+
-    '</form></section>'+
-    '<section class="blok"><h2>Pasang di telefon</h2><div class="kad blok">'+pasang+'<p class="nota">Selepas dipasang, aplikasi boleh digunakan luar talian. Perubahan dihantar ke Sheets sebaik sambungan pulih.</p>'+
+    (isMT() && !(CFG.akaun&&CFG.akaun.jawatanId)?'<section class="blok"><h2>Siapa saya</h2><div class="kad blok">'+pilihOrang("pilihSaya",CFG.saya)+
+      '<p class="nota">Menentukan "Tugas saya". Ditetapkan automatik apabila MT mengaitkan akaun anda dengan jawatan.</p><button class="btn" type="button" data-act="tetap-saya">Simpan</button></div></section>':'')+
+    '<section class="blok"><h2>Akaun</h2><div class="kad blok">'+
+      (CFG.demo? '<p class="nota">Anda sedang melihat demo. Data contoh disimpan dalam peranti ini sahaja.</p><div class="lembar-k"><button class="btn utama" type="button" data-act="demo-keluar">Log masuk / daftar</button></div>'
+      : (CFG.akaun? '<p style="font-size:15px"><b>'+esc(CFG.akaun.nama||"")+'</b><br><span class="nota">'+esc(CFG.akaun.emel||"")+'</span></p>' : '<p class="nota">Log masuk menggunakan kod akses lama.</p>')+
+        '<p><span class="status '+(SEG.status==="sedia"?"siap":SEG.status==="akses"||SEG.status==="ralat"?"sekat":"buat")+'"><i></i>'+esc($("#segTeks").textContent)+'</span></p>'+(SEG.ralat?'<p class="nota" style="color:var(--crit)">'+esc(SEG.ralat)+'</p>':'')+
+        '<div class="lembar-k">'+(CFG.akaun?'<a class="btn" href="#profil">Profil saya</a>':'')+'<button class="btn" type="button" data-act="segerak">Segerak sekarang</button><button class="btn bahaya" type="button" data-act="log-keluar">Log keluar</button></div>'+
+        (!GAS&&CFG.api?'<p class="nota">Pelayan: <span class="num" style="overflow-wrap:anywhere">'+esc(CFG.api)+'</span></p>':''))+
+    '</div></section>'+
+    (GAS? '<section class="blok"><h2>Letak di skrin utama</h2><div class="kad blok"><p class="nota">'+(ios?'Safari: butang Kongsi → <b>Tambah ke Skrin Utama</b>.':'Chrome: menu ⋮ → <b>Tambah ke skrin utama</b>. Di komputer: tanda buku (bookmark) pautan ini.')+'</p></div></section>'
+    : '<section class="blok"><h2>Pasang di telefon</h2><div class="kad blok">'+pasang+'<p class="nota">Selepas dipasang, aplikasi boleh digunakan luar talian. Perubahan dihantar ke Sheets sebaik sambungan pulih.</p>'+
       (standalone?'':'<button class="btn" type="button" data-act="semak-pasang">Semak kenapa tidak boleh dipasang</button><div id="hasilSemak" class="semak-senarai"></div>')+'</div></section>')+
+    '<section class="blok"><h2>Notifikasi</h2>'+kadPush(true)+'</section>'+
     '<section class="blok"><h2>Paparan</h2><div class="segmen">'+[["sistem","Ikut sistem"],["light","Cerah"],["dark","Gelap"]].map(function(m){
       return '<button type="button" data-act="tema" data-tema="'+m[0]+'" class="'+(CFG.tema===m[0]?"on":"")+'">'+m[1]+'</button>';}).join("")+'</div></section>'+
     '<section class="blok"><h2>Data peranti</h2><div class="kad blok">'+
@@ -1159,6 +1240,8 @@ HAL_MT.utama = function(){
   var bajet=DATA.program.reduce(function(a,p){return a+num(p.bajet);},0), bel=DATA.program.reduce(function(a,p){return a+num(p.belanja);},0);
 
   var t=[];
+  var daftarBaru=DATA.ahli.filter(function(a){return a.statusAkaun==="menunggu";});
+  if(daftarBaru.length) t.push(itemTindakan("ahli",daftarBaru.length,"Pendaftaran ahli menunggu kelulusan",daftarBaru.slice(0,3).map(function(a){return a.nama;}).join(", ")+(daftarBaru.length>3?"…":""),"warn"));
   if(menunggu.length) t.push(itemTindakan("semakan",menunggu.length,"Laporan negeri menunggu semakan",menunggu.slice(0,3).map(function(l){return namaNegeri(l.negeri);}).join(", ")+(menunggu.length>3?"…":""),"warn"));
   if(tak.length) t.push(itemTindakan("negeri",tak.length,"Negeri tiada aktiviti dalam 60 hari",tak.slice(0,4).map(function(n){return n.nama;}).join(", ")+(tak.length>4?"…":""),"crit"));
   if(tiadaLap.length && lewatLap) t.push(itemTindakan("semakan",tiadaLap.length,"Belum hantar laporan "+fmtBulan(bl),"Tarikh akhir "+fmtTarikh(tarikhAkhirLap(bl)),"crit"));
@@ -1305,18 +1388,18 @@ HAL_MT.laporan = function(){
     }).join("")+'</div>' : kosong("Belum ada laporan",'Tekan "Laporan" untuk merekod laporan program pertama.'))+'</section>';
 };
 HAL_MT.ahli = function(){
-  var o=DATA.orang.slice().sort(urut), tiadaEmel=o.filter(function(x){return !x.emel;}).length;
+  var o=DATA.orang.slice().sort(urut), tiadaEmel=o.filter(function(x){return !pemegangJawatan(x.id);}).length;
   var kad=function(x){
     var k=kiraTugas(DATA.tugas.filter(function(t){return t.pemilik===x.id;})), bAjk=x.unit==="Negeri"? DATA.ajk.filter(function(a){return a.negeri===x.id;}).length : 0;
     return '<div class="ahli"><span class="inisial">'+esc(inisial(x.nama||x.jawatan))+'</span>'+
       '<div style="min-width:0"><h3>'+(x.nama?esc(x.nama):'<span style="color:var(--ink-3)">Nama belum diisi</span>')+'</h3><div class="j">'+esc(x.jawatan)+(CFG.saya===x.id?' · <b style="color:var(--green)">saya</b>':'')+(bAjk?' · '+bAjk+' AJK':'')+'</div>'+
-      '<div class="e'+(x.emel?'':' tiada')+'">'+(x.emel?esc(x.emel):'Tiada e-mel: peringatan tidak dihantar')+'</div>'+
+      barisPemegang(x)+
       (k.aktif?'<div class="j">'+k.aktif+' tugasan aktif'+(k.lewat?' · <span style="color:var(--crit)">'+k.lewat+' lewat</span>':'')+'</div>':'')+'</div>'+
       '<div class="tb">'+(k.aktif?'<button class="btn kecil" type="button" data-act="ingat" data-id="'+esc(x.id)+'">Ingatkan</button>':'')+
       '<button class="btn kecil" type="button" data-act="ahli-buka" data-id="'+esc(x.id)+'">Sunting</button></div></div>';
   };
   var g=function(u){return o.filter(function(x){return x.unit===u;});};
-  return '<div class="kepala"><div><h1>Ahli & Jawatan</h1><div class="sub">'+o.length+' jawatan'+(tiadaEmel?' · '+tiadaEmel+' tanpa e-mel':'')+'</div></div></div>'+
+  return '<div class="kepala"><div><h1>Ahli & Jawatan</h1><div class="sub">'+o.length+' jawatan'+(tiadaEmel?' · '+tiadaEmel+' belum dikaitkan dengan akaun':'')+'</div></div></div>'+
     kumpulan("Majlis Tertinggi",g("Majlis Tertinggi"),kad)+kumpulan("Exco",g("Exco"),kad)+kumpulan("Ketua GMP Negeri",g("Negeri"),kad)+
     kumpulan("Lain-lain",o.filter(function(x){return ["Majlis Tertinggi","Exco","Negeri"].indexOf(x.unit)<0;}),kad);
 };
@@ -1406,7 +1489,7 @@ HAL_NG.ajk = function(){
   };
   return '<div class="kepala"><div><h1>AJK '+esc(namaNegeri(ng))+'</h1><div class="sub">'+a.length+' AJK direkod</div></div></div>'+
     (o?'<section class="blok"><h2>Ketua GMP negeri</h2><div class="ahli"><span class="inisial">'+esc(inisial(o.nama||o.jawatan))+'</span><div style="min-width:0"><h3>'+(o.nama?esc(o.nama):'<span style="color:var(--crit)">Nama belum diisi</span>')+'</h3>'+
-      '<div class="j">'+esc(o.jawatan)+'</div><div class="e'+(o.emel?'':' tiada')+'">'+(o.emel?esc(o.emel):'Tiada e-mel: peringatan tugasan Pusat tidak sampai')+'</div></div>'+
+      '<div class="j">'+esc(o.jawatan)+'</div>'+barisPemegang(o)+'</div>'+
       '<div class="tb"><button class="btn kecil" type="button" data-act="ketua-buka">Sunting</button></div></div></section>':'')+
     (a.length? kumpulan("Barisan AJK",a,kad) : kosong("Belum ada AJK",'Tekan "AJK" untuk menambah barisan AJK negeri.'))+
     '<p class="nota">Polisi tarbiah: AJK mengisytiharkan komitmen luar sebelum menerima jawatan, dan hadir program wajib bersemuka sekurang-kurangnya 2 kali setahun.</p>';
@@ -1590,13 +1673,19 @@ function lembarAjk(a){
     '<label class="suis">Masih aktif<input type="checkbox" id="iAktifA"'+(ya(a.aktif)?" checked":"")+'></label>',
     '<button class="btn utama" type="submit">Simpan</button>'+(baru?'':butangPadam("ajk-padam",a.id)),"ajk");
 }
+function pemegangJawatan(id){ return (DATA.ahli||[]).filter(function(a){return a.jawatanId===id && a.statusAkaun==="aktif";})[0]||null; }
+function barisPemegang(x){
+  var a=pemegangJawatan(x.id);
+  return a? '<div class="e">Akaun: '+esc(a.nama)+' · peringatan push aktif</div>'
+          : '<div class="e tiada">Belum dikaitkan dengan akaun: peringatan push tidak sampai</div>';
+}
 function lembarKetua(){
   var o=cari("orang",ngSaya()); if(!o){ toast("Rekod Ketua belum wujud. Hubungi MT."); return; }
   bukaLembar(esc(o.jawatan),
     '<input type="hidden" id="iId" value="'+esc(o.id)+'">'+
     medan("iNama","Nama Ketua GMP negeri",'<input type="text" id="iNama" value="'+esc(o.nama)+'" autocomplete="name">')+
     '<div class="grid2">'+medan("iEmel","E-mel",inp("iEmel","email",o.emel,' autocomplete="email"'))+medan("iTel","Telefon (WhatsApp)",inp("iTel","tel",o.telefon,' autocomplete="tel"'))+'</div>'+
-    '<p class="nota">E-mel ini menerima peringatan harian bagi tugasan yang diberikan oleh Pusat.</p>',
+    '<p class="nota">Peringatan tugasan dihantar sebagai notifikasi push kepada akaun yang dikaitkan dengan jawatan ini (MT: Ahli → buka profil → Jawatan).</p>',
     '<button class="btn utama" type="submit">Simpan</button>',"ahli");
 }
 
@@ -1884,6 +1973,1544 @@ var BORANG = {
   }
 };
 
+/* ======================================================================
+   v3 — AKAUN E-MEL, PENDAFTARAN AHLI, PETA AJK
+   ====================================================================== */
+var PUSAT_NEGERI = {
+  "ng-perlis":[6.44,100.20],"ng-kedah":[6.12,100.37],"ng-pulau-pinang":[5.41,100.33],"ng-perak":[4.59,101.09],
+  "ng-selangor":[3.07,101.52],"ng-w-p-kuala-lumpur":[3.14,101.69],"ng-negeri-sembilan":[2.73,101.94],"ng-melaka":[2.19,102.25],
+  "ng-johor":[1.49,103.74],"ng-pahang":[3.81,103.33],"ng-terengganu":[5.33,103.14],"ng-kelantan":[6.13,102.24],
+  "ng-sabah":[5.98,116.07],"ng-sarawak":[1.55,110.36]
+};
+var BIDANG = ["Perubatan","Pergigian","Farmasi","Kejururawatan","Sains Kesihatan Bersekutu","Lain-lain"];
+var STATUS_PROF = ["Pelajar praklinikal","Pelajar klinikal","Graduan menunggu penempatan","Pegawai Perubatan Siswazah (HO)",
+  "Pegawai (MO / DO / PF / jururawat)","Pakar / pensyarah","Lain-lain"];
+var ST_AKAUN = {menunggu:"Menunggu kelulusan",aktif:"Aktif",ditolak:"Ditolak",digantung:"Digantung"};
+var PERANAN = {mt:"Majlis Tertinggi",negeri:"AJK negeri"};
+var UI_MASUK = "masuk", EMEL_LUPA = "";
+
+function apiUrl(){ return GAS? URL_GAS : (window.GMP_API_URL || CFG.api || ""); }
+function sayaAhli(){ return CFG.akaun? (cari("ahli",CFG.akaun.id) || CFG.akaun) : null; }
+function opsyen(senarai,nilai,kosong){
+  return (kosong?'<option value="">'+kosong+'</option>':'')+senarai.map(function(x){
+    var k=Array.isArray(x)?x[0]:x, l=Array.isArray(x)?x[1]:x;
+    return '<option value="'+esc(k)+'"'+(String(k)===String(nilai||"")?" selected":"")+'>'+esc(l)+'</option>';}).join("");
+}
+function opsyenNegeri(nilai,kosong){ return opsyen(NEGERI.map(function(n){return [slugNegeri(n),n];}),nilai,kosong); }
+
+/* ---------- Leaflet (dimuat hanya bila peta dibuka) ---------- */
+var JANJI_LEAFLET=null;
+function muatLeaflet(){
+  if(window.L) return Promise.resolve(window.L);
+  if(JANJI_LEAFLET) return JANJI_LEAFLET;
+  JANJI_LEAFLET=new Promise(function(ok,gagal){
+    var c=document.createElement("link"); c.rel="stylesheet"; c.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"; document.head.appendChild(c);
+    var s=document.createElement("script"); s.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js";
+    s.onload=function(){ ok(window.L); };
+    s.onerror=function(){ JANJI_LEAFLET=null; gagal(new Error("Peta tidak dapat dimuatkan. Semak sambungan internet.")); };
+    document.head.appendChild(s);
+  });
+  return JANJI_LEAFLET;
+}
+function lapisanPeta(L,peta){
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:17,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}).addTo(peta);
+}
+function warnaToken(n){ try{ return getComputedStyle(document.documentElement).getPropertyValue(n).trim()||"#1E6B3C"; }catch(e){ return "#1E6B3C"; } }
+function bundar(v){ var n=parseFloat(v); return isNaN(n)?"":String(Math.round(n*100)/100); }
+
+/* Pemilih lokasi: borang daftar & profil. Medan tersembunyi iLat/iLng. */
+var PEMILIH=null;
+function pasangPemilih(idDiv){
+  var div=document.getElementById(idDiv); if(!div) return;
+  muatLeaflet().then(function(L){
+    if(!document.body.contains(div)) return;
+    if(PEMILIH){ try{ PEMILIH.peta.remove(); }catch(e){} PEMILIH=null; }
+    var lat=parseFloat(v("iLat")), lng=parseFloat(v("iLng")), ng=v("iNegeriD")||v("iNegeriP");
+    var pusat = !isNaN(lat)? [lat,lng] : (PUSAT_NEGERI[ng]||[4.2,108]);
+    var peta=L.map(div,{scrollWheelZoom:false}).setView(pusat, !isNaN(lat)?12:(PUSAT_NEGERI[ng]?9:5));
+    lapisanPeta(L,peta);
+    var penanda=null;
+    var letak=function(a,b,gerak){
+      a=Math.round(a*100)/100; b=Math.round(b*100)/100;
+      document.getElementById("iLat").value=a; document.getElementById("iLng").value=b;
+      if(penanda) penanda.setLatLng([a,b]);
+      else penanda=L.circle([a,b],{radius:700,color:warnaToken("--green"),weight:2,fillOpacity:.25}).addTo(peta);
+      if(gerak) peta.setView([a,b],13);
+      var t=document.getElementById("teksLokasi"); if(t) t.innerHTML='Kawasan ditanda: <b class="num">'+a.toFixed(2)+', '+b.toFixed(2)+'</b> (±1 km)';
+    };
+    if(!isNaN(lat)) letak(lat,lng,false);
+    peta.on("click",function(e){ letak(e.latlng.lat,e.latlng.lng,false); });
+    PEMILIH={peta:peta,letak:letak};
+    setTimeout(function(){ peta.invalidateSize(); },150);
+  }).catch(function(e){ div.innerHTML='<p class="nota" style="padding:16px">'+esc(e.message)+'</p>'; });
+}
+function blokLokasi(a,idDiv){
+  return '<div class="medan"><span class="label">Kawasan anda pada peta</span>'+
+    '<div id="'+idDiv+'" class="peta-pilih" role="application" aria-label="Peta: ketik untuk menanda kawasan"></div>'+
+    '<input type="hidden" id="iLat" value="'+esc(a.lat||"")+'"><input type="hidden" id="iLng" value="'+esc(a.lng||"")+'">'+
+    '<div class="baris-lokasi"><span id="teksLokasi" class="nota">'+(a.lat?'Kawasan ditanda: <b class="num">'+esc(a.lat)+', '+esc(a.lng)+'</b> (±1 km)':'Ketik pada peta untuk menanda kawasan anda.')+'</span>'+
+    '<button class="btn kecil" type="button" data-act="lokasi-saya">Guna lokasi semasa</button></div>'+
+    '<p class="nota">Lokasi dibundarkan kepada ±1 km sebelum disimpan. Tanda kawasan tempat kerja atau pengajian; alamat rumah tidak diperlukan.</p></div>';
+}
+function medanProfil(a, daftar){
+  return '<fieldset class="seksyen"><legend>Maklumat peribadi</legend>'+
+      medan("iNamaP","Nama penuh",'<input type="text" id="iNamaP" required autocomplete="name" value="'+esc(a.nama||"")+'">')+
+      '<div class="grid2">'+medan("iTelP","Telefon (WhatsApp)",'<input type="tel" id="iTelP" required autocomplete="tel" placeholder="012-345 6789" value="'+esc(a.telefon||"")+'">')+
+      medan("iLahir","Tarikh lahir",'<input type="date" id="iLahir" value="'+esc(a.tarikhLahir||"")+'">')+'</div>'+
+      medan("iJantina","Jantina",'<select id="iJantina">'+opsyen(["Lelaki","Perempuan"],a.jantina,"— Pilih —")+'</select>')+
+      medan("iAlamat","Alamat surat-menyurat",'<textarea id="iAlamat" autocomplete="street-address">'+esc(a.alamat||"")+'</textarea>')+
+    '</fieldset>'+
+    '<fieldset class="seksyen"><legend>Maklumat profesional</legend>'+
+      '<div class="grid2">'+medan("iBidang","Bidang",'<select id="iBidang" required>'+opsyen(BIDANG,a.bidang,"— Pilih —")+'</select>')+
+      medan("iStatusProf","Status semasa",'<select id="iStatusProf" required>'+opsyen(STATUS_PROF,a.statusProf,"— Pilih —")+'</select>')+'</div>'+
+      '<div class="grid2">'+medan("iInstitusi","Institusi / tempat kerja",'<input type="text" id="iInstitusi" required placeholder="cth UiTM Sg Buloh, HTAR Klang" value="'+esc(a.institusi||"")+'">')+
+      medan("iGrad","Tahun graduasi (atau jangkaan)",'<input type="number" id="iGrad" inputmode="numeric" min="1980" max="2040" value="'+esc(a.tahunGrad||"")+'">')+'</div>'+
+    '</fieldset>'+
+    '<fieldset class="seksyen"><legend>Lokasi</legend>'+
+      '<div class="grid2">'+(daftar? medan("iNegeriD","Negeri",'<select id="iNegeriD" required>'+opsyenNegeri(a.negeri,"— Pilih negeri —")+'</select>')
+          : medan("iNegeriP","Negeri",'<select id="iNegeriP" disabled>'+opsyenNegeri(a.negeri)+'</select>'))+
+      medan("iDaerah","Daerah / bandar",'<input type="text" id="iDaerah" required placeholder="cth Klang" value="'+esc(a.daerah||"")+'">')+'</div>'+
+      (daftar?'':'<p class="nota">Untuk menukar negeri, hubungi Majlis Tertinggi: negeri menentukan sistem AJK yang anda akses.</p>')+
+      blokLokasi(a, daftar?"petaDaftar":"petaProfil")+
+    '</fieldset>';
+}
+function nilaiProfil(){
+  return {nama:v("iNamaP"),telefon:v("iTelP"),tarikhLahir:v("iLahir"),jantina:v("iJantina"),alamat:v("iAlamat"),
+    bidang:v("iBidang"),statusProf:v("iStatusProf"),institusi:v("iInstitusi"),tahunGrad:v("iGrad"),daerah:v("iDaerah"),
+    lat:v("iLat"),lng:v("iLng")};
+}
+
+/* ---------- Skrin log masuk / daftar / lupa ---------- */
+function paparMasuk(){
+  document.body.classList.add("log-masuk");
+  $("#fab").hidden=true; $("#nav").innerHTML=""; $("#rel").innerHTML="";
+  $("#brandNama").textContent="GMP Malaysia"; $("#brandSub").textContent="SESI 2026–2028";
+  var pill=$("#segPill"); pill.className="seg-pill"; $("#segTeks").textContent="Belum log masuk";
+  var ada=$("#masukMod"); if(ada && ada.getAttribute("data-mod")===UI_MASUK) return;
+  var perluPelayan = !GAS && !window.GMP_API_URL;
+  var pelayan = perluPelayan? '<details class="pelayan"'+(CFG.api?'':' open')+'><summary>Tetapan pelayan</summary>'+
+      medan("iApi","URL aplikasi web Apps Script",'<input type="url" id="iApi" placeholder="https://script.google.com/macros/s/…/exec" value="'+esc(CFG.api||"")+'">')+
+      '<p class="nota">Diisi sekali sahaja. Pentadbir boleh menetapkannya untuk semua dalam fail config.js.</p></details>' : '';
+  var kepala='<img src="data:image/png;base64,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" alt="Logo Generasi Muda PAPISMA" width="150" height="118"><h1>Aplikasi <em>GMP</em></h1>';
+  var h;
+  if(UI_MASUK==="daftar"){
+    h='<section class="masuk lebar" id="masukMod" data-mod="daftar">'+
+      '<div class="kepala-daftar"><button class="btn kecil" type="button" data-act="masuk-mod" data-mod="masuk">← Log masuk</button></div>'+
+      '<h1>Daftar <em>ahli</em></h1><p class="sub">Isi maklumat anda. Majlis Tertinggi akan menyemak dan menetapkan peranan anda sebelum akaun diaktifkan.</p>'+
+      '<form class="kad blok" data-form="daftar" id="fDaftar" novalidate>'+
+        '<fieldset class="seksyen"><legend>Akaun</legend>'+
+          medan("iEmelD","E-mel",'<input type="email" id="iEmelD" required autocomplete="email">')+
+          '<div class="grid2">'+medan("iKataD","Kata laluan (min. 8 aksara)",'<input type="password" id="iKataD" required minlength="8" autocomplete="new-password">')+
+          medan("iKataD2","Sahkan kata laluan",'<input type="password" id="iKataD2" required minlength="8" autocomplete="new-password">')+'</div>'+
+        '</fieldset>'+
+        medanProfil({},true)+
+        '<label class="setuju"><input type="checkbox" id="iSetuju" required><span>Saya bersetuju maklumat ini disimpan oleh Generasi Muda PAPISMA untuk pengurusan keahlian. Kawasan saya (±1 km), nama, institusi dan bidang dipaparkan kepada ahli berdaftar. Tarikh lahir, jantina dan alamat hanya dilihat oleh Majlis Tertinggi; telefon dan e-mel oleh Majlis Tertinggi dan AJK negeri saya.</span></label>'+
+        pelayan+
+        '<button class="btn utama" type="submit">Hantar pendaftaran</button>'+
+      '</form></section>';
+  } else if(UI_MASUK==="lupa" || UI_MASUK==="lupa2"){
+    h='<section class="masuk" id="masukMod" data-mod="'+UI_MASUK+'">'+kepala+'<p class="sub">Tetapkan semula kata laluan</p>'+
+      (UI_MASUK==="lupa"
+      ? '<form class="kad blok" data-form="lupa">'+medan("iEmelL","E-mel berdaftar",'<input type="email" id="iEmelL" required autocomplete="email" value="'+esc(EMEL_LUPA)+'">')+pelayan+
+          '<button class="btn utama" type="submit">Hantar kod ke e-mel</button></form>'
+      : '<form class="kad blok" data-form="lupa2"><p class="nota">Kod 6 digit telah dihantar ke <b>'+esc(EMEL_LUPA)+'</b>. Semak juga folder spam.</p>'+
+          medan("iKodR","Kod 6 digit",'<input type="text" id="iKodR" required inputmode="numeric" maxlength="6" autocomplete="one-time-code">')+
+          medan("iKataR","Kata laluan baharu",'<input type="password" id="iKataR" required minlength="8" autocomplete="new-password">')+
+          medan("iKataR2","Sahkan kata laluan baharu",'<input type="password" id="iKataR2" required minlength="8" autocomplete="new-password">')+
+          '<button class="btn utama" type="submit">Tetapkan kata laluan</button></form>')+
+      '<button class="btn" type="button" data-act="masuk-mod" data-mod="masuk">Kembali ke log masuk</button></section>';
+  } else if(UI_MASUK==="menunggu"){
+    h='<section class="masuk" id="masukMod" data-mod="menunggu">'+kepala+
+      '<div class="kad blok"><b style="font-size:16px">Pendaftaran diterima</b><p class="nota" style="font-size:14px">Majlis Tertinggi akan menyemak pendaftaran anda dan menetapkan peranan. Anda boleh log masuk sebaik akaun diluluskan.</p></div>'+
+      '<button class="btn utama" type="button" data-act="masuk-mod" data-mod="masuk">Ke log masuk</button></section>';
+  } else {
+    h='<section class="masuk" id="masukMod" data-mod="masuk">'+kepala+'<p class="sub">Sistem kerja Generasi Muda PAPISMA Malaysia, sesi 2026–2028.</p>'+
+      '<form class="kad blok" data-form="masuk" id="fMasuk">'+
+        medan("iEmelM","E-mel",'<input type="email" id="iEmelM" required autocomplete="username" value="'+esc(EMEL_LUPA)+'">')+
+        medan("iKataM","Kata laluan",'<input type="password" id="iKataM" required autocomplete="current-password">')+
+        pelayan+
+        '<button class="btn utama" type="submit">Log masuk</button>'+
+        '<button class="pautan" type="button" data-act="masuk-mod" data-mod="lupa">Lupa kata laluan?</button>'+
+      '</form>'+
+      '<div class="kad blok daftar-ajak"><b>Belum ada akaun?</b><p class="nota">Daftar sebagai ahli GMP. Akaun diaktifkan selepas kelulusan Majlis Tertinggi.</p>'+
+        '<button class="btn" type="button" data-act="masuk-mod" data-mod="daftar">Daftar ahli baharu</button></div>'+
+      '<button class="pautan" type="button" data-act="demo-masuk">Lihat demo tanpa log masuk</button></section>';
+  }
+  $("#isi").innerHTML=h; document.title="Aplikasi GMP";
+  if(UI_MASUK==="daftar") pasangPemilih("petaDaftar");
+}
+
+function terimaMasuk(j,url){
+  CFG.url=url; if(!GAS) CFG.api=url; CFG.token=j.token; CFG.kod=""; CFG.akaun=j.akaun; CFG.peranan=j.peranan;
+  CFG.negeri=j.negeri||""; CFG.namaNegeri=j.namaNegeri||""; CFG.urlApp=j.urlApp||CFG.urlApp||""; CFG.demo=false;
+  if(j.akaun && j.akaun.jawatanId) CFG.saya=j.akaun.jawatanId;
+  simpanCfg(); OUTBOX=[]; JENIS.forEach(function(k){DATA[k]=[];}); META={masa:null,kosong:false}; simpanLokal();
+  UI_MASUK="masuk"; location.hash="utama"; render(); segerak();
+}
+function bersihSesi(){
+  CFG.url=""; CFG.kod=""; CFG.token=""; CFG.akaun=null; CFG.peranan=""; CFG.negeri=""; simpanCfg();
+  OUTBOX=[]; META={masa:null,kosong:false}; DATA=binaAsas(); binaContoh(DATA); simpanLokal(); SEG.status="demo"; SEG.ralat="";
+}
+function butangSibuk(form,teks){ var b=form.querySelector('button[type=submit]'); if(b){ b.disabled=true; b.setAttribute("data-asal",b.textContent); b.textContent=teks; } return function(){ if(b){ b.disabled=false; b.textContent=b.getAttribute("data-asal"); } }; }
+function urlUntukMasuk(){
+  var u=apiUrl(); if(!u){ var i=v("iApi"); if(i){ if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(i)){ toast("URL pelayan mesti bermula https://script.google.com/ dan berakhir /exec"); return null; } CFG.api=i; simpanCfg(); u=i; } }
+  if(!u){ toast("Isi URL pelayan dalam Tetapan pelayan"); return null; }
+  return u;
+}
+
+/* ---------- Halaman: Peta AJK ---------- */
+HAL.peta = function(){
+  var ah=DATA.ahli.filter(function(a){return a.statusAkaun==="aktif";});
+  var ng=UI.petaNg||"", pr=UI.petaPeranan||"";
+  var tapis=ah.filter(function(a){return (!ng||a.negeri===ng)&&(!pr||a.peranan===pr);});
+  var berLokasi=tapis.filter(function(a){return a.lat&&a.lng;});
+  var saya=sayaAhli();
+  var kira={}; ah.forEach(function(a){ kira[a.negeri]=(kira[a.negeri]||0)+1; });
+  return '<div class="kepala"><div><h1>Peta AJK</h1><div class="sub">'+ah.length+' ahli aktif · '+berLokasi.length+' dipaparkan · lokasi anggaran ±1 km</div></div></div>'+
+    (saya && !saya.lat? '<div class="amaran"><span>Anda belum menanda kawasan anda pada peta.</span><a class="btn kecil" href="#profil">Tanda sekarang</a></div>' : '')+
+    '<div class="penapis"><div class="baris"><select id="fPetaNg" aria-label="Tapis negeri"><option value="">Semua negeri</option>'+opsyenNegeri(ng)+'</select>'+
+    '<select id="fPetaPr" aria-label="Tapis peranan">'+opsyen([["","Semua peranan"],["mt","Majlis Tertinggi"],["negeri","AJK negeri"],["ahli","Ahli"]],pr)+'</select></div></div>'+
+    '<div id="petaAhli" class="peta-besar" role="application" aria-label="Peta lokasi ahli"></div>'+
+    '<div class="petunjuk"><span><i class="titik t-mt"></i>Majlis Tertinggi</span><span><i class="titik t-ng"></i>AJK negeri</span><span><i class="titik t-ah"></i>Ahli</span><span>Bulatan besar: beberapa ahli di kawasan sama</span></div>'+
+    (tapis.length-berLokasi.length? '<p class="nota">'+(tapis.length-berLokasi.length)+' ahli belum menanda kawasan.</p>':'')+
+    '<section class="blok"><h2>Ahli ikut negeri</h2><div class="kad"><div class="ikut-negeri">'+
+      NEGERI.map(function(n){var id=slugNegeri(n);return '<button type="button" data-act="peta-negeri" data-id="'+id+'" class="'+(ng===id?"on":"")+'"><span>'+esc(n)+'</span><b class="num">'+(kira[id]||0)+'</b></button>';}).join("")+
+    '</div></div></section>';
+};
+var PETA_AHLI=null;
+function lukisPetaAhli(){
+  var div=document.getElementById("petaAhli"); if(!div) return;
+  muatLeaflet().then(function(L){
+    if(!document.body.contains(div)) return;
+    if(PETA_AHLI){ try{ PETA_AHLI.remove(); }catch(e){} }
+    var peta=L.map(div,{scrollWheelZoom:false}).setView(UI.petaNg&&PUSAT_NEGERI[UI.petaNg]?PUSAT_NEGERI[UI.petaNg]:[4.2,108.5], UI.petaNg?8:5);
+    PETA_AHLI=peta; lapisanPeta(L,peta);
+    var ng=UI.petaNg||"", pr=UI.petaPeranan||"", kump={};
+    DATA.ahli.forEach(function(a){
+      if(a.statusAkaun!=="aktif"||!a.lat||!a.lng) return;
+      if((ng&&a.negeri!==ng)||(pr&&a.peranan!==pr)) return;
+      var k=a.lat+","+a.lng; (kump[k]=kump[k]||[]).push(a);
+    });
+    var hijau=warnaToken("--green"), emas=warnaToken("--gold"), titik=[];
+    Object.keys(kump).forEach(function(k){
+      var g=kump[k], p=k.split(",").map(Number), adaMT=g.some(function(a){return a.peranan==="mt";});
+      titik.push(p);
+      var m=L.circleMarker(p,{radius:Math.min(7+3*Math.sqrt(g.length-1),20),color:"#fff",weight:2,fillColor:adaMT?hijau:(g.some(function(a){return a.peranan==="negeri";})?emas:warnaToken("--info")),fillOpacity:.9}).addTo(peta);
+      m.bindPopup('<div class="pop">'+g.map(function(a){
+        var j=a.jawatanId&&cari("orang",a.jawatanId);
+        return '<div><b>'+esc(a.nama)+'</b><br><span>'+esc(j?j.jawatan:PERANAN[a.peranan]||"")+'</span><br>'+
+          esc([a.institusi,a.daerah,namaNegeri(a.negeri)].filter(Boolean).join(" · "))+'<br><span>'+esc([a.bidang,a.statusProf].filter(Boolean).join(" · "))+'</span>'+
+          (a.telefon?'<br><span class="num">'+esc(a.telefon)+'</span>':'')+'</div>';
+      }).join("<hr>")+'</div>',{maxWidth:260});
+      if(g.length>1) m.bindTooltip(String(g.length),{permanent:true,direction:"center",className:"bil-titik"});
+    });
+    if(titik.length>1 && !UI.petaNg) peta.fitBounds(titik,{padding:[30,30],maxZoom:11});
+    else if(titik.length && UI.petaNg) peta.fitBounds(titik.concat([PUSAT_NEGERI[UI.petaNg]||titik[0]]),{padding:[30,30],maxZoom:11});
+    setTimeout(function(){ peta.invalidateSize(); },150);
+  }).catch(function(e){ div.innerHTML='<p class="nota" style="padding:20px">'+esc(e.message)+'</p>'; });
+}
+
+/* ---------- Halaman: Profil saya ---------- */
+HAL.profil = function(){
+  var a=sayaAhli();
+  if(!a) return '<div class="kepala"><div><h1>Profil saya</h1></div></div>'+
+    kosong(CFG.demo?"Mod demo":"Log masuk dengan e-mel", CFG.demo?"Profil tersedia selepas log masuk dengan akaun sebenar.":"Anda masuk menggunakan kod akses lama. Log keluar, kemudian daftar akaun e-mel untuk mempunyai profil.")+
+    '<button class="btn" type="button" data-act="log-keluar">'+(CFG.demo?"Keluar demo":"Log keluar")+'</button>';
+  var j=a.jawatanId&&cari("orang",a.jawatanId);
+  return '<div class="kepala"><div><h1>Profil saya</h1><div class="sub">'+esc(a.emel||"")+'</div></div></div>'+
+    '<div class="info-baris"><div><b>'+esc(PERANAN[a.peranan]||"—")+'</b><span>Peranan</span></div><div><b>'+esc(namaNegeri(a.negeri))+'</b><span>Negeri</span></div>'+
+    (j?'<div><b style="font-size:13px;font-family:var(--display)">'+esc(j.jawatan)+'</b><span>Jawatan</span></div>':'')+'</div>'+
+    '<form class="kad blok" data-form="profil" id="fProfil">'+medanProfil(a,false)+'<button class="btn utama" type="submit">Simpan profil</button></form>'+
+    '<section class="blok"><h2>Tukar kata laluan</h2><form class="kad blok" data-form="tukarKata">'+
+      medan("iKataL","Kata laluan semasa",'<input type="password" id="iKataL" required autocomplete="current-password">')+
+      '<div class="grid2">'+medan("iKataB","Kata laluan baharu",'<input type="password" id="iKataB" required minlength="8" autocomplete="new-password">')+
+      medan("iKataB2","Sahkan",'<input type="password" id="iKataB2" required minlength="8" autocomplete="new-password">')+'</div>'+
+      '<button class="btn" type="submit">Tukar kata laluan</button></form></section>'+
+    '<button class="btn bahaya" type="button" data-act="log-keluar">Log keluar</button>';
+};
+
+/* ---------- MT: Ahli & pendaftaran ---------- */
+var HAL_MT_JAWATAN = HAL_MT.ahli;
+HAL_MT.ahli = function(){
+  var ah=DATA.ahli, menunggu=ah.filter(function(a){return a.statusAkaun==="menunggu";}).sort(function(a,b){return (a.daftarPada||"")<(b.daftarPada||"")?-1:1;});
+  var q=(UI.cariAhli||"").toLowerCase(), ng=UI.ahliNg||"";
+  var lain=ah.filter(function(a){return a.statusAkaun!=="menunggu";}).filter(function(a){
+    if(ng && a.negeri!==ng) return false;
+    return !q || (a.nama+" "+a.emel+" "+a.institusi+" "+a.daerah).toLowerCase().indexOf(q)>=0;
+  }).sort(function(a,b){return (a.peranan==="mt"?0:1)-(b.peranan==="mt"?0:1) || String(a.nama).localeCompare(String(b.nama));});
+  var item=function(a){
+    var j=a.jawatanId&&cari("orang",a.jawatanId);
+    return '<div class="ahli" data-act="ahli-semak" data-id="'+esc(a.id)+'" role="button" tabindex="0" style="cursor:pointer"><span class="inisial">'+esc(inisial(a.nama))+'</span>'+
+      '<div style="min-width:0"><h3>'+esc(a.nama)+(a.id===(CFG.akaun&&CFG.akaun.id)?' · <b style="color:var(--green);font-size:12px">saya</b>':'')+'</h3>'+
+      '<div class="j">'+esc(j?j.jawatan:(PERANAN[a.peranan]||"Belum ditetapkan"))+' · '+esc(namaNegeri(a.negeri))+'</div>'+
+      '<div class="j">'+esc([a.institusi,a.bidang].filter(Boolean).join(" · "))+'</div></div>'+
+      '<span class="status '+({aktif:"siap",menunggu:"buat",ditolak:"sekat",digantung:"sekat"}[a.statusAkaun]||"")+'"><i></i>'+esc(ST_AKAUN[a.statusAkaun]||a.statusAkaun)+'</span></div>';
+  };
+  var jawatan=HAL_MT_JAWATAN().replace(/<div class="kepala">[\s\S]*?<\/div><\/div><\/div>/,"");
+  return '<div class="kepala"><div><h1>Ahli & Pendaftaran</h1><div class="sub">'+ah.filter(function(a){return a.statusAkaun==="aktif";}).length+' ahli aktif · '+menunggu.length+' menunggu kelulusan</div></div></div>'+
+    (menunggu.length? kumpulan("Menunggu kelulusan",menunggu,function(a){
+      return '<div class="tg hampir" data-act="ahli-semak" data-id="'+esc(a.id)+'" role="button" tabindex="0" style="grid-template-columns:minmax(0,1fr) auto"><div style="min-width:0"><div class="tg-t">'+esc(a.nama)+'</div>'+
+        '<div class="tg-m"><span>'+esc(namaNegeri(a.negeri))+'</span><span>'+esc(a.institusi||"")+'</span><span>'+esc(a.statusProf||"")+'</span><span>daftar '+fmtTarikh((a.daftarPada||"").slice(0,10))+'</span></div></div><span class="baki hampir">Semak</span></div>';})
+      : '')+
+    '<section class="blok"><h2>Direktori ahli <span class="kira">'+lain.length+'</span></h2>'+
+      '<div class="penapis"><div class="baris"><input type="search" id="fCariAhli" placeholder="Cari nama, e-mel, institusi" value="'+esc(UI.cariAhli||"")+'" aria-label="Cari ahli">'+
+      '<select id="fAhliNg" aria-label="Tapis negeri"><option value="">Semua negeri</option>'+opsyenNegeri(ng)+'</select></div></div>'+
+      (lain.length? '<div class="senarai">'+lain.slice(0,120).map(item).join("")+'</div>' : kosong("Tiada ahli",ah.length?"Ubah carian atau penapis.":"Ahli akan muncul di sini selepas mendaftar melalui skrin log masuk."))+
+    '</section>'+
+    '<section class="blok"><h2>Jawatan organisasi</h2><p class="nota">Kaitkan ahli dengan jawatan semasa meluluskan supaya nama, e-mel dan telefon jawatan dikemas kini secara automatik.</p></section>'+jawatan;
+};
+function lembarSemakAhli(a){
+  var saya=CFG.akaun&&a.id===CFG.akaun.id, j=a.jawatanId&&cari("orang",a.jawatanId);
+  var baris=function(t,x){return x?'<div><h4>'+t+'</h4><p>'+esc(x)+'</p></div>':'';};
+  bukaLembar(esc(a.nama),
+    '<input type="hidden" id="iId" value="'+esc(a.id)+'">'+
+    '<p><span class="status '+({aktif:"siap",menunggu:"buat",ditolak:"sekat",digantung:"sekat"}[a.statusAkaun]||"")+'"><i></i>'+esc(ST_AKAUN[a.statusAkaun]||"")+'</span>'+
+      (a.daftarPada?' <span class="nota">· daftar '+fmtTarikh(a.daftarPada.slice(0,10))+(a.lulusOleh?' · diluluskan oleh '+esc(a.lulusOleh):'')+'</span>':'')+'</p>'+
+    '<div class="baca dua">'+baris("E-mel",a.emel)+baris("Telefon",a.telefon)+baris("Negeri / daerah",namaNegeri(a.negeri)+(a.daerah?" · "+a.daerah:""))+
+      baris("Institusi",a.institusi)+baris("Bidang",a.bidang)+baris("Status",a.statusProf)+baris("Tahun graduasi",a.tahunGrad)+
+      baris("Tarikh lahir",a.tarikhLahir?fmtTarikh(a.tarikhLahir):"")+baris("Jantina",a.jantina)+baris("Alamat",a.alamat)+
+      baris("Kawasan peta",a.lat?a.lat+", "+a.lng+" (±1 km)":"Belum ditanda")+'</div>'+
+    '<fieldset class="seksyen"><legend>Keputusan Majlis Tertinggi</legend>'+
+      '<div class="grid2">'+medan("iPeranan","Peranan",'<select id="iPeranan"'+(saya?" disabled":"")+'>'+opsyen([["","— Pilih —"],["ahli","Ahli"],["negeri","AJK negeri"],["mt","Majlis Tertinggi"]],a.peranan)+'</select>')+
+      medan("iNegeriA","Negeri",'<select id="iNegeriA">'+opsyenNegeri(a.negeri)+'</select>')+'</div>'+
+      medan("iJawatanA","Kaitkan dengan jawatan (pilihan)",'<select id="iJawatanA"><option value="">— Tiada —</option>'+DATA.orang.slice().sort(urut).map(function(o){
+        return '<option value="'+esc(o.id)+'"'+(o.id===a.jawatanId?" selected":"")+'>'+esc(o.jawatan+(o.nama&&o.id!==a.jawatanId?" · "+o.nama:""))+'</option>';}).join("")+'</select>')+
+      (a.statusAkaun!=="menunggu"&&!saya? medan("iStatusA","Status akaun",'<select id="iStatusA">'+opsyen([["aktif","Aktif"],["digantung","Digantung"],["ditolak","Ditolak"]],a.statusAkaun)+'</select>') : '')+
+      (saya?'<p class="nota">Anda tidak boleh mengubah peranan atau status akaun sendiri.</p>':'')+
+    '</fieldset>',
+    a.statusAkaun==="menunggu"
+      ? '<button class="btn utama" type="submit" data-status="aktif">Luluskan</button><button class="btn bahaya" type="submit" data-status="ditolak" formnovalidate>Tolak</button>'
+      : '<button class="btn utama" type="submit" data-status="">Simpan</button>'+(saya?'':butangPadam("ahli-padam-akaun",a.id)),
+    "semakAhli");
+}
+
+/* ---------- Tindakan & borang v3 ---------- */
+Object.assign(ACT,{
+  "masuk-mod":function(el){ UI_MASUK=el.getAttribute("data-mod"); paparMasuk(); window.scrollTo(0,0); },
+  "demo-masuk":function(){ CFG.demo=true; simpanCfg(); if(!DATA.ahli.length){ DATA=binaAsas(); binaContoh(DATA); DATA.tugas=janaTugasan(cari("program","P10"),true); DATA.tugas.forEach(lengkapTugas); simpanLokal(); } location.hash="utama"; render(); },
+  "demo-keluar":function(){ CFG.demo=false; simpanCfg(); UI_MASUK="masuk"; render(); },
+  "log-keluar":function(){
+    if(CFG.demo){ ACT["demo-keluar"](); return; }
+    if(CFG.token){ var t=CFG.token; api("keluar",{token:t}).catch(function(){}); }
+    bersihSesi(); UI_MASUK="masuk"; location.hash="utama"; render(); toast("Anda telah log keluar");
+  },
+  putus:function(el){ sahDua(el,function(){ ACT["log-keluar"](); }); },
+  "lokasi-saya":function(el){
+    if(!navigator.geolocation){ toast("Peranti ini tidak menyokong lokasi. Ketik pada peta."); return; }
+    el.disabled=true; el.textContent="Mencari…";
+    navigator.geolocation.getCurrentPosition(function(p){
+      el.disabled=false; el.textContent="Guna lokasi semasa";
+      if(PEMILIH) PEMILIH.letak(p.coords.latitude,p.coords.longitude,true);
+    },function(){ el.disabled=false; el.textContent="Guna lokasi semasa"; toast("Lokasi tidak dibenarkan. Ketik pada peta untuk menanda kawasan."); },{enableHighAccuracy:false,timeout:15000,maximumAge:600000});
+  },
+  "peta-negeri":function(el){ var id=el.getAttribute("data-id"); UI.petaNg = UI.petaNg===id? "" : id; simpanUI(); render(); },
+  "ahli-semak":function(el){ var a=cari("ahli",el.getAttribute("data-id")); if(a) lembarSemakAhli(a); },
+  "ahli-padam-akaun":function(el){ sahDua(el,function(){ padam("ahli",el.getAttribute("data-id"),"Ahli dan akaun log masuknya dipadam"); tutupLembar(); }); }
+});
+
+Object.assign(BORANG,{
+  masuk:function(form){
+    var url=urlUntukMasuk(); if(!url) return false;
+    var siap=butangSibuk(form,"Log masuk…");
+    api("masuk",{emel:v("iEmelM"),kata:v("iKataM")},url,"").then(function(j){ terimaMasuk(j,url); toast("Selamat datang, "+(j.akaun&&j.akaun.nama||"")); })
+      .catch(function(e){ siap(); if(e.kod==="MENUNGGU"){ UI_MASUK="menunggu"; paparMasuk(); } else toast(e.message); });
+    return false;
+  },
+  daftar:function(form){
+    var p=nilaiProfil(); p.emel=v("iEmelD"); p.negeri=v("iNegeriD"); p.persetujuan=document.getElementById("iSetuju").checked;
+    var kata=v("iKataD");
+    var semak=[[!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(p.emel),"E-mel tidak sah"],[kata.length<8,"Kata laluan mesti sekurang-kurangnya 8 aksara"],
+      [kata!==v("iKataD2"),"Kata laluan tidak sepadan"],[!p.nama,"Isi nama penuh"],[!p.telefon,"Isi nombor telefon"],
+      [!p.bidang||!p.statusProf,"Pilih bidang dan status"],[!p.institusi,"Isi institusi / tempat kerja"],[!p.negeri,"Pilih negeri"],[!p.daerah,"Isi daerah / bandar"],
+      [!p.lat,"Tanda kawasan anda pada peta"],[!p.persetujuan,"Sila tandakan persetujuan privasi"]];
+    for(var i=0;i<semak.length;i++) if(semak[i][0]){ toast(semak[i][1]); return false; }
+    var url=urlUntukMasuk(); if(!url) return false;
+    var siap=butangSibuk(form,"Menghantar…");
+    api("daftar",{profil:p,kata:kata},url,"").then(function(j){
+      if(j.token){ terimaMasuk(j,url); toast("Anda ahli pertama: akaun Majlis Tertinggi diaktifkan"); }
+      else { EMEL_LUPA=p.emel; UI_MASUK="menunggu"; paparMasuk(); window.scrollTo(0,0); }
+    }).catch(function(e){ siap(); toast(e.message); });
+    return false;
+  },
+  lupa:function(form){
+    var url=urlUntukMasuk(); if(!url) return false;
+    EMEL_LUPA=v("iEmelL"); var siap=butangSibuk(form,"Menghantar…");
+    api("lupa",{emel:EMEL_LUPA},url,"").then(function(j){ toast(j.mesej||"Kod dihantar"); UI_MASUK="lupa2"; paparMasuk(); })
+      .catch(function(e){ siap(); toast(e.message); });
+    return false;
+  },
+  lupa2:function(form){
+    if(v("iKataR")!==v("iKataR2")){ toast("Kata laluan tidak sepadan"); return false; }
+    var url=urlUntukMasuk(); if(!url) return false; var siap=butangSibuk(form,"Menyimpan…");
+    api("reset",{emel:EMEL_LUPA,kodReset:v("iKodR"),kata:v("iKataR")},url,"").then(function(j){ toast(j.mesej||"Kata laluan ditukar"); UI_MASUK="masuk"; paparMasuk(); })
+      .catch(function(e){ siap(); toast(e.message); });
+    return false;
+  },
+  profil:function(){
+    var a=sayaAhli(); if(!a) return false;
+    var p=nilaiProfil();
+    if(!p.nama||!p.telefon){ toast("Nama dan telefon diperlukan"); return false; }
+    simpan("ahli",Object.assign({},a,p),"Profil dikemas kini");
+    CFG.akaun=Object.assign({},CFG.akaun,p); simpanCfg();
+    return false;
+  },
+  tukarKata:function(form){
+    if(v("iKataB")!==v("iKataB2")){ toast("Kata laluan baharu tidak sepadan"); return false; }
+    var siap=butangSibuk(form,"Menyimpan…");
+    api("tukarKata",{kataLama:v("iKataL"),kata:v("iKataB")}).then(function(j){ siap(); form.reset(); toast(j.mesej||"Kata laluan ditukar"); })
+      .catch(function(e){ siap(); toast(e.message); });
+    return false;
+  },
+  semakAhli:function(form,btn){
+    var a=cari("ahli",v("iId")); if(!a) return;
+    var st=btn&&btn.getAttribute("data-status"), status=st||v("iStatusA")||a.statusAkaun, pr=v("iPeranan")||a.peranan;
+    if(status==="aktif" && !pr){ toast("Pilih peranan sebelum meluluskan"); return false; }
+    var jaw=v("iJawatanA");
+    var ops=[];
+    if(jaw){ DATA.ahli.forEach(function(x){ if(x.id!==a.id && x.jawatanId===jaw) ops.push({op:"simpan",jenis:"ahli",rekod:Object.assign({},x,{jawatanId:""})}); }); }
+    ops.push({op:"simpan",jenis:"ahli",rekod:Object.assign({},a,{statusAkaun:status,peranan:pr,negeri:v("iNegeriA")||a.negeri,jawatanId:jaw})});
+    laksana(ops, st==="aktif"?a.nama+" diluluskan":st==="ditolak"?"Pendaftaran ditolak":"Maklumat ahli dikemas kini");
+  }
+});
+
+var PASCA = { peta:lukisPetaAhli, profil:function(){ pasangPemilih("petaProfil"); } };
+
+/* ======================================================================
+   v4 — FIREBASE AUTH · PERANAN AHLI · PROGRAM & SIJIL · PENGUMUMAN & PUSH
+        · LEJAR KEWANGAN · EKSPORT WORD/PDF
+   ====================================================================== */
+var FBCFG = window.GMP_FIREBASE || {}, VAPID = window.GMP_VAPID || "";
+var FBV = "https://www.gstatic.com/firebasejs/13.1.0/";
+var FB = null, JANJI_FB = null;
+PERANAN.ahli = "Ahli";
+HALAMAN.acara = {t:"Program",i:"program",s:"Pendaftaran, kehadiran & sijil"};
+HALAMAN.pengumuman = {t:"Pengumuman",i:"pengumuman",s:"Makluman & notifikasi"};
+HALAMAN.program.t = "Blueprint"; HALAMAN.program.s = "21 program, bajet & tugasan";
+IKON.pengumuman = '<path d="M4 10v4a1 1 0 0 0 1 1h2l5 4V5L7 9H5a1 1 0 0 0-1 1z"/><path d="M16 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>';
+IKON.sijil = '<circle cx="12" cy="9" r="5"/><path d="m9 13.5-1.5 7L12 18l4.5 2.5-1.5-7"/>';
+IKON.wang = IKON.kewangan;
+NAV = {
+  mt:{bawah:["utama","tugas","negeri","semakan","lagi"],
+      rel:["utama","tugas","negeri","semakan","ahli","acara","pengumuman","peta","kewangan","mesyuarat","program","kpi","laporan","|","profil","tetapan"]},
+  ng:{bawah:["utama","aktiviti","lapbulan","tugas","lagi"],
+      rel:["utama","aktiviti","lapbulan","tugas","acara","pengumuman","peta","data","ajk","kedudukan","|","profil","tetapan"]},
+  ah:{bawah:["utama","acara","pengumuman","peta","lagi"],
+      rel:["utama","acara","pengumuman","peta","|","profil","tetapan"]}
+};
+FAB.mt.pengumuman = FAB.ng.pengumuman = {t:"Pengumuman",a:"pengumuman-baru"};
+FAB.ah = {};
+
+/* ---------- Peranan ---------- */
+function peranan(){ return CFG.url? (CFG.peranan||"ahli") : (CFG.demoPeranan||"mt"); }
+function isMT(){ return peranan()==="mt"; }
+function isAhli(){ return peranan()==="ahli"; }
+function isStaf(){ return !isAhli(); }
+function ngSaya(){ return CFG.url? (CFG.negeri || (CFG.akaun&&CFG.akaun.negeri) || "") : CFG.demoNegeri; }
+function navKunci(){ return isMT()?"mt":isAhli()?"ah":"ng"; }
+function idSaya(){ return CFG.akaun? CFG.akaun.id : (CFG.demo? "contoh-demo" : ""); }
+var bolehUbahAsal = bolehUbah;
+bolehUbah = function(jenis,r){ if(isAhli()) return jenis==="penyertaan" || (jenis==="ahli" && r && r.id===idSaya()); return bolehUbahAsal(jenis,r); };
+
+function kemasStatus(){
+  var pill=$("#segPill"), t=$("#segTeks");
+  var tunggu = OUTBOX.length? " · "+OUTBOX.length+" menunggu" : "";
+  var teks = {
+    demo:"Mod demo",
+    sedia: META.masa? "Disegerak "+new Date(META.masa).toLocaleTimeString("ms-MY",{hour:"2-digit",minute:"2-digit"})+tunggu : "Bersambung"+tunggu,
+    segerak:"Menyegerak…", luar:"Luar talian"+tunggu, ralat:"Gagal segerak"+tunggu, akses:"Sesi tamat"
+  }[SEG.status];
+  pill.className="seg-pill "+SEG.status; t.textContent=teks; pill.title=SEG.ralat||"";
+  $("#brandNama").textContent = isMT()? "GMP Malaysia" : "GMP "+(namaNegeri(ngSaya())||"Malaysia");
+  $("#brandSub").textContent = isMT()? "MAJLIS TERTINGGI" : isAhli()? "PORTAL AHLI" : "AJK NEGERI";
+}
+function laluan(){
+  var h=(location.hash||"").replace(/^#\/?/,"");
+  if(!HALAMAN[h]) return "utama";
+  return (h==="lagi" || NAV[navKunci()].rel.indexOf(h)>=0)? h : "utama";
+}
+function lencana(n){
+  if(n==="tugas"&&!isAhli()){ return kiraTugas(isMT()? (CFG.saya?tugasSaya():tugasSkop()) : tugasSkop()).lewat; }
+  if(n==="semakan") return DATA.lapbulan.filter(function(l){return l.status==="dihantar";}).length;
+  if(n==="lapbulan") return perluTindakanNg();
+  if(n==="ahli") return isMT()? DATA.ahli.filter(function(a){return a.statusAkaun==="menunggu";}).length : 0;
+  if(n==="pengumuman"){ var lihat=lsGet("gmp.pengLihat",""); return DATA.pengumuman.filter(function(p){return (p.pada||"")>lihat && p.oleh!==idSaya();}).length; }
+  if(n==="lagi"){ var nav=NAV[navKunci()]; return nav.rel.filter(function(h){return h!=="|"&&nav.bawah.indexOf(h)<0;}).reduce(function(s,h){return s+lencana(h);},0); }
+  return 0;
+}
+function binaNav(){
+  var r=laluan(), nav=NAV[navKunci()], lagiOn=nav.bawah.indexOf(r)<0;
+  $("#nav").innerHTML = nav.bawah.map(function(n){
+    var on = n===r || (n==="lagi"&&lagiOn), b=lencana(n);
+    return '<a href="#'+n+'" class="'+(on?"on":"")+'"'+(on?' aria-current="page"':'')+'>'+svg(HALAMAN[n].i)+'<span>'+HALAMAN[n].t+'</span>'+(b?'<span class="lencana">'+b+'</span>':'')+'</a>';
+  }).join("");
+  $("#rel").innerHTML = nav.rel.map(function(n){
+    if(n==="|") return "<hr>";
+    var on=n===r, b=lencana(n);
+    return '<a href="#'+n+'" class="'+(on?"on":"")+'"'+(on?' aria-current="page"':'')+'>'+svg(HALAMAN[n].i)+HALAMAN[n].t+(b?'<span class="lencana">'+b+'</span>':'')+'</a>';
+  }).join("");
+}
+HAL.lagi = function(){
+  var nav=NAV[navKunci()];
+  var item=function(h){var d=HALAMAN[h], b=lencana(h);return '<a href="#'+h+'">'+svg(d.i)+'<div><b>'+d.t+(b?' <span class="lencana-dalam">'+b+'</span>':'')+'</b><span>'+(d.s||"")+'</span></div><span class="anak">'+svg("anak").replace('<svg','<svg width="18" height="18"')+'</span></a>';};
+  return '<div class="kepala"><div><h1>Lagi</h1></div></div><nav class="menu">'+
+    nav.rel.filter(function(h){return h!=="|" && nav.bawah.indexOf(h)<0;}).map(item).join("")+'</nav>';
+};
+var HAL_AH = {};
+function render(lembut){
+  if(!CFG.url && !CFG.demo){ paparMasuk(); return; }
+  document.body.classList.remove("log-masuk");
+  var r=laluan();
+  binaNav(); kemasStatus();
+  if(lembut && (r==="peta"||r==="profil") && $("#isi").getAttribute("data-hal")===r) return;
+  if(lembut && $("#lembar").open && /laporan|mesyuarat/.test($("#lembarIn").getAttribute("data-borang")||"")) return;
+  var hal = (isMT()? HAL_MT[r] : isAhli()? HAL_AH[r] : HAL_NG[r]) || HAL[r];
+  $("#isi").innerHTML = hal(); $("#isi").setAttribute("data-hal",r);
+  if(r==="pengumuman") lsSet("gmp.pengLihat", DATA.pengumuman.reduce(function(m,p){return (p.pada||"")>m?p.pada:m;}, lsGet("gmp.pengLihat","")));
+  if(PASCA[r]) setTimeout(PASCA[r],0);
+  var f=(FAB[navKunci()]||{})[r], fab=$("#fab");
+  if(r==="kewangan" && isMT() && UI.kewTab==="lejar") f={t:"Transaksi",a:"transaksi-baru"};
+  if(r==="acara" && isMT()) f=null;
+  if(f){ fab.hidden=false; fab.innerHTML=svg("tambah")+f.t; fab.setAttribute("data-act",f.a); } else fab.hidden=true;
+  document.title = (r==="utama"?"":HALAMAN[r].t+" · ")+"Aplikasi GMP";
+}
+
+/* ---------- Firebase ---------- */
+function fbSedia(){ return /^AIza/.test(FBCFG.apiKey||"") && !!FBCFG.projectId; }
+function muatFirebase(){
+  if(FB) return Promise.resolve(FB);
+  if(JANJI_FB) return JANJI_FB;
+  if(!fbSedia()) return Promise.reject(new Error("Firebase belum dikonfigurasi dalam config.js. Hubungi pentadbir."));
+  JANJI_FB = Promise.all([import(FBV+"firebase-app.js"), import(FBV+"firebase-auth.js")]).then(function(m){
+    var app=m[0].initializeApp(FBCFG);
+    FB=Object.assign({}, m[1], {app:app, auth:m[1].getAuth(app)});
+    try{ FB.auth.languageCode="ms"; }catch(e){}
+    return FB.auth.authStateReady().then(function(){ return FB; });
+  }).catch(function(e){ JANJI_FB=null; FB=null; throw new Error("Tidak dapat memuatkan sistem log masuk. Semak sambungan internet."); });
+  return JANJI_FB;
+}
+var RALAT_FB = {
+  "auth/invalid-credential":"E-mel atau kata laluan salah.", "auth/wrong-password":"E-mel atau kata laluan salah.",
+  "auth/user-not-found":"E-mel atau kata laluan salah.", "auth/invalid-email":"E-mel tidak sah.",
+  "auth/email-already-in-use":"E-mel ini sudah didaftarkan. Log masuk, atau guna Lupa kata laluan.",
+  "auth/weak-password":"Kata laluan terlalu lemah (minimum 8 aksara).", "auth/too-many-requests":"Terlalu banyak cubaan. Cuba lagi sebentar.",
+  "auth/network-request-failed":"Tiada sambungan internet.", "auth/requires-recent-login":"Sila log masuk semula sebelum menukar kata laluan.",
+  "auth/unauthorized-domain":"Domain aplikasi belum dibenarkan dalam Firebase (Authentication → Settings → Authorized domains).",
+  "auth/operation-not-allowed":"Log masuk e-mel belum diaktifkan dalam Firebase (Authentication → Sign-in method).",
+  "auth/unauthorized-continue-uri":"Domain aplikasi belum dibenarkan dalam Firebase."
+};
+function mesejFb(e){ return RALAT_FB[e&&e.code] || (e&&e.message) || "Ralat sistem"; }
+function tokenId(){
+  return muatFirebase().then(function(fb){
+    var u=fb.auth.currentUser;
+    if(!u){ var e=new Error("Sila log masuk semula."); e.kod="AKSES"; throw e; }
+    return u.getIdToken();
+  });
+}
+function hantarApi(url,badan){
+  var ctrl = window.AbortController? new AbortController():null;
+  var t = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 60000);
+  return fetch(url,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(badan),redirect:"follow",signal:ctrl?ctrl.signal:undefined})
+    .then(function(r){ if(!r.ok) throw new Error("Pelayan membalas HTTP "+r.status); return r.json(); })
+    .then(function(j){ clearTimeout(t); if(!j.ok){ var e=new Error(j.ralat||"Ralat pelayan"); e.kod=j.kodRalat; throw e; } return j; },
+          function(e){ clearTimeout(t); if(e&&e.name==="AbortError") e=new Error("Tiada jawapan daripada pelayan (60 saat)"); else if(e instanceof TypeError) e=new Error(navigator.onLine?"Tidak dapat menghubungi pelayan GMP.":"Tiada sambungan internet."); throw e; });
+}
+function api(tindakan,tambahan,url){
+  var u=url||CFG.url||apiUrl();
+  if(!u) return Promise.reject(new Error("URL pelayan belum ditetapkan."));
+  return tokenId().then(function(t){ return hantarApi(u, Object.assign({tindakan:tindakan,idToken:t},tambahan||{})); });
+}
+
+/* ---------- Skrin log masuk ---------- */
+function kepalaMasuk(){ return '<img src="data:image/png;base64,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" alt="Logo Generasi Muda PAPISMA" width="150" height="118"><h1>Aplikasi <em>GMP</em></h1>'; }
+function blokPelayan(){
+  if(window.GMP_API_URL) return "";
+  return '<details class="pelayan"'+(CFG.api?'':' open')+'><summary>Tetapan pelayan</summary>'+
+    medan("iApi","URL aplikasi web Apps Script",'<input type="url" id="iApi" placeholder="https://script.google.com/macros/s/…/exec" value="'+esc(CFG.api||"")+'">')+
+    '<p class="nota">Pentadbir boleh menetapkannya untuk semua dalam config.js.</p></details>';
+}
+var NOTIS_MASUK="";
+function paparMasuk(){
+  document.body.classList.add("log-masuk");
+  $("#fab").hidden=true; $("#nav").innerHTML=""; $("#rel").innerHTML="";
+  $("#brandNama").textContent="GMP Malaysia"; $("#brandSub").textContent="SESI 2026–2028";
+  var pill=$("#segPill"); pill.className="seg-pill"; $("#segTeks").textContent="Belum log masuk";
+  var ada=$("#masukMod"); if(ada && ada.getAttribute("data-mod")===UI_MASUK && !NOTIS_MASUK) return;
+  var notis = NOTIS_MASUK? '<div class="amaran"><span>'+esc(NOTIS_MASUK)+'</span></div>' : ''; NOTIS_MASUK="";
+  var tiadaFb = fbSedia()? '' : '<div class="amaran bahaya"><span><b>Firebase belum dikonfigurasi.</b> Pentadbir perlu mengisi GMP_FIREBASE dalam config.js. Anda masih boleh melihat demo.</span></div>';
+  var emelFb = FB&&FB.auth.currentUser? FB.auth.currentUser.email : "";
+  var h, M=UI_MASUK;
+  if(M==="daftar"){
+    h='<section class="masuk" id="masukMod" data-mod="daftar">'+kepalaMasuk()+'<p class="sub">Langkah 1 daripada 3 · Cipta akaun</p>'+notis+tiadaFb+
+      '<form class="kad blok" data-form="daftarAkaun">'+
+        medan("iEmelD","E-mel",'<input type="email" id="iEmelD" required autocomplete="email">')+
+        medan("iKataD","Kata laluan (minimum 8 aksara)",'<input type="password" id="iKataD" required minlength="8" autocomplete="new-password">')+
+        medan("iKataD2","Sahkan kata laluan",'<input type="password" id="iKataD2" required minlength="8" autocomplete="new-password">')+
+        blokPelayan()+
+        '<button class="btn utama" type="submit">Cipta akaun</button>'+
+        '<p class="nota">Selepas ini: sahkan e-mel → isi maklumat ahli → kelulusan Majlis Tertinggi.</p>'+
+      '</form><button class="btn" type="button" data-act="masuk-mod" data-mod="masuk">Sudah ada akaun? Log masuk</button></section>';
+  } else if(M==="sahkan"){
+    h='<section class="masuk" id="masukMod" data-mod="sahkan">'+kepalaMasuk()+'<p class="sub">Langkah 2 daripada 3 · Sahkan e-mel</p>'+notis+
+      '<div class="kad blok"><p style="font-size:14.5px">Pautan pengesahan telah dihantar ke <b>'+esc(emelFb)+'</b>. Buka e-mel itu dan klik pautan, kemudian kembali ke sini.</p>'+
+      '<p class="nota">Tidak jumpa? Semak folder spam atau promosi.</p>'+
+      '<button class="btn utama" type="button" data-act="fb-semak-sah">Saya sudah sahkan</button>'+
+      '<button class="btn" type="button" data-act="fb-hantar-sah">Hantar semula e-mel</button></div>'+
+      '<button class="pautan" type="button" data-act="fb-keluar">Guna e-mel lain</button></section>';
+  } else if(M==="profil"){
+    h='<section class="masuk lebar" id="masukMod" data-mod="profil">'+
+      '<h1>Maklumat <em>ahli</em></h1><p class="sub">Langkah 3 daripada 3 · '+esc(emelFb)+'</p>'+notis+
+      '<form class="kad blok" data-form="daftarProfil" id="fDaftar" novalidate>'+medanProfil({},true)+
+        '<label class="setuju"><input type="checkbox" id="iSetuju" required><span>Saya bersetuju maklumat ini disimpan oleh Generasi Muda PAPISMA untuk pengurusan keahlian. Kawasan saya (±1 km), nama, institusi dan bidang dipaparkan kepada ahli berdaftar. Tarikh lahir, jantina dan alamat hanya dilihat oleh Majlis Tertinggi; telefon dan e-mel oleh Majlis Tertinggi dan AJK negeri saya.</span></label>'+
+        '<button class="btn utama" type="submit">Hantar pendaftaran</button></form>'+
+      '<button class="pautan" type="button" data-act="fb-keluar">Log keluar</button></section>';
+  } else if(M==="lupa"){
+    h='<section class="masuk" id="masukMod" data-mod="lupa">'+kepalaMasuk()+'<p class="sub">Tetapkan semula kata laluan</p>'+notis+
+      '<form class="kad blok" data-form="lupaFb">'+medan("iEmelL","E-mel berdaftar",'<input type="email" id="iEmelL" required autocomplete="email" value="'+esc(EMEL_LUPA)+'">')+
+      '<button class="btn utama" type="submit">Hantar pautan tetapan semula</button></form>'+
+      '<button class="btn" type="button" data-act="masuk-mod" data-mod="masuk">Kembali ke log masuk</button></section>';
+  } else if(M==="menunggu" || M==="ditolak"){
+    h='<section class="masuk" id="masukMod" data-mod="'+M+'">'+kepalaMasuk()+
+      '<div class="kad blok"><b style="font-size:16px">'+(M==="menunggu"?"Pendaftaran diterima":"Akaun tidak aktif")+'</b>'+
+      '<p class="nota" style="font-size:14px">'+(M==="menunggu"?"Majlis Tertinggi akan menyemak pendaftaran anda dan menetapkan peranan. Anda akan dimaklumkan sebaik akaun diluluskan.":"Akaun anda telah ditolak atau digantung. Hubungi Majlis Tertinggi GMP.")+'</p>'+
+      (M==="menunggu"?'<button class="btn utama" type="button" data-act="fb-semak-status">Semak status</button>':'')+'</div>'+
+      '<button class="pautan" type="button" data-act="fb-keluar">Log keluar</button></section>';
+  } else {
+    h='<section class="masuk" id="masukMod" data-mod="masuk">'+kepalaMasuk()+'<p class="sub">Sistem kerja Generasi Muda PAPISMA Malaysia, sesi 2026–2028.</p>'+notis+tiadaFb+
+      '<form class="kad blok" data-form="masukFb" id="fMasuk">'+
+        medan("iEmelM","E-mel",'<input type="email" id="iEmelM" required autocomplete="username" value="'+esc(EMEL_LUPA)+'">')+
+        medan("iKataM","Kata laluan",'<input type="password" id="iKataM" required autocomplete="current-password">')+
+        blokPelayan()+
+        '<button class="btn utama" type="submit">Log masuk</button>'+
+        '<button class="pautan" type="button" data-act="masuk-mod" data-mod="lupa">Lupa kata laluan?</button>'+
+      '</form>'+
+      '<div class="kad blok daftar-ajak"><b>Belum ada akaun?</b><p class="nota">Daftar sebagai ahli GMP. Akaun diaktifkan selepas kelulusan Majlis Tertinggi.</p>'+
+        '<button class="btn" type="button" data-act="masuk-mod" data-mod="daftar">Daftar ahli baharu</button></div>'+
+      '<button class="pautan" type="button" data-act="demo-masuk">Lihat demo tanpa log masuk</button></section>';
+  }
+  $("#isi").innerHTML=h; document.title="Aplikasi GMP";
+  if(M==="profil") pasangPemilih("petaDaftar");
+}
+function urlUntukMasuk(){
+  var u=apiUrl(); if(!u){ var i=v("iApi"); if(i){ if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(i)){ toast("URL pelayan mesti bermula https://script.google.com/ dan berakhir /exec"); return null; } CFG.api=i; simpanCfg(); u=i; } }
+  if(!u){ toast("Isi URL pelayan dalam Tetapan pelayan"); return null; }
+  return u;
+}
+/** Selepas Firebase log masuk: semak pengesahan e-mel, kemudian peranan di pelayan. */
+function selepasMasuk(url){
+  url=url||apiUrl()||CFG.url;
+  return muatFirebase().then(function(fb){
+    var u=fb.auth.currentUser; if(!u){ UI_MASUK="masuk"; paparMasuk(); return; }
+    return u.reload().then(function(){
+      if(!u.emailVerified){ UI_MASUK="sahkan"; paparMasuk(); return; }
+      return u.getIdToken(true).then(function(){ return api("ping",{},url); }).then(function(j){ masukApp(j,url); },function(e){
+        if(e.kod==="TIADA_PROFIL"){ UI_MASUK="profil"; paparMasuk(); }
+        else if(e.kod==="MENUNGGU"){ UI_MASUK="menunggu"; paparMasuk(); }
+        else if(e.kod==="DITOLAK"){ UI_MASUK="ditolak"; paparMasuk(); }
+        else if(e.kod==="SAHKAN"){ UI_MASUK="sahkan"; paparMasuk(); }
+        else { NOTIS_MASUK=e.message; UI_MASUK="masuk"; paparMasuk(); }
+      });
+    });
+  });
+}
+function masukApp(j,url){
+  CFG.url=url; CFG.api=url; CFG.akaun=j.akaun; CFG.peranan=j.peranan; CFG.negeri=j.negeri||(j.akaun&&j.akaun.negeri)||"";
+  CFG.namaNegeri=j.namaNegeri||""; CFG.demo=false; CFG.token=""; CFG.kod="";
+  if(j.akaun && j.akaun.jawatanId) CFG.saya=j.akaun.jawatanId;
+  simpanCfg(); OUTBOX=[]; JENIS.forEach(function(k){DATA[k]=[];}); META={masa:null,kosong:false}; simpanLokal();
+  UI_MASUK="masuk"; location.hash="utama"; render(); segerak();
+  toast("Selamat datang, "+((j.akaun&&j.akaun.nama)||"").split(" ")[0]);
+}
+function bersihSesi(){
+  CFG.url=""; CFG.kod=""; CFG.token=""; CFG.akaun=null; CFG.peranan=""; CFG.negeri=""; simpanCfg();
+  OUTBOX=[]; META={masa:null,kosong:false}; DATA=binaAsas(); binaContoh(DATA); simpanLokal(); SEG.status="demo"; SEG.ralat="";
+}
+function keluarFirebase(){ return muatFirebase().then(function(fb){ return fb.signOut(fb.auth); }).catch(function(){}); }
+
+/* ---------- Notifikasi push ---------- */
+function iOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent); }
+function standalone(){ return (window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone===true; }
+function statusPush(){
+  if(!CFG.url) return "demo";
+  if(!VAPID) return "tiada";
+  if(iOS() && !standalone()) return "ios";
+  if(!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) return "tidak";
+  if(Notification.permission==="denied") return "ditolak";
+  return lsGet("gmp.push",null)? "aktif" : "sedia";
+}
+function kadPush(penuh){
+  var s=statusPush();
+  if(!penuh && s!=="sedia") return "";
+  var m={
+    demo:"Notifikasi tersedia selepas log masuk.",
+    tiada:"Notifikasi push belum dikonfigurasi oleh pentadbir (GMP_VAPID dalam config.js).",
+    ios:"Di iPhone/iPad, pasang aplikasi ke Skrin Utama dahulu (Safari → Kongsi → Tambah ke Skrin Utama), kemudian buka dari ikon untuk mengaktifkan notifikasi.",
+    tidak:"Pelayar ini tidak menyokong notifikasi push. Cuba Chrome (Android/komputer) atau Safari (iOS 16.4+, selepas dipasang).",
+    ditolak:"Notifikasi disekat oleh pelayar. Benarkan dalam tetapan laman (ikon 🔒 di bar alamat), kemudian cuba lagi.",
+    sedia:"Terima makluman pengumuman, kelulusan, laporan dan program baharu walaupun aplikasi ditutup.",
+    aktif:"Notifikasi aktif pada peranti ini."
+  }[s];
+  return '<div class="kad blok kad-push"><div class="baris-push">'+svg("pengumuman")+'<div><b>Notifikasi push</b><p class="nota">'+m+'</p></div></div>'+
+    (s==="sedia"?'<div class="lembar-k"><button class="btn utama" type="button" data-act="push-hidup">Aktifkan notifikasi</button></div>':'')+
+    (s==="aktif"?'<div class="lembar-k"><button class="btn" type="button" data-act="push-uji">Hantar ujian</button><button class="btn" type="button" data-act="push-mati">Matikan</button></div>':'')+'</div>';
+}
+function hidupkanPush(el){
+  if(el){ el.disabled=true; el.textContent="Mengaktifkan…"; }
+  Notification.requestPermission().then(function(p){
+    if(p!=="granted") throw new Error("Kebenaran notifikasi tidak diberi.");
+    return Promise.all([muatFirebase(), import(FBV+"firebase-messaging.js"), navigator.serviceWorker.ready]);
+  }).then(function(x){
+    var fb=x[0], m=x[1], reg=x[2];
+    return m.isSupported().then(function(ok){
+      if(!ok) throw new Error("Pelayar ini tidak menyokong notifikasi push Firebase.");
+      return m.getToken(m.getMessaging(fb.app),{vapidKey:VAPID, serviceWorkerRegistration:reg});
+    });
+  }).then(function(tok){
+    if(!tok) throw new Error("Token peranti tidak diterima.");
+    return api("daftarPush",{token:tok}).then(function(j){ lsSet("gmp.push",tok); toast(j.aktif?"Notifikasi diaktifkan":"Peranti didaftar. Pentadbir belum mengaktifkan penghantaran (FCM_SA)."); });
+  }).catch(function(e){ toast(e.message||"Gagal mengaktifkan notifikasi"); }).then(function(){ render(); });
+}
+function matikanPush(){
+  var tok=lsGet("gmp.push",null);
+  try{ localStorage.removeItem("gmp.push"); }catch(e){}
+  if(tok){
+    api("buangPush",{token:tok}).catch(function(){});
+    Promise.all([muatFirebase(), import(FBV+"firebase-messaging.js")]).then(function(x){ return x[1].deleteToken(x[1].getMessaging(x[0].app)); }).catch(function(){});
+  }
+  toast("Notifikasi dimatikan pada peranti ini"); render();
+}
+if("serviceWorker" in navigator){
+  try{ navigator.serviceWorker.addEventListener("message",function(e){ if(e.data&&e.data.type==="gmp-buka"&&e.data.view){ location.hash=e.data.view; } }); }catch(e){}
+}
+
+/* ---------- Program & penyertaan ---------- */
+function penyertaanSaya(pId){ return cari("penyertaan", pId+"__"+idSaya()); }
+function senaraiAcara(){
+  return DATA.program.filter(function(p){return p.tarikh || ya(p.buka);}).sort(function(a,b){
+    var x=a.tarikh||a.bulan+"-15", y=b.tarikh||b.bulan+"-15"; return x<y?-1:x>y?1:0; });
+}
+function tarikhAcara(p){ return p.tarikh? fmtTarikh(p.tarikh)+(p.tarikhTamat&&p.tarikhTamat!==p.tarikh?" – "+fmtTarikh(p.tarikhTamat):"") : fmtBulanP(p.bulan); }
+function hariAcara(p){ if(!p.tarikh) return false; var h=hariIni(); return h>=tambahHari(p.tarikh,-1) && h<=tambahHari(p.tarikhTamat||p.tarikh,1); }
+function kadAcara(p){
+  var peserta=DATA.penyertaan.filter(function(x){return x.program===p.id;}), r=penyertaanSaya(p.id);
+  var kap=num(p.kapasiti), penuh=kap>0 && peserta.length>=kap, lepas=(p.tarikhTamat||p.tarikh) && (p.tarikhTamat||p.tarikh)<hariIni();
+  var hadir=r&&ya(r.hadir);
+  var butang=[];
+  if(!r && ya(p.buka) && !lepas && idSaya()) butang.push(penuh? '<span class="nota">Tempat penuh</span>' : '<button class="btn utama kecil" type="button" data-act="acara-daftar" data-id="'+esc(p.id)+'">Daftar</button>');
+  if(r && !hadir && ya(p.buka) && !lepas) butang.push('<button class="btn kecil" type="button" data-act="acara-batal" data-id="'+esc(r.id)+'" data-sah="0">Batal</button>');
+  if(!hadir && hariAcara(p) && idSaya()) butang.push('<button class="btn kecil" type="button" data-act="acara-kod" data-id="'+esc(p.id)+'">Rekod kehadiran</button>');
+  if(hadir) butang.push('<button class="btn kecil utama" type="button" data-act="sijil" data-id="'+esc(r.id)+'">'+svg("sijil")+'Sijil</button>');
+  if(isStaf()) butang.push('<button class="btn kecil" type="button" data-act="acara-peserta" data-id="'+esc(p.id)+'">Peserta · '+peserta.length+'</button>');
+  if(isMT()) butang.push('<button class="btn kecil" type="button" data-act="program-buka" data-id="'+esc(p.id)+'">Urus</button>');
+  return '<article class="acara'+(lepas?' lepas':'')+'"><div class="acara-tkh"><b>'+(p.tarikh?parseInt(p.tarikh.slice(8),10):BULAN[+p.bulan.slice(5)-1])+'</b><span>'+(p.tarikh?BULAN[+p.tarikh.slice(5,7)-1]+" "+p.tarikh.slice(0,4):p.bulan.slice(0,4))+'</span></div>'+
+    '<div class="acara-isi"><h3>'+esc(p.nama)+'</h3>'+
+    '<div class="tg-m"><span class="kod">'+esc(p.id)+'</span><span>'+esc(tarikhAcara(p))+'</span>'+(p.tempat?'<span>'+esc(p.tempat)+'</span>':'')+
+      '<span class="num">'+peserta.length+(kap?'/'+kap:'')+' peserta</span>'+
+      (ya(p.buka)&&!lepas?'<span class="status siap"><i></i>Pendaftaran dibuka</span>':lepas?'<span class="status"><i></i>Selesai</span>':'<span class="status"><i></i>Belum dibuka</span>')+
+      (r?'<span class="status '+(hadir?"siap":"buat")+'"><i></i>'+(hadir?"Hadir":"Berdaftar")+'</span>':'')+'</div>'+
+    (p.penerangan?'<p class="acara-p">'+esc(p.penerangan)+'</p>':'')+
+    (butang.length?'<div class="lembar-k">'+butang.join("")+'</div>':'')+'</div></article>';
+}
+HAL.acara = function(){
+  var semua=senaraiAcara(), h=hariIni();
+  var datang=semua.filter(function(p){return !((p.tarikhTamat||p.tarikh) && (p.tarikhTamat||p.tarikh)<h);});
+  var lepas=semua.filter(function(p){return (p.tarikhTamat||p.tarikh) && (p.tarikhTamat||p.tarikh)<h;}).reverse();
+  var sijil=DATA.penyertaan.filter(function(x){return x.ahli===idSaya() && ya(x.hadir);});
+  return '<div class="kepala"><div><h1>Program</h1><div class="sub">Daftar program, rekod kehadiran dan muat turun sijil penyertaan</div></div></div>'+
+    (isMT() && !semua.length? '<div class="amaran"><span>Belum ada program dengan tarikh. Buka program di <b>Blueprint</b>, isi tarikh & tempat, kemudian buka pendaftaran.</span><a class="btn kecil" href="#program">Blueprint</a></div>' : '')+
+    (datang.length? '<section class="blok"><h2>Akan datang <span class="kira">'+datang.length+'</span></h2><div class="senarai">'+datang.map(kadAcara).join("")+'</div></section>'
+      : kosong("Tiada program akan datang","Program yang dibuka untuk pendaftaran akan muncul di sini."))+
+    (sijil.length? '<section class="blok"><h2>Sijil saya <span class="kira">'+sijil.length+'</span></h2><div class="senarai">'+sijil.map(function(r){var p=cari("program",r.program)||{nama:r.program};
+      return '<div class="tg" data-act="sijil" data-id="'+esc(r.id)+'" role="button" tabindex="0" style="grid-template-columns:auto minmax(0,1fr) auto"><span class="ikon-sijil">'+svg("sijil")+'</span><div style="min-width:0"><div class="tg-t" style="text-decoration:none;color:var(--ink)">'+esc(p.nama)+'</div><div class="tg-m"><span class="num">'+esc(r.sijilNo||"Nombor dijana selepas segerak")+'</span></div></div><span class="baki">Cetak</span></div>';}).join("")+'</div></section>':'')+
+    (lepas.length? '<details class="lipat"><summary>Program lepas · '+lepas.length+'</summary><div class="senarai">'+lepas.map(kadAcara).join("")+'</div></details>':'');
+};
+function lembarPeserta(p){
+  var peserta=DATA.penyertaan.filter(function(x){return x.program===p.id;}).sort(function(a,b){return String(a.nama).localeCompare(String(b.nama));});
+  var hadir=peserta.filter(function(x){return ya(x.hadir);}).length;
+  var calon=DATA.ahli.filter(function(a){return a.statusAkaun==="aktif" && !cari("penyertaan",p.id+"__"+a.id);}).sort(function(a,b){return String(a.nama).localeCompare(String(b.nama));});
+  bukaLembar("Peserta · "+esc(p.nama),
+    '<div class="info-baris"><div><b>'+peserta.length+(num(p.kapasiti)?'/'+num(p.kapasiti):'')+'</b><span>Berdaftar</span></div><div><b>'+hadir+'</b><span>Hadir</span></div>'+
+      (p.kodHadir?'<div><b class="num" style="letter-spacing:.12em">'+esc(p.kodHadir)+'</b><span>Kod kehadiran (paparkan di lokasi)</span></div>':'')+'</div>'+
+    (!p.kodHadir && isMT()?'<p class="nota">Tiada kod kehadiran. Jana kod di <b>Urus</b> supaya peserta boleh merekod kehadiran sendiri.</p>':'')+
+    '<div class="senarai-hadir">'+(peserta.length? peserta.map(function(x){
+      return '<label class="hadir-baris"><input type="checkbox" data-act="tanda-hadir" data-id="'+esc(x.id)+'"'+(ya(x.hadir)?" checked":"")+'>'+
+        '<span><b>'+esc(x.nama)+'</b><small>'+esc([namaNegeri(x.negeri),x.institusi].filter(Boolean).join(" · "))+(x.sijilNo?' · <span class="num">'+esc(x.sijilNo)+'</span>':'')+'</small></span></label>';}).join("") : '<p class="nota">Belum ada pendaftaran.</p>')+'</div>'+
+    '<div class="medan"><label for="iWalkin">Tambah peserta walk-in (ahli berdaftar)</label><div class="baris-lokasi"><select id="iWalkin" style="flex:1;min-width:0"><option value="">— Pilih ahli —</option>'+
+      calon.map(function(a){return '<option value="'+esc(a.id)+'">'+esc(a.nama+" · "+namaNegeri(a.negeri))+'</option>';}).join("")+'</select>'+
+      '<button class="btn kecil" type="button" data-act="walkin" data-id="'+esc(p.id)+'">Tambah & tanda hadir</button></div></div>'+
+    '<button class="btn" type="button" data-act="peserta-csv" data-id="'+esc(p.id)+'">Salin senarai (CSV)</button>',"");
+}
+function lembarKodHadir(p){
+  bukaLembar("Rekod kehadiran",
+    '<p class="nota">Masukkan kod yang dipaparkan oleh AJK di lokasi <b>'+esc(p.nama)+'</b>.</p>'+
+    '<input type="hidden" id="iId" value="'+esc(p.id)+'">'+
+    medan("iKodH","Kod kehadiran",'<input type="text" id="iKodH" required autocomplete="off" autocapitalize="characters" maxlength="10" style="letter-spacing:.2em;font-family:var(--mono);text-transform:uppercase">'),
+    '<button class="btn utama" type="submit">Rekod kehadiran</button>',"kodHadir");
+}
+
+/* ---------- Sijil ---------- */
+function logoDataUri(){ var i=document.querySelector(".brand img"); return i? i.src : ""; }
+function cetakHtml(tajuk, badan, gaya){
+  var html='<!doctype html><html lang="ms"><head><meta charset="utf-8"><title>'+esc(tajuk)+'</title><style>'+gaya+'</style></head><body>'+badan+
+    '<script>window.onload=function(){setTimeout(function(){window.print();},350);};<\/script></body></html>';
+  var w=null; try{ w=window.open("","_blank"); }catch(e){}
+  if(w && w.document){ w.document.open(); w.document.write(html); w.document.close(); return; }
+  var f=document.createElement("iframe"); f.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0";
+  document.body.appendChild(f); f.contentDocument.open(); f.contentDocument.write(html.replace("window.print()","window.print();parent.postMessage('gmp-cetak-siap','*')")); f.contentDocument.close();
+  setTimeout(function(){ try{ f.remove(); }catch(e){} },60000);
+}
+function cetakSijil(r){
+  var p=cari("program",r.program)||{nama:r.program,id:r.program}, pr=cari("orang","presiden")||{};
+  var gaya='@page{size:A4 landscape;margin:0}*{box-sizing:border-box}body{margin:0;font-family:Georgia,"Times New Roman",serif;color:#16241C}'+
+    '.s{width:297mm;height:210mm;padding:16mm;position:relative;background:#fff}'+
+    '.b{position:absolute;inset:9mm;border:2.5mm solid #1E6B3C;outline:.6mm solid #9C7208;outline-offset:-4.5mm}'+
+    '.i{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;padding:10mm 22mm}'+
+    'img{height:30mm}h1{font-size:13mm;margin:5mm 0 1mm;letter-spacing:1mm;color:#1E6B3C;font-weight:normal}'+
+    '.e{font:600 3.6mm Arial,sans-serif;letter-spacing:.8mm;color:#9C7208;text-transform:uppercase}.k{font-size:4.5mm;margin-top:7mm}'+
+    '.n{font-size:10mm;font-style:italic;margin:3mm 0;border-bottom:.4mm solid #9C7208;padding:0 10mm 1mm}.p{font-size:6.5mm;font-weight:bold;margin:2mm 0}'+
+    '.t{font:4mm Arial,sans-serif;color:#4A5A50}.f{margin-top:auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end;font:3.6mm Arial,sans-serif}'+
+    '.sg{width:70mm;border-top:.3mm solid #16241C;padding-top:2mm;text-align:center}.no{font-family:"Courier New",monospace;color:#4A5A50}';
+  cetakHtml("Sijil "+r.nama,
+    '<div class="s"><div class="b"></div><div class="i"><img src="'+logoDataUri()+'" alt="">'+
+    '<div class="e">Generasi Muda PAPISMA Malaysia</div><h1>SIJIL PENYERTAAN</h1>'+
+    '<div class="k">Dengan ini diakui bahawa</div><div class="n">'+esc(r.nama)+'</div>'+
+    '<div class="t">'+esc([r.institusi,namaNegeri(r.negeri)].filter(Boolean).join(" · "))+'</div>'+
+    '<div class="k">telah menyertai</div><div class="p">'+esc(p.nama)+'</div>'+
+    '<div class="t">'+esc(tarikhAcara(p))+(p.tempat?' · '+esc(p.tempat):'')+'</div>'+
+    '<div class="f"><div class="no">No. sijil: '+esc(r.sijilNo||"—")+'</div><div class="sg"><b>'+esc(pr.nama||"")+'</b><br>'+esc(pr.jawatan||"Pengerusi")+'<br>Generasi Muda PAPISMA</div></div></div></div>', gaya);
+}
+
+/* ---------- Pengumuman ---------- */
+var SASARAN = {semua:"Semua ahli",ajk:"AJK sahaja (MT & negeri)",ahli:"Ahli sahaja",negeri:"Satu negeri"};
+function labelSasaran(p){ return p.sasaran==="negeri"? namaNegeri(p.negeri) : (SASARAN[p.sasaran]||"Semua ahli"); }
+function kadPengumuman(p){
+  var boleh = isMT() || (p.sasaran==="negeri" && p.negeri===ngSaya() && !isAhli());
+  return '<article class="peng'+(ya(p.penting)?' penting':'')+'"><div class="peng-m"><span>'+esc(p.olehNama||"")+'</span><span>'+(p.pada?fmtTarikh(p.pada.slice(0,10)):"")+'</span><span class="kod">'+esc(labelSasaran(p))+'</span>'+(ya(p.penting)?'<span class="status sekat"><i></i>Penting</span>':'')+'</div>'+
+    '<h3>'+esc(p.tajuk)+'</h3><p>'+esc(p.isi)+'</p>'+
+    (boleh?'<div class="lembar-k"><button class="btn kecil" type="button" data-act="pengumuman-buka" data-id="'+esc(p.id)+'">Sunting</button></div>':'')+'</article>';
+}
+HAL.pengumuman = function(){
+  var p=DATA.pengumuman.slice().sort(function(a,b){ return (ya(b.penting)?1:0)-(ya(a.penting)?1:0) || ((b.pada||"")<(a.pada||"")?-1:1); });
+  return '<div class="kepala"><div><h1>Pengumuman</h1><div class="sub">'+(isAhli()?"Makluman daripada Majlis Tertinggi dan AJK negeri anda":"Makluman kepada ahli; dihantar sebagai notifikasi push")+'</div></div></div>'+
+    kadPush(false)+
+    (p.length? '<div class="senarai">'+p.map(kadPengumuman).join("")+'</div>' : kosong("Belum ada pengumuman", isStaf()?'Tekan "Pengumuman" untuk menerbitkan makluman pertama.':"Pengumuman daripada GMP akan muncul di sini."));
+};
+function lembarPengumuman(p){
+  var baru=!p; p=p||{id:uid("pg"),tajuk:"",isi:"",sasaran:isMT()?"semua":"negeri",negeri:isMT()?"":ngSaya(),penting:""};
+  bukaLembar(baru?"Pengumuman baharu":"Sunting pengumuman",
+    '<input type="hidden" id="iId" value="'+esc(p.id)+'">'+
+    medan("iTajukPg","Tajuk",'<input type="text" id="iTajukPg" required maxlength="120" value="'+esc(p.tajuk)+'">')+
+    medan("iIsiPg","Isi",'<textarea id="iIsiPg" required style="min-height:140px">'+esc(p.isi)+'</textarea>')+
+    (isMT()? '<div class="grid2">'+medan("iSasaran","Sasaran",'<select id="iSasaran">'+opsyen(Object.keys(SASARAN).map(function(k){return [k,SASARAN[k]];}),p.sasaran)+'</select>')+
+      medan("iNegeriPg","Negeri (jika satu negeri)",'<select id="iNegeriPg"><option value="">—</option>'+opsyenNegeri(p.negeri)+'</select>')+'</div>'
+      : '<p class="nota">Sasaran: ahli dan AJK <b>'+esc(namaNegeri(ngSaya()))+'</b>.</p>')+
+    '<label class="suis">Tanda sebagai penting (dipaparkan di atas)<input type="checkbox" id="iPenting"'+(ya(p.penting)?" checked":"")+'></label>'+
+    (baru?'<p class="nota">Notifikasi push dihantar kepada sasaran sebaik pengumuman disegerak.</p>':''),
+    '<button class="btn utama" type="submit">'+(baru?"Terbitkan":"Simpan")+'</button>'+(baru?'':butangPadam("pengumuman-padam",p.id)),"pengumuman");
+}
+function blokPengumumanRingkas(){
+  var p=DATA.pengumuman.slice().sort(function(a,b){return (b.pada||"")<(a.pada||"")?-1:1;}).slice(0,2);
+  return p.length? '<section class="blok"><h2>Pengumuman terkini <a href="#pengumuman">Semua</a></h2><div class="senarai">'+p.map(kadPengumuman).join("")+'</div></section>' : "";
+}
+
+/* ---------- Portal Ahli ---------- */
+HAL_AH.utama = function(){
+  var a=sayaAhli()||{}, nama=(a.nama||"").split(/\s+/).slice(0,2).join(" ");
+  var saya=DATA.penyertaan.filter(function(x){return x.ahli===idSaya();});
+  var dibuka=senaraiAcara().filter(function(p){return ya(p.buka) && !((p.tarikhTamat||p.tarikh) && (p.tarikhTamat||p.tarikh)<hariIni()) && !penyertaanSaya(p.id);});
+  var akan=saya.map(function(x){return cari("program",x.program);}).filter(function(p){return p && !((p.tarikhTamat||p.tarikh) && (p.tarikhTamat||p.tarikh)<hariIni());});
+  var sijil=saya.filter(function(x){return ya(x.hadir);}).length;
+  return amaranMod()+sambut('Assalamualaikum'+(nama?', <em>'+esc(nama)+'</em>':''),'<span class="peranan ahli">Ahli</span>')+
+    kadPush(false)+
+    '<section class="blok"><div class="jubin">'+
+      '<a href="#acara"><span class="n">'+akan.length+'</span><span class="l">Program didaftar</span></a>'+
+      '<a href="#acara"><span class="n">'+dibuka.length+'</span><span class="l">Pendaftaran dibuka</span></a>'+
+      '<a href="#acara"><span class="n">'+sijil+'</span><span class="l">Sijil penyertaan</span></a></div></section>'+
+    (akan.length? '<section class="blok"><h2>Program anda</h2><div class="senarai">'+akan.map(kadAcara).join("")+'</div></section>':'')+
+    (dibuka.length? '<section class="blok"><h2>Pendaftaran dibuka <a href="#acara">Semua program</a></h2><div class="senarai">'+dibuka.slice(0,3).map(kadAcara).join("")+'</div></section>':'')+
+    blokPengumumanRingkas()+
+    '<section class="blok"><h2>Profil</h2><div class="kad blok"><p style="font-size:14px"><b>'+esc(a.nama||"")+'</b><br><span class="nota">'+esc([a.institusi,a.bidang,namaNegeri(a.negeri)].filter(Boolean).join(" · "))+'</span></p>'+
+      (a.lat?'':'<p class="nota" style="color:var(--crit)">Anda belum menanda kawasan pada peta.</p>')+'<div class="lembar-k"><a class="btn kecil" href="#profil">Kemas kini profil</a><a class="btn kecil" href="#peta">Peta ahli</a></div></div></section>';
+};
+var MT_UTAMA_ASAL = HAL_MT.utama, NG_UTAMA_ASAL = HAL_NG.utama;
+function sisipSelepasSambut(h, tambah){ var i=h.indexOf("</section>"); return i<0? h+tambah : h.slice(0,i+10)+tambah+h.slice(i+10); }
+HAL_MT.utama = function(){ return sisipSelepasSambut(MT_UTAMA_ASAL(), kadPush(false)) + blokPengumumanRingkas(); };
+HAL_NG.utama = function(){ return sisipSelepasSambut(NG_UTAMA_ASAL(), kadPush(false)) + blokPengumumanRingkas(); };
+
+/* ---------- Lejar kewangan ---------- */
+var KAT_WANG = {
+  pendapatan:["Yuran ahli","Sumbangan / tajaan","Yuran program","Geran","Lain-lain"],
+  perbelanjaan:["Program","Logistik & pengangkutan","Makan minum","Penginapan","Percetakan & media","Cenderahati","Pentadbiran","Lain-lain"]
+};
+var KEW_BAJET = HAL_MT.kewangan;
+function lejarProgram(id){ return DATA.transaksi.filter(function(t){return t.program===id && t.jenis==="perbelanjaan";}).reduce(function(s,t){return s+num(t.amaun);},0); }
+HAL_MT.kewangan = function(){
+  var tab=UI.kewTab||"bajet";
+  var seg='<div class="segmen" role="tablist">'+[["bajet","Bajet program"],["lejar","Lejar"]].map(function(m){
+    return '<button type="button" role="tab" data-act="kew-tab" data-v="'+m[0]+'" class="'+(tab===m[0]?"on":"")+'" aria-selected="'+(tab===m[0])+'">'+m[1]+'</button>';}).join("")+'</div>';
+  if(tab==="bajet"){ var h=KEW_BAJET(); var i=h.indexOf("</div></div></div>")+18; return h.slice(0,i)+seg+h.slice(i); }
+  var T=DATA.transaksi.slice().sort(ikutTarikhTurun), tahun=UI.kewTahun||"";
+  var tahunAda=[]; T.forEach(function(t){ var y=(t.tarikh||"").slice(0,4); if(y&&tahunAda.indexOf(y)<0) tahunAda.push(y); });
+  var X=T.filter(function(t){return !tahun || (t.tarikh||"").slice(0,4)===tahun;});
+  var masuk=X.filter(function(t){return t.jenis==="pendapatan";}).reduce(function(s,t){return s+num(t.amaun);},0);
+  var keluar=X.filter(function(t){return t.jenis==="perbelanjaan";}).reduce(function(s,t){return s+num(t.amaun);},0);
+  var ikutKat={}; X.forEach(function(t){ var k=t.jenis+"|"+(t.kategori||"Lain-lain"); ikutKat[k]=(ikutKat[k]||0)+num(t.amaun); });
+  var g={}; X.forEach(function(t){ var b=(t.tarikh||"").slice(0,7)||"—"; (g[b]=g[b]||[]).push(t); });
+  var rm2=function(n){return "RM "+num(n).toLocaleString("en-MY",{minimumFractionDigits:2,maximumFractionDigits:2});};
+  return '<div class="kepala"><div><h1>Kewangan</h1><div class="sub">Lejar pendapatan & perbelanjaan GMP</div></div></div>'+seg+
+    '<div class="penapis"><div class="baris"><select id="fKewTahun" aria-label="Tapis tahun"><option value="">Semua tahun</option>'+opsyen(tahunAda.sort(),tahun)+'</select></div></div>'+
+    '<div class="jubin4">'+
+      '<div class="statistik"><span class="n" style="color:var(--ok)">'+rm(masuk).replace("RM ","")+'</span><span class="l">Pendapatan (RM)</span></div>'+
+      '<div class="statistik"><span class="n" style="color:var(--crit)">'+rm(keluar).replace("RM ","")+'</span><span class="l">Perbelanjaan (RM)</span></div>'+
+      '<div class="statistik"><span class="n">'+rm(masuk-keluar).replace("RM ","")+'</span><span class="l">Baki bersih (RM)</span></div>'+
+      '<div class="statistik"><span class="n">'+X.length+'</span><span class="l">Transaksi</span></div></div>'+
+    (Object.keys(ikutKat).length? '<section class="blok"><h2>Ikut kategori</h2><div class="kad">'+Object.keys(ikutKat).sort().map(function(k){var p=k.split("|");
+      return '<div class="baris-kat"><span><span class="status '+(p[0]==="pendapatan"?"siap":"sekat")+'"><i></i></span>'+esc(p[1])+'</span><b class="num">'+rm2(ikutKat[k])+'</b></div>';}).join("")+'</div></section>':'')+
+    (X.length? Object.keys(g).sort().reverse().map(function(b){ return '<section class="blok"><h2>'+(b==="—"?"Tiada tarikh":fmtBulanP(b))+' <span class="kira">'+g[b].length+'</span></h2><div class="senarai">'+g[b].map(function(t){
+        return '<div class="tg" data-act="transaksi-buka" data-id="'+esc(t.id)+'" role="button" tabindex="0" style="grid-template-columns:minmax(0,1fr) auto"><div style="min-width:0"><div class="tg-t" style="text-decoration:none;color:var(--ink)">'+esc(t.butiran||t.kategori)+'</div>'+
+          '<div class="tg-m"><span>'+fmtTarikh(t.tarikh)+'</span><span>'+esc(t.kategori||"")+'</span>'+(t.program?'<span class="kod">'+esc(t.program)+'</span>':'')+(t.rujukan?'<span class="num">'+esc(t.rujukan)+'</span>':'')+'</div></div>'+
+          '<span class="amaun '+(t.jenis==="pendapatan"?"masuk":"keluar")+'">'+(t.jenis==="pendapatan"?"+":"−")+rm2(t.amaun).replace("RM ","")+'</span></div>';}).join("")+'</div></section>'; }).join("")
+      : kosong("Lejar kosong",'Tekan "Transaksi" untuk merekod pendapatan atau perbelanjaan pertama.'));
+};
+function lembarTransaksi(t){
+  var baru=!t; t=t||{id:uid("tx"),tarikh:hariIni(),jenis:"perbelanjaan",kategori:"",butiran:"",amaun:"",program:"",rujukan:"",catatan:""};
+  bukaLembar(baru?"Transaksi baharu":"Sunting transaksi",
+    '<input type="hidden" id="iId" value="'+esc(t.id)+'">'+
+    '<div class="segmen">'+[["pendapatan","Pendapatan"],["perbelanjaan","Perbelanjaan"]].map(function(m){
+      return '<label><input type="radio" name="iJenisT" value="'+m[0]+'"'+(t.jenis===m[0]?" checked":"")+'><span>'+m[1]+'</span></label>';}).join("")+'</div>'+
+    '<div class="grid2">'+medan("iTarikhT","Tarikh",inp("iTarikhT","date",t.tarikh,' required'))+medan("iAmaun","Amaun (RM)",inp("iAmaun","number",t.amaun,' required inputmode="decimal" min="0" step="0.01"'))+'</div>'+
+    medan("iKategori","Kategori",'<select id="iKategori">'+opsyen(KAT_WANG[t.jenis]||KAT_WANG.perbelanjaan,t.kategori)+'</select>')+
+    medan("iButiran","Butiran",inp("iButiran","text",t.butiran,' required placeholder="cth Sewa dewan ILS 2.0"'))+
+    '<div class="grid2">'+medan("iProgT","Program (pilihan)",pilihProgram("iProgT",t.program).replace("Tiada (tugasan umum)","Tiada"))+medan("iRujukan","No. rujukan / resit",inp("iRujukan","text",t.rujukan))+'</div>'+
+    medan("iCatatanT","Catatan",'<textarea id="iCatatanT">'+esc(t.catatan)+'</textarea>'),
+    '<button class="btn utama" type="submit">Simpan</button>'+(baru?'':butangPadam("transaksi-padam",t.id)),"transaksi");
+}
+
+/* ---------- Program (MT): maklumat acara ---------- */
+var LEMBAR_PROGRAM_ASAL = lembarProgram;
+lembarProgram = function(p){
+  LEMBAR_PROGRAM_ASAL(p);
+  var form=document.getElementById("fLembar"); if(!form) return;
+  var blok=document.createElement("fieldset"); blok.className="seksyen";
+  var lj=lejarProgram(p.id);
+  blok.innerHTML='<legend>Acara & pendaftaran ahli</legend>'+
+    '<div class="grid2">'+medan("iTarikhP","Tarikh mula",inp("iTarikhP","date",p.tarikh))+medan("iTarikhTP","Tarikh tamat",inp("iTarikhTP","date",p.tarikhTamat))+'</div>'+
+    '<div class="grid2">'+medan("iTempatP","Tempat",inp("iTempatP","text",p.tempat))+medan("iKapasiti","Kapasiti (0 = tiada had)",inp("iKapasiti","number",p.kapasiti,' inputmode="numeric" min="0"'))+'</div>'+
+    medan("iPenerangan","Penerangan untuk ahli",'<textarea id="iPenerangan" placeholder="Sasaran peserta, yuran, pengisian">'+esc(p.penerangan)+'</textarea>')+
+    '<label class="suis">Buka pendaftaran kepada ahli<input type="checkbox" id="iBuka"'+(ya(p.buka)?" checked":"")+'></label>'+
+    '<div class="medan"><label for="iKodHadirP">Kod kehadiran (ahli masukkan di lokasi)</label><div class="baris-lokasi"><input type="text" id="iKodHadirP" value="'+esc(p.kodHadir)+'" style="flex:1;min-width:0;font-family:var(--mono);letter-spacing:.15em;text-transform:uppercase" maxlength="10">'+
+      '<button class="btn kecil" type="button" data-act="jana-kod-hadir">Jana kod</button></div></div>'+
+    (lj?'<p class="nota">Lejar: perbelanjaan direkod untuk program ini <b>'+rm(lj)+'</b>.</p>':'');
+  form.insertBefore(blok, form.lastElementChild);
+};
+Object.assign(BORANG,{
+  program:function(){
+    var p=cari("program",v("iId")); if(!p) return;
+    var bulan=/^\d{4}-\d{2}$/.test(v("iBulan"))? v("iBulan") : p.bulan;
+    var tarikh=v("iTarikhP");
+    if(tarikh) bulan=tarikh.slice(0,7);
+    simpan("program",Object.assign({},p,{status:v("iStatusP"),bulan:bulan,peneraju:v("iPeneraju"),belanja:v("iBelanja"),peserta:v("iPeserta"),catatan:v("iCatatanP"),
+      tarikh:tarikh,tarikhTamat:v("iTarikhTP"),tempat:v("iTempatP"),kapasiti:v("iKapasiti"),penerangan:v("iPenerangan"),buka:v("iBuka"),kodHadir:v("iKodHadirP").toUpperCase()}),
+      v("iBuka")&&!ya(p.buka)?"Pendaftaran dibuka; ahli akan dimaklumkan":"Program dikemas kini");
+  },
+  pengumuman:function(){
+    var id=v("iId"), lama=cari("pengumuman",id)||{};
+    if(!v("iTajukPg")||!v("iIsiPg")){ toast("Isi tajuk dan isi pengumuman"); return false; }
+    var sas=isMT()? v("iSasaran") : "negeri", ng=isMT()? v("iNegeriPg") : ngSaya();
+    if(sas==="negeri" && !ng){ toast("Pilih negeri sasaran"); return false; }
+    var a=sayaAhli();
+    simpan("pengumuman",Object.assign({},lama,{id:id,tajuk:v("iTajukPg"),isi:v("iIsiPg"),sasaran:sas,negeri:sas==="negeri"?ng:"",penting:v("iPenting"),
+      oleh:lama.oleh||idSaya(),olehNama:lama.olehNama||(a?a.nama:"Majlis Tertinggi"),pada:lama.pada||kini()}), lama.id?"Pengumuman dikemas kini":"Pengumuman diterbitkan");
+  },
+  transaksi:function(){
+    var id=v("iId"), lama=cari("transaksi",id)||{}, j=document.querySelector('input[name="iJenisT"]:checked');
+    if(!(num(v("iAmaun"))>0)){ toast("Isi amaun"); return false; }
+    var a=sayaAhli();
+    simpan("transaksi",Object.assign({},lama,{id:id,tarikh:v("iTarikhT"),jenis:j?j.value:"perbelanjaan",kategori:v("iKategori"),butiran:v("iButiran"),amaun:v("iAmaun"),
+      program:v("iProgT"),rujukan:v("iRujukan"),catatan:v("iCatatanT"),oleh:lama.oleh||(a?a.nama:"MT")}), lama.id?"Transaksi dikemas kini":"Transaksi direkod");
+  },
+  kodHadir:function(form){
+    var p=cari("program",v("iId")), kod=v("iKodH");
+    if(!p||!kod) return false;
+    if(!CFG.url){
+      if(String(p.kodHadir||"").toUpperCase()!==kod.toUpperCase()){ toast("Kod kehadiran tidak betul."); return false; }
+      var r=penyertaanSaya(p.id)||{id:p.id+"__"+idSaya(),program:p.id,ahli:idSaya(),nama:"Demo",negeri:ngSaya(),daftarPada:kini()};
+      simpan("penyertaan",Object.assign({},r,{hadir:"ya",sijilNo:"GMP/"+p.id+"/DEMO"}),"Kehadiran direkod (demo)"); return;
+    }
+    var siap=butangSibuk(form,"Merekod…");
+    api("hadirKod",{program:p.id,kod:kod}).then(function(j){ tutupLembar(); toast(j.mesej||"Kehadiran direkod"); segerak(); }).catch(function(e){ siap(); toast(e.message); });
+    return false;
+  }
+});
+
+/* ---------- Mesyuarat & laporan: medan minit/laporan, gambar, eksport ---------- */
+lembarMesyuarat = function(m){
+  var baru=!m; m=m||{id:uid("ms"),tarikh:hariIni(),jenis:"maya",tajuk:"",jemputan:"",hadir:"",minit:"",keputusan:"",tempat:"",masa:"",pengerusi:"",pencatat:"",agenda:"",minitIsi:""};
+  var hadir=senaraiId(m.hadir), ahli=DATA.orang.filter(function(o){return o.unit==="Majlis Tertinggi"||o.unit==="Exco";}).sort(urut);
+  var pr=cari("orang","presiden"), sua=cari("orang","sua");
+  bukaLembar(baru?"Rekod mesyuarat":"Sunting mesyuarat",
+    '<input type="hidden" id="iId" value="'+esc(m.id)+'">'+
+    '<div class="grid2">'+medan("iTarikhM","Tarikh",inp("iTarikhM","date",m.tarikh,' required'))+medan("iJenisM","Jenis",pilih("iJenisM",JENIS_MES,m.jenis))+'</div>'+
+    medan("iTajukM","Tajuk",inp("iTajukM","text",m.tajuk,' placeholder="cth Mesyuarat maya MT bil. 10/2026"'))+
+    '<div class="grid2">'+medan("iMasaM","Masa",inp("iMasaM","text",m.masa,' placeholder="9.00 – 11.00 malam"'))+medan("iTempatM","Tempat / platform",inp("iTempatM","text",m.tempat,' placeholder="Google Meet"'))+'</div>'+
+    '<div class="grid2">'+medan("iPengerusiM","Pengerusi",inp("iPengerusiM","text",m.pengerusi||(baru&&pr?pr.nama:"")))+medan("iPencatatM","Pencatat",inp("iPencatatM","text",m.pencatat||(baru&&sua?sua.nama:"")))+'</div>'+
+    '<div class="medan"><span class="label">Kehadiran</span><div class="hadir">'+ahli.map(function(o){
+      return '<label><input type="checkbox" name="iHadir" value="'+esc(o.id)+'"'+(hadir.indexOf(o.id)>=0?" checked":"")+'><span>'+esc(o.nama||o.jawatan)+'<small>'+esc(o.jawatan)+'</small></span></label>';}).join("")+'</div></div>'+
+    medan("iAgendaM","Agenda (satu perkara satu baris)",'<textarea id="iAgendaM" placeholder="1. Pengesahan minit lalu&#10;2. Persediaan ILS 2.0">'+esc(m.agenda)+'</textarea>')+
+    medan("iMinitIsi","Perbincangan",'<textarea id="iMinitIsi" style="min-height:140px">'+esc(m.minitIsi)+'</textarea>')+
+    medan("iKeputusan","Keputusan & tindakan",'<textarea id="iKeputusan">'+esc(m.keputusan)+'</textarea>')+
+    medan("iMinit","Pautan dokumen luar (pilihan)",inp("iMinit","url",m.minit,' placeholder="https://docs.google.com/…"')),
+    '<button class="btn utama" type="submit">Simpan</button>'+(baru?'':'<button class="btn" type="button" data-act="eksport-doc" data-jenis="minit" data-format="word" data-id="'+esc(m.id)+'">Word</button><button class="btn" type="button" data-act="eksport-doc" data-jenis="minit" data-format="pdf" data-id="'+esc(m.id)+'">PDF</button>'+butangPadam("mesyuarat-padam",m.id)),"mesyuarat");
+  $("#lembarIn").setAttribute("data-borang","mesyuarat");
+};
+BORANG.mesyuarat = function(){
+  var id=v("iId"), jenis=v("iJenisM"), hadir=[].slice.call(document.querySelectorAll('input[name="iHadir"]:checked')).map(function(x){return x.value;});
+  var jem=DATA.orang.filter(function(o){return o.unit==="Majlis Tertinggi"||(jenis!=="maya"&&o.unit==="Exco");}).map(function(o){return o.id;});
+  hadir.forEach(function(h){ if(jem.indexOf(h)<0) jem.push(h); });
+  simpan("mesyuarat",Object.assign({},cari("mesyuarat",id)||{},{id:id,tarikh:v("iTarikhM"),jenis:jenis,tajuk:v("iTajukM"),jemputan:jem.join(","),hadir:hadir.join(","),minit:v("iMinit"),keputusan:v("iKeputusan"),
+    masa:v("iMasaM"),tempat:v("iTempatM"),pengerusi:v("iPengerusiM"),pencatat:v("iPencatatM"),agenda:v("iAgendaM"),minitIsi:v("iMinitIsi")}),"Mesyuarat disimpan");
+};
+
+var GAMBAR={};
+function ambilGambar(id){
+  if(GAMBAR[id]) return Promise.resolve(GAMBAR[id]);
+  return api("ambilGambar",{id:id}).then(function(j){ GAMBAR[id]={jenis:j.jenisFail,data:j.data}; return GAMBAR[id]; });
+}
+function lakarGambar(){
+  var w=document.getElementById("galeri"); if(!w) return;
+  var ids=senaraiId(v("iGambarL"));
+  w.innerHTML=ids.map(function(id){ return '<div class="gbr" data-g="'+esc(id)+'"><img alt="Lampiran"><button type="button" class="ikon-btn" data-act="gambar-buang" data-id="'+esc(id)+'" aria-label="Buang gambar">'+svg("tutup")+'</button></div>'; }).join("")+
+    (ids.length<6?'<label class="gbr tambah"><input type="file" id="iFailG" accept="image/jpeg,image/png" multiple hidden>'+svg("tambah")+'<span>Gambar</span></label>':'');
+  ids.forEach(function(id){ ambilGambar(id).then(function(g){ var el=w.querySelector('[data-g="'+id+'"] img'); if(el) el.src="data:"+g.jenis+";base64,"+g.data; }).catch(function(){}); });
+}
+function mampat(fail){
+  return new Promise(function(ok,gagal){
+    var r=new FileReader(); r.onerror=gagal; r.onload=function(){
+      var im=new Image(); im.onerror=function(){gagal(new Error("Fail bukan gambar"));}; im.onload=function(){
+        var s=Math.min(1,1400/Math.max(im.width,im.height)), c=document.createElement("canvas");
+        c.width=Math.round(im.width*s); c.height=Math.round(im.height*s);
+        c.getContext("2d").drawImage(im,0,0,c.width,c.height);
+        ok(c.toDataURL("image/jpeg",0.8).split(",")[1]);
+      }; im.src=r.result;
+    }; r.readAsDataURL(fail);
+  });
+}
+function muatGambarFail(fail){
+  if(!CFG.url){ toast("Muat naik gambar memerlukan log masuk"); return; }
+  var h=document.getElementById("iGambarL"); if(!h) return;
+  toast("Memuat naik "+fail.name+"…");
+  mampat(fail).then(function(b64){ return api("muatGambar",{data:b64,jenisFail:"image/jpeg",nama:fail.name}).then(function(j){ GAMBAR[j.id]={jenis:"image/jpeg",data:b64}; return j.id; }); })
+    .then(function(id){ var ids=senaraiId(h.value); ids.push(id); h.value=ids.slice(0,6).join(","); lakarGambar(); toast("Gambar dimuat naik"); })
+    .catch(function(e){ toast(e.message||"Muat naik gagal"); });
+}
+lembarLaporan = function(l,kod){
+  var baru=!l, p=cari("program",l?l.kod:kod), o=cari("orang",CFG.saya);
+  l=l||{id:uid("lp"),kod:kod||"",tarikh:p?(p.tarikh||tarikhProgram(p)):hariIni(),tempat:p?p.tempat:"",kehadiran:p?(DATA.penyertaan.filter(function(x){return x.program===p.id&&ya(x.hadir);}).length||p.peserta):"",
+    bajet:p?(lejarProgram(p.id)||p.belanja):"",oleh:o?(o.nama?o.nama+" ("+o.jawatan+")":o.jawatan):"",objektif:"",pengisian:"",muhasabah:"",resolusi:"",gambar:"",dihantar:""};
+  bukaLembar(baru?"Laporan program":"Sunting laporan",
+    '<input type="hidden" id="iId" value="'+esc(l.id)+'"><input type="hidden" id="iGambarL" value="'+esc(l.gambar||"")+'">'+
+    medan("iKodL","Program",pilihProgram("iKodL",l.kod))+
+    '<div class="grid2">'+medan("iTarikhL","Tarikh program",inp("iTarikhL","date",l.tarikh))+medan("iTempat","Tempat",inp("iTempat","text",l.tempat))+'</div>'+
+    '<div class="grid2">'+medan("iHadir","Kehadiran",inp("iHadir","number",l.kehadiran,' inputmode="numeric" min="0"'))+medan("iBajetL","Perbelanjaan (RM)",inp("iBajetL","number",l.bajet,' inputmode="decimal" min="0"'))+'</div>'+
+    medan("iOleh","Disediakan oleh",inp("iOleh","text",l.oleh))+
+    medan("iObjektif","Objektif",'<textarea id="iObjektif">'+esc(l.objektif)+'</textarea>')+
+    medan("iPengisian","Pengisian / aturcara",'<textarea id="iPengisian" style="min-height:120px">'+esc(l.pengisian)+'</textarea>')+
+    medan("iMuhasabah","Muhasabah (kekuatan, kelemahan, penambahbaikan)",'<textarea id="iMuhasabah">'+esc(l.muhasabah)+'</textarea>')+
+    medan("iResolusi","Resolusi",'<textarea id="iResolusi">'+esc(l.resolusi)+'</textarea>')+
+    '<div class="medan"><span class="label">Gambar program (maksimum 6)</span><div id="galeri" class="galeri"></div></div>'+
+    '<label class="suis">Laporan lengkap telah dihantar kepada MT<input type="checkbox" id="iDihantar"'+(ya(l.dihantar)?" checked":"")+'></label>'+
+    '<label class="suis">Kemas kini belanja & peserta program daripada laporan ini<input type="checkbox" id="iSalinP" checked></label>',
+    '<button class="btn utama" type="submit">Simpan</button>'+(baru?'':'<button class="btn" type="button" data-act="eksport-doc" data-jenis="laporan" data-format="word" data-id="'+esc(l.id)+'">Word</button><button class="btn" type="button" data-act="eksport-doc" data-jenis="laporan" data-format="pdf" data-id="'+esc(l.id)+'">PDF</button>'+butangPadam("laporan-padam",l.id)),"laporan");
+  $("#lembarIn").setAttribute("data-borang","laporan");
+  lakarGambar();
+};
+var BORANG_LAPORAN_ASAL = BORANG.laporan;
+BORANG.laporan = function(){
+  var id=v("iId"), kod=v("iKodL"), p=cari("program",kod), lama=cari("laporan",id);
+  var ops=[{op:"simpan",jenis:"laporan",rekod:Object.assign({},lama||{},{id:id,kod:kod,program:p?p.nama:"",tarikh:v("iTarikhL"),tempat:v("iTempat"),
+    kehadiran:v("iHadir"),bajet:v("iBajetL"),oleh:v("iOleh"),objektif:v("iObjektif"),pengisian:v("iPengisian"),muhasabah:v("iMuhasabah"),resolusi:v("iResolusi"),gambar:v("iGambarL"),dihantar:v("iDihantar")})}];
+  if(p && v("iSalinP")){
+    var ubah={}; if(v("iBajetL")) ubah.belanja=v("iBajetL"); if(v("iHadir")) ubah.peserta=v("iHadir");
+    if(!p.status||p.status==="rancang"||p.status==="sedia"||p.status==="jalan") ubah.status="selesai";
+    ops.push({op:"simpan",jenis:"program",rekod:Object.assign({},p,ubah)});
+  }
+  laksana(ops, lama?"Laporan dikemas kini":"Laporan disimpan");
+};
+
+/* ---------- Penjana dokumen (Word .docx & PDF) ---------- */
+function kandunganDoc(jenis,rek){
+  var pr=cari("orang","presiden")||{}, sua=cari("orang","sua")||{};
+  if(jenis==="laporan"){
+    var p=cari("program",rek.kod)||{};
+    return {tajuk:"Laporan Program", subjudul:rek.program||p.nama||rek.kod, fail:"Laporan "+(rek.kod||"")+" "+(rek.program||""),
+      jadual:[["Program",(rek.kod?rek.kod+" · ":"")+(rek.program||p.nama||"")],["Tarikh",fmtTarikh(rek.tarikh)],["Tempat",rek.tempat||"—"],
+        ["Kehadiran",rek.kehadiran?rek.kehadiran+" orang":"—"],["Perbelanjaan",rek.bajet?rm(rek.bajet):"—"],["Teras",p.teras?p.teras+" · "+(TERAS[p.teras]||""):"—"]],
+      bahagian:[["Objektif",rek.objektif],["Pengisian / aturcara",rek.pengisian],["Muhasabah",rek.muhasabah],["Resolusi",rek.resolusi]],
+      tandatangan:[["Disediakan oleh",rek.oleh||""],["Disahkan oleh",(sua.nama||"")+(sua.jawatan?"\n"+sua.jawatan:"")]],
+      gambar:senaraiId(rek.gambar)};
+  }
+  var hadir=senaraiId(rek.hadir), jem=senaraiId(rek.jemputan);
+  var nm=function(id){var o=cari("orang",id);return o?(o.nama||o.jawatan)+(o.nama?" ("+o.jawatan+")":""):id;};
+  return {tajuk:"Minit Mesyuarat", subjudul:rek.tajuk||JENIS_MES[rek.jenis]||"Mesyuarat", fail:"Minit "+(rek.tarikh||"")+" "+(rek.tajuk||""),
+    jadual:[["Mesyuarat",rek.tajuk||JENIS_MES[rek.jenis]||""],["Tarikh",fmtTarikh(rek.tarikh)],["Masa",rek.masa||"—"],["Tempat",rek.tempat||"—"],
+      ["Pengerusi",rek.pengerusi||"—"],["Pencatat",rek.pencatat||"—"]],
+    bahagian:[["Kehadiran",hadir.map(function(id,i){return (i+1)+". "+nm(id);}).join("\n")||"—"],
+      ["Tidak hadir",jem.filter(function(id){return hadir.indexOf(id)<0;}).map(function(id,i){return (i+1)+". "+nm(id);}).join("\n")],
+      ["Agenda",rek.agenda],["Perbincangan",rek.minitIsi],["Keputusan & tindakan",rek.keputusan]],
+    tandatangan:[["Disediakan oleh",(rek.pencatat||"")+"\nPencatat"],["Disahkan oleh",(rek.pengerusi||pr.nama||"")+"\nPengerusi"]],
+    gambar:[]};
+}
+function muatSemuaGambar(ids){
+  return Promise.all(ids.map(function(id){ return ambilGambar(id).then(function(g){return g;},function(){return null;}); })).then(function(x){ return x.filter(Boolean); });
+}
+function saizGambar(src){ return new Promise(function(ok){ var im=new Image(); im.onload=function(){ok({w:im.naturalWidth||1,h:im.naturalHeight||1});}; im.onerror=function(){ok({w:4,h:3});}; im.src=src; }); }
+function muatTurun(blob,nama){
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=nama;
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },2000);
+}
+function namaFail(s){ return String(s).replace(/[\\/:*?"<>|]+/g," ").replace(/\s+/g," ").trim().slice(0,80); }
+function eksportDoc(jenis,id,format){
+  var rek=cari(jenis==="laporan"?"laporan":"mesyuarat",id); if(!rek) return;
+  var k=kandunganDoc(jenis,rek);
+  toast("Menyediakan dokumen…");
+  muatSemuaGambar(k.gambar).then(function(g){
+    return format==="pdf"? pdfDoc(k,g) : docxDoc(k,g).then(function(b){ muatTurun(b,namaFail(k.fail)+".docx"); toast("Fail Word dimuat turun"); });
+  }).catch(function(e){ toast("Eksport gagal: "+(e.message||e)); });
+}
+function pdfDoc(k,g){
+  var gaya='@page{size:A4;margin:16mm}*{box-sizing:border-box}body{font:11pt/1.5 Arial,Helvetica,sans-serif;color:#16241C;margin:0}'+
+    '.kp{display:flex;gap:14px;align-items:center;border-bottom:2.5pt solid #1E6B3C;padding-bottom:10px;margin-bottom:14px}.kp img{height:62px}'+
+    '.org{font-weight:bold;font-size:13pt;color:#1E6B3C;letter-spacing:.5px}.jen{font-size:9pt;letter-spacing:2px;color:#9C7208;font-weight:bold;text-transform:uppercase}'+
+    'h1{font:normal 18pt Georgia,serif;margin:4px 0 12px}table{width:100%;border-collapse:collapse;margin-bottom:12px}th,td{border:.6pt solid #b9c7bd;padding:6px 8px;text-align:left;vertical-align:top}'+
+    'th{width:28%;background:#E2EFE6;font-weight:bold}h2{font-size:11.5pt;color:#1E6B3C;border-bottom:.6pt solid #b9c7bd;padding-bottom:3px;margin:14px 0 6px}'+
+    'p{white-space:pre-wrap;margin:0 0 6px}.tt{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:36px;break-inside:avoid}.tt div{border-top:.6pt solid #16241C;padding-top:6px;white-space:pre-wrap;font-size:10pt}'+
+    '.gb{display:grid;grid-template-columns:1fr 1fr;gap:10px}.gb img{width:100%;height:62mm;object-fit:cover;border:.6pt solid #b9c7bd}.lp{break-before:page}';
+  var b='<div class="kp"><img src="'+logoDataUri()+'" alt=""><div><div class="org">GENERASI MUDA PAPISMA MALAYSIA</div><div class="jen">'+esc(k.tajuk)+'</div></div></div>'+
+    '<h1>'+esc(k.subjudul)+'</h1><table>'+k.jadual.map(function(r){return '<tr><th>'+esc(r[0])+'</th><td>'+esc(r[1])+'</td></tr>';}).join("")+'</table>'+
+    k.bahagian.filter(function(s){return s[1];}).map(function(s){return '<h2>'+esc(s[0])+'</h2><p>'+esc(s[1])+'</p>';}).join("")+
+    '<div class="tt">'+k.tandatangan.map(function(t){return '<div><b>'+esc(t[0])+'</b>\n\n\n'+esc(t[1])+'</div>';}).join("")+'</div>'+
+    (g.length?'<div class="lp"><h2>Lampiran gambar</h2><div class="gb">'+g.map(function(x){return '<img src="data:'+x.jenis+';base64,'+x.data+'" alt="">';}).join("")+'</div></div>':'');
+  cetakHtml(namaFail(k.fail), b, gaya);
+}
+/* DOCX minimum (OOXML) dibungkus sebagai ZIP tanpa mampatan. */
+function xmlEsc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function docxRun(teks,o){ o=o||{}; var rp='<w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>'+(o.b?'<w:b/>':'')+(o.warna?'<w:color w:val="'+o.warna+'"/>':'')+'<w:sz w:val="'+(o.sz||22)+'"/></w:rPr>';
+  return String(teks==null?"":teks).split("\n").map(function(l,i){ return '<w:r>'+rp+(i?'<w:br/>':'')+'<w:t xml:space="preserve">'+xmlEsc(l)+'</w:t></w:r>'; }).join(""); }
+function docxP(isi,o){ o=o||{}; return '<w:p><w:pPr><w:spacing w:before="'+(o.sebelum||0)+'" w:after="'+(o.selepas==null?100:o.selepas)+'"/>'+(o.jajar?'<w:jc w:val="'+o.jajar+'"/>':'')+(o.garis?'<w:pBdr><w:bottom w:val="single" w:sz="'+o.garis+'" w:space="4" w:color="1E6B3C"/></w:pBdr>':'')+'</w:pPr>'+isi+'</w:p>'; }
+function docxGambar(rid,n,cx,cy){
+  return '<w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="'+cx+'" cy="'+cy+'"/><wp:docPr id="'+n+'" name="Gambar '+n+'"/>'+
+    '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'+
+    '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="'+n+'" name="g'+n+'"/><pic:cNvPicPr/></pic:nvPicPr>'+
+    '<pic:blipFill><a:blip r:embed="'+rid+'"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>'+
+    '<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="'+cx+'" cy="'+cy+'"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r>';
+}
+function b64ke(b64){ var s=atob(b64), u=new Uint8Array(s.length); for(var i=0;i<s.length;i++) u[i]=s.charCodeAt(i); return u; }
+function docxDoc(k,g){
+  var media=[], rels=[];
+  var logo=logoDataUri(), m=/^data:(image\/\w+);base64,(.*)$/.exec(logo);
+  var semua=(m?[{jenis:m[1],data:m[2],logo:1}]:[]).concat(g);
+  return Promise.all(semua.map(function(x){ return saizGambar("data:"+x.jenis+";base64,"+x.data); })).then(function(saiz){
+    var badan=[], n=1;
+    semua.forEach(function(x,i){
+      var ext=/png/.test(x.jenis)?"png":"jpeg", rid="rIdG"+(i+1), fail="media/gambar"+(i+1)+"."+ext;
+      media.push({nama:"word/"+fail,data:b64ke(x.data)}); rels.push('<Relationship Id="'+rid+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="'+fail+'"/>');
+      x.rid=rid; var lebar=x.logo?1980000:5400000; x.cx=lebar; x.cy=Math.round(lebar*saiz[i].h/saiz[i].w);
+      if(!x.logo && x.cy>4300000){ x.cy=4300000; x.cx=Math.round(4300000*saiz[i].w/saiz[i].h); }
+    });
+    if(m) badan.push(docxP(docxGambar(semua[0].rid,n++,semua[0].cx,semua[0].cy),{jajar:"center",selepas:60}));
+    badan.push(docxP(docxRun("GENERASI MUDA PAPISMA MALAYSIA",{b:1,sz:26,warna:"1E6B3C"}),{jajar:"center",selepas:0}));
+    badan.push(docxP(docxRun(k.tajuk.toUpperCase(),{b:1,sz:18,warna:"9C7208"}),{jajar:"center",garis:18,selepas:240}));
+    badan.push(docxP(docxRun(k.subjudul,{b:1,sz:32}),{selepas:200}));
+    var sel=function(t,b){ return '<w:tc><w:tcPr><w:tcW w:w="'+(b?2600:6400)+'" w:type="dxa"/>'+(b?'<w:shd w:val="clear" w:color="auto" w:fill="E2EFE6"/>':'')+'</w:tcPr>'+docxP(docxRun(t,{b:b,sz:20}),{selepas:0})+'</w:tc>'; };
+    badan.push('<w:tbl><w:tblPr><w:tblW w:w="9000" w:type="dxa"/><w:tblBorders>'+["top","left","bottom","right","insideH","insideV"].map(function(s){return '<w:'+s+' w:val="single" w:sz="4" w:color="B9C7BD"/>';}).join("")+'</w:tblBorders><w:tblCellMar><w:top w:w="60" w:type="dxa"/><w:left w:w="100" w:type="dxa"/><w:bottom w:w="60" w:type="dxa"/><w:right w:w="100" w:type="dxa"/></w:tblCellMar></w:tblPr>'+
+      '<w:tblGrid><w:gridCol w:w="2600"/><w:gridCol w:w="6400"/></w:tblGrid>'+k.jadual.map(function(r){return '<w:tr>'+sel(r[0],1)+sel(r[1],0)+'</w:tr>';}).join("")+'</w:tbl>');
+    k.bahagian.filter(function(s){return s[1];}).forEach(function(s){
+      badan.push(docxP(docxRun(s[0],{b:1,sz:23,warna:"1E6B3C"}),{sebelum:240,selepas:80}));
+      badan.push(docxP(docxRun(s[1],{sz:22}),{selepas:120}));
+    });
+    badan.push(docxP("",{sebelum:400}));
+    var tt=function(t){ return '<w:tc><w:tcPr><w:tcW w:w="4500" w:type="dxa"/><w:tcBorders><w:top w:val="single" w:sz="6" w:color="16241C"/></w:tcBorders></w:tcPr>'+docxP(docxRun(t[0],{b:1,sz:20}),{selepas:40})+docxP(docxRun(t[1],{sz:20}),{selepas:0})+'</w:tc>'; };
+    badan.push('<w:tbl><w:tblPr><w:tblW w:w="9000" w:type="dxa"/><w:tblCellMar><w:left w:w="0" w:type="dxa"/><w:right w:w="300" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid><w:gridCol w:w="4500"/><w:gridCol w:w="4500"/></w:tblGrid><w:tr><w:trPr><w:trHeight w:val="1200"/></w:trPr>'+
+      '<w:tc><w:tcPr><w:tcW w:w="4500" w:type="dxa"/></w:tcPr><w:p/></w:tc><w:tc><w:tcPr><w:tcW w:w="4500" w:type="dxa"/></w:tcPr><w:p/></w:tc></w:tr><w:tr>'+k.tandatangan.map(tt).join("")+'</w:tr></w:tbl>');
+    var gl=semua.filter(function(x){return !x.logo;});
+    if(gl.length){
+      badan.push('<w:p><w:r><w:br w:type="page"/></w:r></w:p>');
+      badan.push(docxP(docxRun("Lampiran gambar",{b:1,sz:23,warna:"1E6B3C"}),{selepas:160}));
+      gl.forEach(function(x){ badan.push(docxP(docxGambar(x.rid,n++,x.cx,x.cy),{jajar:"center",selepas:200})); });
+    }
+    var dokumen='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><w:body>'+
+      badan.join("")+'<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1000" w:right="1100" w:bottom="1000" w:left="1100" w:header="600" w:footer="600" w:gutter="0"/></w:sectPr></w:body></w:document>';
+    var fail=[
+      {nama:"[Content_Types].xml",data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpeg" ContentType="image/jpeg"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>'},
+      {nama:"_rels/.rels",data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'},
+      {nama:"word/document.xml",data:dokumen},
+      {nama:"word/_rels/document.xml.rels",data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+rels.join("")+'</Relationships>'}
+    ].concat(media);
+    return new Blob([zipSimpan(fail)],{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+  });
+}
+var JADUAL_CRC=null;
+function crc32(u){ if(!JADUAL_CRC){ JADUAL_CRC=new Uint32Array(256); for(var n=0;n<256;n++){ var c=n; for(var k=0;k<8;k++) c=c&1?0xEDB88320^(c>>>1):c>>>1; JADUAL_CRC[n]=c>>>0; } }
+  var c=0xFFFFFFFF; for(var i=0;i<u.length;i++) c=JADUAL_CRC[(c^u[i])&255]^(c>>>8); return (c^0xFFFFFFFF)>>>0; }
+function zipSimpan(fail){
+  var enk=new TextEncoder(), bah=[], pusat=[], off=0;
+  var u16=function(v){return [v&255,(v>>>8)&255];}, u32=function(v){return [v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255];};
+  fail.forEach(function(f){
+    var nm=enk.encode(f.nama), d=typeof f.data==="string"? enk.encode(f.data) : f.data, c=crc32(d);
+    var kep=[].concat([0x50,0x4b,3,4],u16(20),u16(0x0800),u16(0),u16(0),u16(0x21),u32(c),u32(d.length),u32(d.length),u16(nm.length),u16(0));
+    bah.push(new Uint8Array(kep),nm,d);
+    pusat.push(new Uint8Array([].concat([0x50,0x4b,1,2],u16(20),u16(20),u16(0x0800),u16(0),u16(0),u16(0x21),u32(c),u32(d.length),u32(d.length),u16(nm.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(off))),nm);
+    off+=kep.length+nm.length+d.length;
+  });
+  var saizP=pusat.reduce(function(s,x){return s+x.length;},0);
+  return new Blob(bah.concat(pusat,[new Uint8Array([].concat([0x50,0x4b,5,6],u16(0),u16(0),u16(fail.length),u16(fail.length),u32(saizP),u32(off),u16(0)))]));
+}
+
+/* ---------- Tindakan v4 ---------- */
+Object.assign(ACT,{
+  "program-buka":buka("program",function(p){ lembarProgram(p); }),
+  "mesyuarat-buka":buka("mesyuarat",function(m){ lembarMesyuarat(m); }),
+  "laporan-buka":buka("laporan",function(l){ lembarLaporan(l); }),
+  "fb-semak-sah":function(el){ el.disabled=true; selepasMasuk().then(function(){ if(UI_MASUK==="sahkan"){ NOTIS_MASUK="E-mel belum disahkan. Klik pautan dalam e-mel, kemudian cuba lagi."; paparMasuk(); } }); },
+  "fb-hantar-sah":function(el){ el.disabled=true; muatFirebase().then(function(fb){ return fb.sendEmailVerification(fb.auth.currentUser); }).then(function(){ toast("E-mel pengesahan dihantar semula"); },function(e){ toast(mesejFb(e)); el.disabled=false; }); },
+  "fb-semak-status":function(){ selepasMasuk(); },
+  "fb-keluar":function(){ keluarFirebase().then(function(){ bersihSesi(); UI_MASUK="masuk"; render(); }); },
+  "log-keluar":function(){
+    if(CFG.demo){ ACT["demo-keluar"](); return; }
+    var tok=lsGet("gmp.push",null);
+    var dulu = tok? api("buangPush",{token:tok}).catch(function(){}) : Promise.resolve();
+    try{ localStorage.removeItem("gmp.push"); }catch(e){}
+    dulu.then(keluarFirebase).then(function(){ bersihSesi(); UI_MASUK="masuk"; location.hash="utama"; render(); toast("Anda telah log keluar"); });
+  },
+  "push-hidup":function(el){ hidupkanPush(el); },
+  "push-mati":function(){ matikanPush(); },
+  "push-uji":function(el){ el.disabled=true; api("ujiPush").then(function(j){ toast(j.mesej); },function(e){ toast(e.message); }).then(function(){ el.disabled=false; }); },
+  "acara-daftar":function(el){
+    var p=cari("program",el.getAttribute("data-id")), a=sayaAhli()||{};
+    if(!p) return;
+    simpan("penyertaan",{id:p.id+"__"+idSaya(),program:p.id,ahli:idSaya(),nama:a.nama||"Demo",negeri:a.negeri||ngSaya(),institusi:a.institusi||"",daftarPada:kini(),hadir:"",hadirPada:"",sijilNo:""},"Berdaftar untuk "+p.nama);
+  },
+  "acara-batal":function(el){ sahDua(el,function(){ padam("penyertaan",el.getAttribute("data-id"),"Pendaftaran dibatalkan"); }); },
+  "acara-kod":function(el){ var p=cari("program",el.getAttribute("data-id")); if(p) lembarKodHadir(p); },
+  "acara-peserta":function(el){ var p=cari("program",el.getAttribute("data-id")); if(p) lembarPeserta(p); },
+  "tanda-hadir":function(el){
+    var r=cari("penyertaan",el.getAttribute("data-id")); if(!r) return;
+    var jadi=!ya(r.hadir);
+    simpan("penyertaan",Object.assign({},r,{hadir:jadi?"ya":""}), jadi?r.nama+" hadir":"Kehadiran dibatalkan");
+    var p=cari("program",r.program); if(p) lembarPeserta(p);
+  },
+  walkin:function(el){
+    var p=cari("program",el.getAttribute("data-id")), a=cari("ahli",v("iWalkin"));
+    if(!p||!a){ toast("Pilih ahli"); return; }
+    simpan("penyertaan",{id:p.id+"__"+a.id,program:p.id,ahli:a.id,nama:a.nama,negeri:a.negeri,institusi:a.institusi||"",daftarPada:kini(),hadir:"ya"},a.nama+" ditambah & hadir");
+    lembarPeserta(p);
+  },
+  "peserta-csv":function(el){
+    var id=el.getAttribute("data-id"), rows=[["Nama","Negeri","Institusi","Hadir","No. sijil"]].concat(DATA.penyertaan.filter(function(x){return x.program===id;}).map(function(x){return [x.nama,namaNegeri(x.negeri),x.institusi,ya(x.hadir)?"Ya":"",x.sijilNo];}));
+    var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c||"").replace(/"/g,'""')+'"';}).join(",");}).join("\n");
+    try{ navigator.clipboard.writeText(csv).then(function(){toast("Senarai disalin. Tampal ke Google Sheets.");},function(){toast("Tidak dapat menyalin");}); }catch(e){ toast("Tidak dapat menyalin"); }
+  },
+  "jana-kod-hadir":function(){ var a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",s=""; for(var i=0;i<6;i++) s+=a[Math.floor(Math.random()*a.length)]; var e=document.getElementById("iKodHadirP"); if(e) e.value=s; },
+  sijil:function(el){ var r=cari("penyertaan",el.getAttribute("data-id")); if(r) cetakSijil(r); },
+  "pengumuman-baru":function(){ lembarPengumuman(null); },
+  "pengumuman-buka":function(el){ var p=cari("pengumuman",el.getAttribute("data-id")); if(p) lembarPengumuman(p); },
+  "pengumuman-padam":function(el){ sahDua(el,function(){ padam("pengumuman",el.getAttribute("data-id"),"Pengumuman dipadam"); tutupLembar(); }); },
+  "kew-tab":function(el){ UI.kewTab=el.getAttribute("data-v"); simpanUI(); render(); },
+  "transaksi-baru":function(){ lembarTransaksi(null); },
+  "transaksi-buka":function(el){ var t=cari("transaksi",el.getAttribute("data-id")); if(t) lembarTransaksi(t); },
+  "transaksi-padam":function(el){ sahDua(el,function(){ padam("transaksi",el.getAttribute("data-id"),"Transaksi dipadam"); tutupLembar(); }); },
+  "eksport-doc":function(el){ eksportDoc(el.getAttribute("data-jenis"),el.getAttribute("data-id"),el.getAttribute("data-format")); },
+  "gambar-buang":function(el){ var h=document.getElementById("iGambarL"), id=el.getAttribute("data-id"); h.value=senaraiId(h.value).filter(function(x){return x!==id;}).join(","); lakarGambar(); },
+  "demo-masuk":function(){ CFG.demo=true; simpanCfg(); if(!DATA.ahli.length||!DATA.pengumuman.length){ DATA=binaAsas(); binaContoh(DATA); DATA.tugas=janaTugasan(cari("program","P10"),true); DATA.tugas.forEach(lengkapTugas); simpanLokal(); } location.hash="utama"; render(); }
+});
+Object.assign(BORANG,{
+  masukFb:function(form){
+    var url=urlUntukMasuk(); if(!url) return false;
+    var siap=butangSibuk(form,"Log masuk…"); EMEL_LUPA=v("iEmelM");
+    muatFirebase().then(function(fb){ return fb.signInWithEmailAndPassword(fb.auth,v("iEmelM"),v("iKataM")); })
+      .then(function(){ return selepasMasuk(url); })
+      .catch(function(e){ siap(); toast(e.code?mesejFb(e):e.message); });
+    return false;
+  },
+  daftarAkaun:function(form){
+    var url=urlUntukMasuk(); if(!url) return false;
+    if(v("iKataD").length<8){ toast("Kata laluan minimum 8 aksara"); return false; }
+    if(v("iKataD")!==v("iKataD2")){ toast("Kata laluan tidak sepadan"); return false; }
+    var siap=butangSibuk(form,"Mencipta akaun…");
+    muatFirebase().then(function(fb){ return fb.createUserWithEmailAndPassword(fb.auth,v("iEmelD"),v("iKataD")).then(function(c){ return fb.sendEmailVerification(c.user); }); })
+      .then(function(){ UI_MASUK="sahkan"; paparMasuk(); })
+      .catch(function(e){ siap(); toast(e.code?mesejFb(e):e.message); });
+    return false;
+  },
+  daftarProfil:function(form){
+    var p=nilaiProfil(); p.negeri=v("iNegeriD"); p.persetujuan=document.getElementById("iSetuju").checked;
+    var semak=[[!p.nama,"Isi nama penuh"],[!p.telefon,"Isi nombor telefon"],[!p.bidang||!p.statusProf,"Pilih bidang dan status"],[!p.institusi,"Isi institusi / tempat kerja"],
+      [!p.negeri,"Pilih negeri"],[!p.daerah,"Isi daerah / bandar"],[!p.lat,"Tanda kawasan anda pada peta"],[!p.persetujuan,"Sila tandakan persetujuan privasi"]];
+    for(var i=0;i<semak.length;i++) if(semak[i][0]){ toast(semak[i][1]); return false; }
+    var url=apiUrl()||CFG.api; var siap=butangSibuk(form,"Menghantar…");
+    api("daftar",{profil:p},url).then(function(j){
+      if(j.pertama){ toast("Anda ahli pertama: akaun Majlis Tertinggi diaktifkan"); return selepasMasuk(url); }
+      UI_MASUK="menunggu"; paparMasuk(); window.scrollTo(0,0);
+    }).catch(function(e){ siap(); toast(e.message); });
+    return false;
+  },
+  lupaFb:function(form){
+    EMEL_LUPA=v("iEmelL"); var siap=butangSibuk(form,"Menghantar…");
+    muatFirebase().then(function(fb){ return fb.sendPasswordResetEmail(fb.auth,EMEL_LUPA).catch(function(e){ if(e.code!=="auth/user-not-found") throw e; }); })
+      .then(function(){ NOTIS_MASUK="Jika e-mel ini berdaftar, pautan tetapan semula telah dihantar. Semak juga folder spam."; UI_MASUK="masuk"; paparMasuk(); })
+      .catch(function(e){ siap(); toast(mesejFb(e)); });
+    return false;
+  },
+  tukarKata:function(form){
+    if(v("iKataB").length<8){ toast("Kata laluan baharu minimum 8 aksara"); return false; }
+    if(v("iKataB")!==v("iKataB2")){ toast("Kata laluan baharu tidak sepadan"); return false; }
+    var siap=butangSibuk(form,"Menyimpan…");
+    muatFirebase().then(function(fb){ var u=fb.auth.currentUser;
+      return fb.reauthenticateWithCredential(u, fb.EmailAuthProvider.credential(u.email, v("iKataL"))).then(function(){ return fb.updatePassword(u, v("iKataB")); }); })
+      .then(function(){ siap(); form.reset(); toast("Kata laluan ditukar"); },function(e){ siap(); toast(mesejFb(e)); });
+    return false;
+  }
+});
+document.addEventListener("change",function(e){
+  if(e.target.id==="iFailG"){ [].slice.call(e.target.files||[]).slice(0,6).forEach(muatGambarFail); }
+  if(e.target.id==="iKodL"){ var pl=cari("program",e.target.value); if(pl){ var isi=function(id,val){ var el=document.getElementById(id); if(el && !el.value && val) el.value=val; };
+    isi("iTarikhL",pl.tarikh); isi("iTempat",pl.tempat); isi("iHadir",String(DATA.penyertaan.filter(function(x){return x.program===pl.id&&ya(x.hadir);}).length||pl.peserta||"")); isi("iBajetL",String(lejarProgram(pl.id)||pl.belanja||"")); } }
+  if(e.target.id==="fKewTahun"){ UI.kewTahun=e.target.value; simpanUI(); render(); }
+  if(e.target.name==="iJenisT"){ var k=document.getElementById("iKategori"); if(k) k.innerHTML=opsyen(KAT_WANG[e.target.value],""); }
+});
+
+/* ---------- Mula ---------- */
+function mulaV4(){
+  if(CFG.token || CFG.kod){ bersihSesi(); }      // sesi v2–v3 (kod akses / kata laluan sendiri) tidak sah lagi
+  render();
+  if(CFG.url){
+    segerak();
+    muatFirebase().then(function(fb){ if(!fb.auth.currentUser){ bersihSesi(); NOTIS_MASUK="Sesi tamat. Sila log masuk semula."; UI_MASUK="masuk"; render(); } }).catch(function(){});
+  } else if(!CFG.demo && fbSedia()){
+    muatFirebase().then(function(fb){ if(fb.auth.currentUser && !CFG.url){ selepasMasuk(); } }).catch(function(e){ NOTIS_MASUK=e.message; paparMasuk(); });
+  }
+}
+
+function binaContoh(D){
+  binaContohAsas(D);
+  var h=hariIni();
+  D.program.forEach(function(p){
+    if(p.id==="P10") Object.assign(p,{tarikh:tambahHari(h,18),tarikhTamat:tambahHari(h,20),tempat:"Kompleks PAPISMA, Shah Alam",kapasiti:"100",buka:"ya",kodHadir:"GMP123",
+      penerangan:"Contoh: Kem kepimpinan 3 hari untuk pelajar tahun akhir dan graduan perubatan. Yuran RM80 termasuk penginapan."});
+    if(p.id==="P09") Object.assign(p,{tarikh:tambahHari(h,-30),tempat:"Contoh: Hospital Pulau Pinang",kapasiti:"60",buka:"",kodHadir:"ROAD09"});
+    if(p.id==="P13") Object.assign(p,{tarikh:hariIni(),tempat:"Contoh: Dalam talian",kapasiti:"0",buka:"ya",kodHadir:"MEDIA1",penerangan:"Contoh: Bengkel media dakwah. Kod kehadiran demo: MEDIA1"});
+  });
+  D.penyertaan=[
+    {id:"P10__contoh-demo",program:"P10",ahli:"contoh-demo",nama:"Pengguna Demo",negeri:"ng-selangor",institusi:"Contoh",daftarPada:tambahHari(h,-2),hadir:"",sijilNo:""},
+    {id:"P09__contoh-demo",program:"P09",ahli:"contoh-demo",nama:"Pengguna Demo",negeri:"ng-selangor",institusi:"Contoh",daftarPada:tambahHari(h,-40),hadir:"ya",sijilNo:"GMP/P09/0007"},
+    {id:"P10__contoh-h4",program:"P10",ahli:"contoh-h4",nama:"Contoh: AJK Selangor",negeri:"ng-selangor",institusi:"UiTM Sg Buloh",daftarPada:tambahHari(h,-3),hadir:"",sijilNo:""},
+    {id:"P10__contoh-h7",program:"P10",ahli:"contoh-h7",nama:"Contoh: AJK Kelantan",negeri:"ng-kelantan",institusi:"USM Kubang Kerian",daftarPada:tambahHari(h,-1),hadir:"",sijilNo:""}
+  ];
+  D.pengumuman=[
+    {id:"contoh-pg1",tajuk:"Contoh: Pendaftaran ILS 2.0 dibuka",isi:"Pendaftaran Islamic Leadership Summit 2.0 kini dibuka di halaman Program. Tempat terhad kepada 100 peserta.",sasaran:"semua",negeri:"",penting:"ya",oleh:"contoh-h1",olehNama:"Contoh: Pengerusi",pada:tambahHari(h,-1)+"T09:00:00Z"},
+    {id:"contoh-pg2",tajuk:"Contoh: Usrah AJK Selangor",isi:"Usrah bulanan AJK Selangor pada Jumaat ini, 9.00 malam di Google Meet.",sasaran:"negeri",negeri:"ng-selangor",penting:"",oleh:"contoh-h3",olehNama:"Contoh: Ketua Selangor",pada:tambahHari(h,-4)+"T12:00:00Z"}
+  ];
+  D.transaksi=[
+    {id:"contoh-tx1",tarikh:tambahHari(h,-50),jenis:"pendapatan",kategori:"Sumbangan / tajaan",butiran:"Contoh: Tajaan PAPISMA Pusat",amaun:"5000",program:"",rujukan:"TJ-001"},
+    {id:"contoh-tx2",tarikh:tambahHari(h,-32),jenis:"perbelanjaan",kategori:"Logistik & pengangkutan",butiran:"Contoh: Pengangkutan roadshow utara",amaun:"1260",program:"P09",rujukan:"R-0142"},
+    {id:"contoh-tx3",tarikh:tambahHari(h,-31),jenis:"perbelanjaan",kategori:"Makan minum",butiran:"Contoh: Jamuan roadshow",amaun:"840.50",program:"P09",rujukan:"R-0143"},
+    {id:"contoh-tx4",tarikh:tambahHari(h,-5),jenis:"pendapatan",kategori:"Yuran program",butiran:"Contoh: Yuran ILS 2.0 (12 peserta)",amaun:"960",program:"P10",rujukan:""}
+  ];
+}
+
+/* ======================================================================
+   v4.2 — PANGKALAN DATA UPTA (dibaca terus dari Sheets respons borang)
+   ====================================================================== */
+HALAMAN.upta = {t:"UPTA",i:"upta",s:"Pendaftar UPTA & susulan negeri"};
+IKON.upta = '<path d="M2 9.5 12 5l10 4.5-10 4.5z"/><path d="M6 11.3V16c0 1.3 2.7 2.8 6 2.8s6-1.5 6-2.8v-4.7"/><path d="M21 10v5"/>';
+(function(){
+  var sisip=function(senarai,selepas,item){ if(senarai.indexOf(item)>=0) return; var i=senarai.indexOf(selepas); senarai.splice(i<0?senarai.length:i+1,0,item); };
+  sisip(NAV.mt.rel,"ahli","upta"); sisip(NAV.ng.rel,"ajk","upta");
+})();
+var SUSULAN = {belum:"Belum dihubungi",dihubungi:"Sudah dihubungi",berminat:"Berminat sertai GMP",aktif:"Aktif dalam GMP",tidak:"Tidak berminat / tiada respons"};
+var SUSULAN_PENDEK = {belum:"Belum",dihubungi:"Dihubungi",berminat:"Berminat",aktif:"Aktif",tidak:"Tidak"};
+var SUSULAN_KELAS = {belum:"",dihubungi:"buat",berminat:"buat",aktif:"siap",tidak:"sekat"};
+if(!Array.isArray(DATA.upta)) DATA.upta=[];
+
+function uptaSaya(){
+  if(isMT()) return DATA.upta;
+  var ng=ngSaya();
+  return DATA.upta.filter(function(u){return u.negeriAsal===ng || u.negeriKampus===ng;});
+}
+function uptaBaru(u){ return u.masa && u.masa.slice(0,10) >= tambahHari(hariIni(),-30); }
+function labelNg(id){ return id? namaNegeri(id) : "Belum dikenal pasti"; }
+function telWa(t){ var d=String(t||"").replace(/\D/g,""); if(d.charAt(0)==="0") d="6"+d; return d; }
+function umur(iso){ if(!/^\d{4}-\d{2}-\d{2}/.test(iso||"")) return ""; var l=new Date(iso), k=new Date(); var u=k.getFullYear()-l.getFullYear(); if(k.getMonth()<l.getMonth()||(k.getMonth()===l.getMonth()&&k.getDate()<l.getDate())) u--; return u>0&&u<120? u+" tahun" : ""; }
+
+var BOLEH_UBAH_V41 = bolehUbah;
+bolehUbah = function(jenis,r){
+  if(jenis==="upta"){ if(isAhli()) return false; if(isMT()) return true; return !!r && (r.negeriAsal===ngSaya() || r.negeriKampus===ngSaya()); }
+  return BOLEH_UBAH_V41(jenis,r);
+};
+var LENCANA_V41 = lencana;
+lencana = function(n){
+  if(n==="upta") return isAhli()? 0 : uptaSaya().filter(function(u){return (u.susulan||"belum")==="belum" && uptaBaru(u);}).length;
+  return LENCANA_V41(n);
+};
+
+function tapisUpta(){
+  var q=(UI.uptaQ||"").toLowerCase(), ng=ngSaya();
+  return uptaSaya().filter(function(u){
+    if(isMT()){
+      if(UI.uptaNg==="__tiada"){ if(u.negeriKampus && u.negeriAsal) return false; }
+      else if(UI.uptaNg && u.negeriAsal!==UI.uptaNg && u.negeriKampus!==UI.uptaNg) return false;
+    } else {
+      if(UI.uptaSkop==="asal" && u.negeriAsal!==ng) return false;
+      if(UI.uptaSkop==="kampus" && u.negeriKampus!==ng) return false;
+    }
+    if(UI.uptaSus && (u.susulan||"belum")!==UI.uptaSus) return false;
+    if(UI.uptaLaj && u.lajnah!==UI.uptaLaj) return false;
+    if(UI.uptaJur && u.jurusan!==UI.uptaJur) return false;
+    return !q || [u.nama,u.kampus,u.jurusan,u.emel,u.telefon,u.jawatanJik,u.hospital].join(" ").toLowerCase().indexOf(q)>=0;
+  }).sort(function(a,b){ return (b.masa||"")<(a.masa||"")?-1:1; });
+}
+function kiraIkut(senarai,k){ var o={}; senarai.forEach(function(u){ var v=u[k]||"—"; o[v]=(o[v]||0)+1; }); return o; }
+
+HAL.upta = function(){
+  if(isAhli()) return kosong("Tiada akses","Halaman ini untuk Majlis Tertinggi dan AJK negeri.");
+  var semua=uptaSaya(), X=tapisUpta(), ng=ngSaya();
+  var belum=semua.filter(function(u){return (u.susulan||"belum")==="belum";}).length;
+  var kepala='<div class="kepala"><div><h1>Ahli UPTA</h1><div class="sub">'+(isMT()? semua.length+' pendaftar daripada borang UPTA' : semua.length+' pendaftar berkaitan '+esc(namaNegeri(ng)))+'</div></div></div>';
+  if(!DATA.upta.length) return kepala+kosong("Belum ada data UPTA", isMT()? 'Isi UPTA_SHEET (URL Sheets respons borang UPTA) di bahagian atas Code.gs, jalankan "sediakan", kemudian segerak semula.' : "Majlis Tertinggi belum menyambungkan borang UPTA, atau belum ada pendaftar dari negeri anda.");
+  var jubin = isMT()?
+    [[semua.length,"Jumlah pendaftar"],[belum,"Belum dihubungi"],[semua.filter(function(u){return u.susulan==="aktif";}).length,"Aktif dalam GMP"],[semua.filter(uptaBaru).length,"Baharu (30 hari)"]] :
+    [[semua.filter(function(u){return u.negeriAsal===ng;}).length,"Berasal dari "+namaNegeri(ng)],[semua.filter(function(u){return u.negeriKampus===ng;}).length,"Belajar di "+namaNegeri(ng)],[belum,"Belum dihubungi"],[semua.filter(uptaBaru).length,"Baharu (30 hari)"]];
+  var html=kepala+'<div class="jubin4">'+jubin.map(function(j){return '<div class="statistik"><span class="n">'+j[0]+'</span><span class="l">'+esc(j[1])+'</span></div>';}).join("")+'</div>';
+
+  if(isMT()){
+    var tiada=semua.filter(function(u){return !u.negeriKampus || !u.negeriAsal;}).length;
+    var bar={}; NEGERI.forEach(function(n){ bar[slugNegeri(n)]={a:0,k:0}; });
+    semua.forEach(function(u){ if(bar[u.negeriAsal]) bar[u.negeriAsal].a++; if(bar[u.negeriKampus]) bar[u.negeriKampus].k++; });
+    var ada=NEGERI.map(slugNegeri).filter(function(id){return bar[id].a||bar[id].k;});
+    html+=(tiada? '<div class="kad blok amaran-upta"><p><b>'+tiada+' pendaftar</b> belum dikenal pasti negeri asal atau kampusnya (contohnya "USM" tanpa nama kampus). AJK negeri tidak akan nampak rekod ini sehingga dibetulkan.</p><div class="lembar-k"><button class="btn kecil" type="button" data-act="upta-ng" data-v="__tiada">Tunjuk & betulkan</button></div></div>' : '')+
+      '<section class="blok"><h2>Ikut negeri</h2><div class="kad"><div class="jadual-upta"><div class="th"><span>Negeri</span><span>Asal</span><span>Kampus</span></div>'+
+      ada.map(function(id){ return '<button type="button" class="tr'+(UI.uptaNg===id?' on':'')+'" data-act="upta-ng" data-v="'+esc(id)+'"><span>'+esc(namaNegeri(id))+'</span><b class="num">'+bar[id].a+'</b><b class="num">'+bar[id].k+'</b></button>'; }).join("")+
+      '</div></div><p class="nota">AJK setiap negeri nampak pendaftar yang <b>berasal</b> dari negerinya <b>atau belajar</b> di negerinya.</p></section>';
+  }
+
+  var laj=kiraIkut(semua,"lajnah"), jur=kiraIkut(semua,"jurusan");
+  html+='<section class="blok"><h2>Lajnah diminati</h2><div class="cip-baris">'+
+    '<button type="button" class="cip'+(!UI.uptaLaj?' on':'')+'" data-act="upta-laj" data-v="">Semua</button>'+
+    Object.keys(laj).sort(function(a,b){return laj[b]-laj[a];}).map(function(k){return '<button type="button" class="cip'+(UI.uptaLaj===k?' on':'')+'" data-act="upta-laj" data-v="'+esc(k)+'">'+esc(k)+' · '+laj[k]+'</button>';}).join("")+'</div></section>';
+
+  html+='<section class="blok"><h2>Senarai pendaftar <span class="kira">'+X.length+'</span></h2>'+
+    (isMT()? '' : '<div class="segmen" role="tablist" style="margin-bottom:10px">'+[["","Semua"],["asal","Berasal dari negeri ini"],["kampus","Belajar di negeri ini"]].map(function(m){
+      return '<button type="button" role="tab" data-act="upta-skop" data-v="'+m[0]+'" class="'+((UI.uptaSkop||"")===m[0]?"on":"")+'">'+m[1]+'</button>';}).join("")+'</div>')+
+    '<div class="penapis"><div class="baris"><input type="search" id="fCariUpta" placeholder="Cari nama, kampus, jurusan" value="'+esc(UI.uptaQ||"")+'" aria-label="Cari pendaftar UPTA"></div>'+
+    '<div class="baris">'+
+      (isMT()? '<select id="fUptaNg" aria-label="Tapis negeri"><option value="">Semua negeri</option><option value="__tiada"'+(UI.uptaNg==="__tiada"?" selected":"")+'>Negeri belum dikenal pasti</option>'+opsyenNegeri(UI.uptaNg==="__tiada"?"":UI.uptaNg)+'</select>' : '')+
+      '<select id="fUptaSus" aria-label="Tapis susulan"><option value="">Semua status susulan</option>'+opsyen(Object.keys(SUSULAN).map(function(k){return [k,SUSULAN[k]];}),UI.uptaSus||"")+'</select>'+
+      '<select id="fUptaJur" aria-label="Tapis jurusan"><option value="">Semua jurusan</option>'+opsyen(Object.keys(jur).sort().map(function(k){return [k,k+" ("+jur[k]+")"];}),UI.uptaJur||"")+'</select>'+
+    '</div></div>'+
+    (X.length? '<div class="senarai">'+X.map(kadUpta).join("")+'</div>' : kosong("Tiada padanan","Ubah carian atau penapis."))+
+    (X.length? '<div class="lembar-k" style="margin-top:12px"><button class="btn" type="button" data-act="upta-csv">Salin senarai (CSV)</button></div>' : '')+
+  '</section>';
+  return html;
+};
+function kadUpta(u){
+  var ng=ngSaya(), s=u.susulan||"belum";
+  var tag=function(lbl,id){ return '<span class="tag-ng'+(!isMT()&&id===ng?' saya':'')+(id?'':' tiada')+'">'+lbl+': '+esc(labelNg(id))+'</span>'; };
+  return '<div class="ahli upta" data-act="upta-buka" data-id="'+esc(u.id)+'" role="button" tabindex="0" style="cursor:pointer"><span class="inisial">'+esc(inisial(u.nama))+'</span>'+
+    '<div style="min-width:0"><h3>'+esc(u.nama)+(uptaBaru(u)?' <span class="baru">baharu</span>':'')+'</h3>'+
+    '<div class="j">'+esc([u.kampus,u.jurusan,u.semester?"Sem "+u.semester:""].filter(Boolean).join(" · "))+'</div>'+
+    '<div class="tag-baris">'+tag("Asal",u.negeriAsal)+tag("Kampus",u.negeriKampus)+(u.lajnah?'<span class="kod">'+esc(u.lajnah)+'</span>':'')+'</div></div>'+
+    '<span class="status '+SUSULAN_KELAS[s]+'"><i></i>'+esc(SUSULAN_PENDEK[s]||s)+'</span></div>';
+}
+function lembarUpta(u){
+  var baris=function(t,x){return x?'<div><h4>'+t+'</h4><p>'+esc(x)+'</p></div>':'';};
+  var boleh=bolehUbah("upta",u), wa=telWa(u.telefon);
+  var hubung=[];
+  if(u.telefon){ hubung.push('<a class="btn kecil" href="tel:'+esc(u.telefon)+'">Telefon</a>');
+    hubung.push('<a class="btn kecil utama" target="_blank" rel="noopener" href="https://wa.me/'+esc(wa)+'?text='+encodeURIComponent("Assalamualaikum "+u.nama.split(" ")[0]+". Saya "+((CFG.akaun&&CFG.akaun.nama)||"AJK")+" dari Generasi Muda PAPISMA "+(isMT()?"Malaysia":namaNegeri(ngSaya()))+". ")+'">WhatsApp</a>'); }
+  if(u.emel) hubung.push('<a class="btn kecil" href="mailto:'+esc(u.emel)+'?subject='+encodeURIComponent("Generasi Muda PAPISMA")+'">E-mel</a>');
+  bukaLembar(esc(u.nama),
+    '<input type="hidden" id="iId" value="'+esc(u.id)+'">'+
+    '<p><span class="status '+SUSULAN_KELAS[u.susulan||"belum"]+'"><i></i>'+esc(SUSULAN[u.susulan||"belum"])+'</span>'+
+      ' <span class="nota">· daftar '+(u.masa?fmtTarikh(u.masa.slice(0,10)):"—")+(u.bilRespons>1?' · '+u.bilRespons+' respons (yang terkini dipaparkan)':'')+'</span></p>'+
+    (hubung.length? '<div class="lembar-k" style="justify-content:flex-start;margin:0 0 12px">'+hubung.join("")+'</div>' : '')+
+    (u.bolehHubung==="ya"? '' : '<p class="nota" style="color:var(--crit)">Pendaftar ini tidak bersetuju dihubungi untuk program.</p>')+
+    '<div class="baca dua">'+baris("E-mel",u.emel)+baris("Telefon",u.telefon)+
+      baris("Negeri asal",labelNg(u.negeriAsal)+(u.negeriAsalTeks&&u.negeriAsalTeks.toLowerCase()!==labelNg(u.negeriAsal).toLowerCase()?' (borang: '+u.negeriAsalTeks+')':''))+
+      baris("Kampus",u.kampus+" · "+labelNg(u.negeriKampus))+baris("Jurusan",u.jurusan)+baris("Semester",u.semester)+
+      baris("Hospital pilihan selepas graduasi",u.hospital)+baris("Jawatan dalam JIK",u.jawatanJik)+baris("Lajnah diminati",u.lajnah)+
+      baris("Tahap komitmen dalam JIK",u.komitmen?u.komitmen+" / 5":"")+
+      (isMT()? baris("Tarikh lahir",u.tarikhLahir?fmtTarikh(u.tarikhLahir)+(umur(u.tarikhLahir)?" · "+umur(u.tarikhLahir):""):"")+baris("Alamat tempat tinggal",u.alamat)+
+        (u.alamatSurat&&u.alamatSurat!==u.alamat?baris("Alamat surat-menyurat",u.alamatSurat):"")+baris("Status Unit Baitul Muslim",u.baitulMuslim) : '')+
+    '</div>'+
+    (isMT()? '' : '<p class="nota">Tarikh lahir, alamat dan status Unit Baitul Muslim hanya dilihat oleh Majlis Tertinggi.</p>')+
+    (boleh? '<fieldset class="seksyen"><legend>Susulan '+(isMT()?"":"AJK "+esc(namaNegeri(ngSaya())))+'</legend>'+
+      medan("iSusulan","Status susulan",'<select id="iSusulan">'+opsyen(Object.keys(SUSULAN).map(function(k){return [k,SUSULAN[k]];}),u.susulan||"belum")+'</select>')+
+      medan("iCatatanU","Catatan",'<textarea id="iCatatanU" maxlength="1000" placeholder="Cth: Dihubungi melalui WhatsApp, berminat sertai usrah">'+esc(u.catatan||"")+'</textarea>')+
+      (u.oleh?'<p class="nota">Dikemas kini oleh '+esc(u.oleh)+(u.dikemaskini?' · '+fmtTarikh(u.dikemaskini.slice(0,10)):'')+'</p>':'')+
+      (isMT()? '<div class="grid2">'+medan("iUNgAsal","Negeri asal",'<select id="iUNgAsal"><option value="">— Belum dikenal pasti —</option>'+opsyenNegeri(u.negeriAsal)+'</select>')+
+        medan("iUNgKampus","Negeri kampus",'<select id="iUNgKampus"><option value="">— Belum dikenal pasti —</option>'+opsyenNegeri(u.negeriKampus)+'</select>')+'</div>'+
+        '<p class="nota">Negeri ditentukan secara automatik daripada jawapan borang. Betulkan di sini jika salah; respons asal dalam borang tidak diubah.</p>' : '')+
+    '</fieldset>' : ''),
+    boleh? '<button class="btn utama" type="submit">Simpan</button>' : '', boleh? "upta" : "");
+}
+BORANG.upta = function(){
+  var u=cari("upta",v("iId")); if(!u) return;
+  var r=Object.assign({},u,{susulan:v("iSusulan")||"belum",catatan:v("iCatatanU")});
+  if(isMT()){ r.negeriAsal=v("iUNgAsal"); r.negeriKampus=v("iUNgKampus"); }
+  simpan("upta",r,"Susulan disimpan");
+};
+function blokUptaRingkas(){
+  if(isAhli() || !DATA.upta.length) return "";
+  var s=uptaSaya(), belum=s.filter(function(u){return (u.susulan||"belum")==="belum";}), baru=s.filter(uptaBaru);
+  if(!s.length) return "";
+  return '<section class="blok"><h2>Ahli UPTA <a href="#upta">Semua</a></h2><div class="kad blok"><p style="font-size:14px"><b>'+s.length+'</b> pendaftar UPTA '+(isMT()?"seluruh negara":"berkaitan "+esc(namaNegeri(ngSaya())))+
+    ' · <b>'+belum.length+'</b> belum dihubungi'+(baru.length?' · <b>'+baru.length+'</b> baharu dalam 30 hari':'')+'.</p>'+
+    (belum.length? '<div class="senarai" style="margin-top:8px">'+belum.slice(0,3).map(kadUpta).join("")+'</div>':'')+'</div></section>';
+}
+var NG_UTAMA_V41 = HAL_NG.utama;
+HAL_NG.utama = function(){ return NG_UTAMA_V41() + blokUptaRingkas(); };
+
+Object.assign(ACT,{
+  "upta-buka":function(el){ var u=cari("upta",el.getAttribute("data-id")); if(u) lembarUpta(u); },
+  "upta-ng":function(el){ var x=el.getAttribute("data-v"); UI.uptaNg = UI.uptaNg===x? "" : x; simpanUI(); render(); },
+  "upta-laj":function(el){ UI.uptaLaj=el.getAttribute("data-v"); simpanUI(); render(); },
+  "upta-skop":function(el){ UI.uptaSkop=el.getAttribute("data-v"); simpanUI(); render(); },
+  "upta-csv":function(){
+    var mt=isMT(), X=tapisUpta();
+    var kep=["Nama","E-mel","Telefon","Negeri asal","Kampus","Negeri kampus","Jurusan","Semester","Hospital pilihan","Jawatan JIK","Lajnah","Komitmen","Boleh dihubungi","Status susulan","Catatan","Tarikh daftar"].concat(mt?["Tarikh lahir","Alamat"]:[]);
+    var rows=[kep].concat(X.map(function(u){ return [u.nama,u.emel,u.telefon,labelNg(u.negeriAsal),u.kampus,labelNg(u.negeriKampus),u.jurusan,u.semester,u.hospital,u.jawatanJik,u.lajnah,u.komitmen,u.bolehHubung==="ya"?"Ya":"Tidak",SUSULAN[u.susulan||"belum"],u.catatan,(u.masa||"").slice(0,10)].concat(mt?[u.tarikhLahir,u.alamat]:[]); }));
+    var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c||"").replace(/"/g,'""')+'"';}).join(",");}).join("\n");
+    try{ navigator.clipboard.writeText(csv).then(function(){toast(X.length+" pendaftar disalin. Tampal ke Google Sheets.");},function(){toast("Tidak dapat menyalin");}); }catch(e){ toast("Tidak dapat menyalin"); }
+  }
+});
+document.addEventListener("change",function(e){
+  if(e.target.id==="fUptaNg"){ UI.uptaNg=e.target.value; simpanUI(); render(); }
+  if(e.target.id==="fUptaSus"){ UI.uptaSus=e.target.value; simpanUI(); render(); }
+  if(e.target.id==="fUptaJur"){ UI.uptaJur=e.target.value; simpanUI(); render(); }
+});
+var tundaUpta;
+document.addEventListener("input",function(e){
+  if(e.target.id==="fCariUpta"){ clearTimeout(tundaUpta); var n=e.target.value; tundaUpta=setTimeout(function(){
+    UI.uptaQ=n; render(); var i=$("#fCariUpta"); if(i){ i.focus(); i.setSelectionRange(n.length,n.length); } },250); }
+});
+
+function contohUpta(D){
+  var h=hariIni();
+  var c=function(id,nama,asal,ngA,kampus,ngK,jur,sem,laj,kom,sus,hari){
+    return {id:"contoh-u"+id,masa:tambahHari(h,-hari)+"T10:00:00Z",emel:"",nama:"Contoh: "+nama,telefon:"",tarikhLahir:"",alamat:"",alamatSurat:"",
+      negeriAsalTeks:asal,negeriAsal:ngA,kampus:kampus,negeriKampus:ngK,jurusan:jur,semester:sem,hospital:"",baitulMuslim:"",jawatanJik:"Ahli",lajnah:laj,komitmen:kom,
+      bolehHubung:"ya",bilRespons:1,susulan:sus,catatan:"",oleh:"",dikemaskini:""};
+  };
+  D.upta=[
+    c(1,"Pelajar Perubatan A","Selangor","ng-selangor","UiTM Sungai Buloh","ng-selangor","Perubatan","10","Dakwah","4","belum",3),
+    c(2,"Pelajar Farmasi B","Selangor","ng-selangor","USM Kubang Kerian","ng-kelantan","Farmasi","6","Media","3","dihubungi",20),
+    c(3,"Pelajar Pergigian C","Johor","ng-johor","UKM Cheras","ng-w-p-kuala-lumpur","Pergigian","8","Tarbiah","3","belum",9),
+    c(4,"Pelajar Kejururawatan D","Kelantan","ng-kelantan","UPM Serdang","ng-selangor","Kejururawatan","4","Kebajikan","5","berminat",45),
+    c(5,"Pelajar Audiologi E","Pahang","ng-pahang","USM","","Audiologi","8","Akademik","2","belum",60),
+    c(6,"Pelajar Dietetik F","Kedah","ng-kedah","IIUM Kuantan","ng-pahang","Dietetik","6","Media","3","aktif",90)
+  ];
+}
+if(!CFG.url && !DATA.upta.length) contohUpta(DATA);
+
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;
   var f=ACT[el.getAttribute("data-act")]; if(!f) return;
@@ -1900,10 +3527,17 @@ document.addEventListener("submit",function(e){
 document.addEventListener("change",function(e){
   if(e.target.id==="fProg"){ UI.prog=e.target.value; simpanUI(); render(); }
   if(e.target.id==="fDalamNg"){ UI.dalamNg=e.target.checked; simpanUI(); render(); }
+  if(e.target.id==="fPetaNg"){ UI.petaNg=e.target.value; simpanUI(); render(); }
+  if(e.target.id==="fPetaPr"){ UI.petaPeranan=e.target.value; simpanUI(); render(); }
+  if(e.target.id==="fAhliNg"){ UI.ahliNg=e.target.value; simpanUI(); render(); }
+  if(e.target.id==="iNegeriD" && PEMILIH && !v("iLat") && PUSAT_NEGERI[e.target.value]) PEMILIH.peta.setView(PUSAT_NEGERI[e.target.value],9);
   if(e.target.id==="demoNg"){ CFG.demoNegeri=e.target.value; simpanCfg(); render(); toast("Paparan AJK "+namaNegeri(CFG.demoNegeri)); }
 });
 var tundaCari;
 document.addEventListener("input",function(e){
+  if(e.target.id==="iApi"){ var u=e.target.value.trim(); if(/^https:\/\/script\.google\.com\/.+\/exec$/.test(u)){ CFG.api=u; simpanCfg(); } }
+  if(e.target.id==="fCariAhli"){ clearTimeout(tundaCari); var n2=e.target.value; tundaCari=setTimeout(function(){
+    UI.cariAhli=n2; render(); var i=$("#fCariAhli"); if(i){ i.focus(); i.setSelectionRange(n2.length,n2.length); } },250); }
   if(e.target.id==="fCari"){ clearTimeout(tundaCari); var nilai=e.target.value; tundaCari=setTimeout(function(){
     UI.cari=nilai; simpanUI(); render(); var i=$("#fCari"); if(i){ i.focus(); i.setSelectionRange(nilai.length,nilai.length); } },250); }
 });
@@ -1935,8 +3569,9 @@ if(!GAS && "serviceWorker" in navigator && /^https:|^http:\/\/localhost/.test(lo
       });
       setInterval(function(){ reg.update().catch(function(){}); }, 60*60*1000);
     }).catch(function(){});
-    var dimuat=false;
-    navigator.serviceWorker.addEventListener("controllerchange",function(){ if(dimuat) return; dimuat=true; location.reload(); });
+    var dimuat=false, adaPengawal=!!navigator.serviceWorker.controller;
+    // muat semula hanya apabila versi BAHARU mengambil alih (bukan pada pemasangan pertama)
+    navigator.serviceWorker.addEventListener("controllerchange",function(){ if(!adaPengawal){ adaPengawal=true; return; } if(dimuat) return; dimuat=true; location.reload(); });
   }catch(e){}
 }
 window.addEventListener("beforeinstallprompt",function(e){ e.preventDefault(); pasangAcara=e; if(laluan()==="tetapan") render(); });
@@ -1954,8 +3589,7 @@ if(GAS){ try{ google.script.url.getLocation(function(l){ if(l && l.hash && "#"+l
 $("#btnSegerak").innerHTML=svg("segerak");
 gunaTema();
 SEG.status = CFG.url? (navigator.onLine?"sedia":"luar") : "demo";
-render();
-if(CFG.url) segerak();
+mulaV4();
 })();
 </script>
 </body>
