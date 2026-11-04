@@ -1,21 +1,9 @@
-/* ================================================================
- *  Tetapan Aplikasi GMP — nilai AWAM sahaja (selamat diletak di GitHub).
- *  Jangan letak kata laluan atau JSON akaun perkhidmatan di sini.
- *  Sunting terus di GitHub: buka fail → ikon pensel ✏️ → Commit changes.
- * ================================================================ */
-
-// 1. URL aplikasi web Apps Script (berakhir /exec)
-window.GMP_API_URL = "";
-
-// 2. Konfigurasi Firebase: Firebase console → ⚙ Tetapan projek → Umum → Aplikasi web anda → SDK setup → Config
-window.GMP_FIREBASE = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  messagingSenderId: "",
-  appId: ""
-};
-
-// 3. Kunci VAPID notifikasi push: Firebase console → ⚙ Tetapan projek → Cloud Messaging →
-//    Web Push certificates → Generate key pair → salin "Key pair". Kosong = notifikasi dimatikan.
-window.GMP_VAPID = "";
+   window.GMP_API_URL = "https://script.google.com/macros/s/…/exec";
+   window.GMP_FIREBASE = {
+     apiKey: "AIza...",
+     authDomain: "gmp-papisma.firebaseapp.com",
+     projectId: "gmp-papisma",
+     messagingSenderId: "1234567890",
+     appId: "1:1234567890:web:abc..."
+   };
+   window.GMP_VAPID = "B...";   // kosongkan jika push belum disediakan
