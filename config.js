@@ -15,4 +15,4 @@ window.GMP_FIREBASE = {
 };
 
 // 3. Kunci VAPID notifikasi push (isi kemudian). Kosong = notifikasi dimatikan.
-window.GMP_VAPID = "";
+window.GMP_VAPID = "BEtD0qljpEVW6LwL8PeWglQFHfq85jT2QpU9oAsgZ4bhc4lCbhh34ZirSsc3Mhmf-zkgM7A5UJl61lJJqTHNmPc";
