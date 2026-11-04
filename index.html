@@ -515,7 +515,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.4.0";
+var VERSI = "4.5.0";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -3316,7 +3316,7 @@ function mulaV4(){
   if(CFG.url){
     segerak();
     muatFirebase().then(function(fb){ if(!fb.auth.currentUser){ bersihSesi(); NOTIS_MASUK="Sesi tamat. Sila log masuk semula."; UI_MASUK="masuk"; render(); } }).catch(function(){});
-  } else if(!CFG.demo && fbSedia()){
+  } else if(!CFG.demo && fbSedia() && !laluanAwam()){
     muatFirebase().then(function(fb){ if(fb.auth.currentUser && !CFG.url){ selepasMasuk(); } }).catch(function(e){ NOTIS_MASUK=e.message; paparMasuk(); });
   }
 }
@@ -3570,6 +3570,105 @@ Object.assign(ACT,{
       DATA.tugas.filter(function(t){return kod[t.kod] && t.tarikh && t.status!=="siap";}).forEach(function(t){ ops.push({op:"simpan",jenis:"tugas",rekod:Object.assign({},t,{tarikh:tambahBulanTarikh(t.tarikh,n)})}); });
       laksana(ops,"Tarikh "+DATA.program.length+" program dianjak "+n+" bulan"); }); }
 });
+
+/* ---------- Borang awam: Daftar UPTA (tanpa log masuk) ---------- */
+var KAMPUS_UPTA = ["UiTM Sungai Buloh","UiTM Puncak Alam","UiTM Selayang","UiTM Bertam","USM Kubang Kerian","USM Kampus Kesihatan","USM Bertam","USIM Nilai","UKM Cheras","UKM Kuala Lumpur","UM Kuala Lumpur","UPM Serdang","IIUM Kuantan","UniSZA Kuala Terengganu","UMS Kota Kinabalu","UNIMAS Kota Samarahan","UniKL RCMP Ipoh","MAHSA","MSU","CUCMS / UCMI Cyberjaya","AIMST","Universiti luar negara"];
+var JURUSAN_UPTA = ["Perubatan","Pergigian","Farmasi","Kejururawatan","Audiologi","Dietetik","Pemakanan","Fisioterapi","Sains Bioperubatan","Optometri","Radiografi","Terapi Pertuturan","Kesihatan Persekitaran","Sains Forensik"];
+var LAJNAH_UPTA = ["Dakwah","Tarbiah","Media","Akademik","Kebajikan"];
+var BM_UPTA = ["BELUM SELESAI DAN BERMINAT","BELUM SELESAI DAN TIDAK BERMINAT","SUDAH SELESAI"];
+var UPTA_SIAP = null;
+function laluanAwam(){ return /^#\/?daftar-upta/.test(location.hash||""); }
+function pautanDaftarUpta(){ return location.href.replace(/[#?].*$/,"")+"#daftar-upta"; }
+function paparDaftarUpta(){
+  document.body.classList.add("log-masuk");
+  $("#fab").hidden=true; $("#nav").innerHTML=""; $("#rel").innerHTML="";
+  $("#brandNama").textContent="GMP Malaysia"; $("#brandSub").textContent="PENDAFTARAN UPTA";
+  var pill=$("#segPill"); pill.className="seg-pill"; $("#segTeks").textContent="Borang awam";
+  document.title="Daftar UPTA · Aplikasi GMP";
+  var isi=$("#isi"); isi.setAttribute("data-hal","daftar-upta");
+  if(UPTA_SIAP){
+    isi.innerHTML='<section class="masuk" id="masukMod" data-mod="upta-siap">'+kepalaMasuk()+
+      '<div class="kad blok" style="text-align:center"><h2 style="margin:0 0 6px">Terima kasih, '+esc(UPTA_SIAP.nama.split(" ")[0])+'!</h2><p>'+esc(UPTA_SIAP.mesej)+'</p>'+
+      '<p class="nota">AJK Generasi Muda PAPISMA negeri anda akan menghubungi anda untuk program akan datang, insya-Allah.</p>'+
+      '<div class="lembar-k" style="justify-content:center"><button class="btn" type="button" data-act="upta-lagi">Daftar orang lain</button></div></div></section>';
+    return;
+  }
+  if(isi.querySelector("#fDaftarUpta")) return;   // jangan padam jawapan yang sedang diisi
+  var dl=function(id,senarai){ return '<datalist id="'+id+'">'+senarai.map(function(x){return '<option value="'+esc(x)+'">';}).join("")+'</datalist>'; };
+  var radio=function(nama,senarai,nilai){ return '<div class="segmen">'+senarai.map(function(x){ return '<label><input type="radio" name="'+nama+'" value="'+esc(x[0])+'"'+(x[0]===nilai?" checked":"")+'><span>'+esc(x[1])+'</span></label>'; }).join("")+'</div>'; };
+  isi.innerHTML='<section class="masuk" id="masukMod" data-mod="upta">'+kepalaMasuk()+
+    '<p class="sub-masuk">Pendaftaran Ahli <b>UPTA</b> · Generasi Muda PAPISMA Malaysia</p>'+
+    (apiUrl()? '' : '<div class="amaran bahaya"><span>Borang belum disambungkan ke pelayan. Hubungi AJK GMP.</span></div>')+
+    '<form class="kad blok" id="fDaftarUpta" data-form="daftarUptaAwam" novalidate>'+
+      '<input type="text" name="laman" id="iULaman" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px" aria-hidden="true">'+
+      '<fieldset class="seksyen"><legend>Maklumat diri</legend>'+
+        medan("iUNama","Nama penuh",'<input type="text" id="iUNama" required autocomplete="name" maxlength="120">')+
+        '<div class="grid2">'+medan("iUEmel","E-mel",'<input type="email" id="iUEmel" required autocomplete="email" inputmode="email">')+
+        medan("iUTel","No. telefon",'<input type="tel" id="iUTel" required autocomplete="tel" inputmode="tel" placeholder="012-345 6789">')+'</div>'+
+        '<div class="grid2">'+medan("iULahir","Tarikh lahir",'<input type="date" id="iULahir" required>')+
+        medan("iUNgAsal","Negeri asal",'<select id="iUNgAsal" required><option value="">— Pilih negeri —</option>'+opsyenNegeri("")+'</select>')+'</div>'+
+        medan("iUAlamat","Alamat tempat tinggal",'<textarea id="iUAlamat" required maxlength="300" style="min-height:70px"></textarea>')+
+        '<label class="suis">Alamat surat-menyurat sama seperti di atas<input type="checkbox" id="iUSama" checked></label>'+
+        '<div id="blokSurat" hidden>'+medan("iUSurat","Alamat surat-menyurat",'<textarea id="iUSurat" maxlength="300" style="min-height:70px"></textarea>')+'</div>'+
+      '</fieldset>'+
+      '<fieldset class="seksyen"><legend>Pengajian</legend>'+
+        medan("iUKampus","Kampus",'<input type="text" id="iUKampus" required list="dlKampus" placeholder="cth USM Kubang Kerian">'+dl("dlKampus",KAMPUS_UPTA))+
+        '<p class="nota" style="margin-top:-6px">Tulis nama penuh kampus, bukan singkatan universiti sahaja (cth "USM Kubang Kerian", bukan "USM").</p>'+
+        '<div class="grid2">'+medan("iUJurusan","Jurusan",'<input type="text" id="iUJurusan" required list="dlJurusan" placeholder="cth Perubatan">'+dl("dlJurusan",JURUSAN_UPTA))+
+        medan("iUSem","Semester",'<select id="iUSem" required><option value="">— Pilih —</option>'+opsyen(["1","2","3","4","5","6","7","8","9","10","11","12","Akhir"].map(function(x){return [x,x==="Akhir"?"Semester akhir":"Semester "+x];}),"")+'</select>')+'</div>'+
+        medan("iUHospital","Hospital pilihan selepas graduasi",'<input type="text" id="iUHospital" placeholder="cth HKL, atau negeri pilihan">')+
+      '</fieldset>'+
+      '<fieldset class="seksyen"><legend>Penglibatan JIK</legend>'+
+        '<div class="grid2">'+medan("iUJawatan","Jawatan dalam JIK",'<input type="text" id="iUJawatan" placeholder="cth Ahli, Setiausaha">')+
+        medan("iULajnah","Lajnah diminati",'<select id="iULajnah" required><option value="">— Pilih —</option>'+opsyen(LAJNAH_UPTA.map(function(x){return [x,x];}),"")+'</select>')+'</div>'+
+        '<div class="medan"><label>Tahap komitmen dalam JIK (1 = rendah, 5 = tinggi)</label>'+radio("iUKomit",[["1","1"],["2","2"],["3","3"],["4","4"],["5","5"]],"3")+'</div>'+
+        medan("iUBm","Status Unit Baitul Muslim",'<select id="iUBm"><option value="">— Pilih —</option>'+opsyen(BM_UPTA.map(function(x){return [x,x.charAt(0)+x.slice(1).toLowerCase()];}),"")+'</select>')+
+      '</fieldset>'+
+      '<label class="suis">Saya boleh dihubungi untuk program GMP<input type="checkbox" id="iUHubung" checked></label>'+
+      '<label class="setuju"><input type="checkbox" id="iUSetuju" required><span>Saya bersetuju maklumat ini disimpan oleh Generasi Muda PAPISMA untuk pengurusan ahli UPTA. Nama, kampus dan jurusan dilihat oleh AJK GMP negeri asal dan negeri kampus saya; telefon dan e-mel hanya jika saya bersetuju dihubungi. Tarikh lahir, alamat dan status Unit Baitul Muslim hanya dilihat oleh Majlis Tertinggi.</span></label>'+
+      '<div class="lembar-k"><button class="btn utama" type="submit" style="flex:1">Hantar pendaftaran</button></div>'+
+    '</form></section>';
+}
+BORANG.daftarUptaAwam = function(form, btn){
+  if(v("iULaman")) { UPTA_SIAP={nama:"",mesej:"Pendaftaran diterima."}; render(); return false; }
+  var perlu=[["iUNama","Isi nama penuh"],["iUEmel","Isi e-mel"],["iUTel","Isi nombor telefon"],["iULahir","Isi tarikh lahir"],["iUNgAsal","Pilih negeri asal"],["iUAlamat","Isi alamat"],["iUKampus","Isi kampus"],["iUJurusan","Isi jurusan"],["iUSem","Pilih semester"],["iULajnah","Pilih lajnah"]];
+  for(var i=0;i<perlu.length;i++) if(!v(perlu[i][0])){ toast(perlu[i][1]); var el=document.getElementById(perlu[i][0]); if(el) el.focus(); return false; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("iUEmel"))){ toast("E-mel tidak sah"); return false; }
+  if(String(v("iUTel")).replace(/\D/g,"").length<9){ toast("Nombor telefon tidak sah"); return false; }
+  if(/^\s*(usm|uitm|ukm|um|upm|iium|uiam)\s*$/i.test(v("iUKampus"))){ toast("Tulis nama kampus penuh, cth "+v("iUKampus").toUpperCase()+" Kubang Kerian"); return false; }
+  if(!v("iUSetuju")){ toast("Sila tandakan persetujuan privasi"); return false; }
+  var sejarah=lsGet("gmp.uptaHantar",[]).filter(function(t){return Date.now()-t<86400000;});
+  if(sejarah.length>=5){ toast("Had pendaftaran dari peranti ini dicapai. Cuba esok."); return false; }
+  var k=document.querySelector('input[name="iUKomit"]:checked');
+  var rekod={nama:v("iUNama"),emel:v("iUEmel"),telefon:v("iUTel"),tarikhLahir:v("iULahir"),negeriAsal:v("iUNgAsal"),alamat:v("iUAlamat"),
+    alamatSurat:v("iUSama")?v("iUAlamat"):(v("iUSurat")||v("iUAlamat")),kampus:v("iUKampus"),jurusan:v("iUJurusan"),semester:v("iUSem"),hospital:v("iUHospital"),
+    jawatanJik:v("iUJawatan"),lajnah:v("iULajnah"),komitmen:k?k.value:"",baitulMuslim:v("iUBm"),bolehHubung:!!v("iUHubung"),persetujuan:true};
+  var u=apiUrl(); if(!u){ toast("Borang belum disambungkan ke pelayan"); return false; }
+  if(btn){ btn.disabled=true; btn.textContent="Menghantar…"; }
+  hantarApi(u,{tindakan:"daftarUpta",rekod:rekod,laman:v("iULaman")}).then(function(j){
+    sejarah.push(Date.now()); lsSet("gmp.uptaHantar",sejarah);
+    UPTA_SIAP={nama:rekod.nama,mesej:j.mesej||"Pendaftaran diterima."}; render(); window.scrollTo(0,0);
+  },function(e){ toast(e.message||"Gagal menghantar"); if(btn){ btn.disabled=false; btn.textContent="Hantar pendaftaran"; } });
+  return false;
+};
+ACT["upta-lagi"]=function(){ UPTA_SIAP=null; render(); window.scrollTo(0,0); };
+ACT["upta-pautan"]=function(){ var u=pautanDaftarUpta();
+  try{ navigator.clipboard.writeText(u).then(function(){toast("Pautan disalin");},function(){toast(u);}); }catch(e){ toast(u); } };
+document.addEventListener("change",function(e){ if(e.target.id==="iUSama"){ var b=document.getElementById("blokSurat"); if(b) b.hidden=e.target.checked; } });
+var RENDER_AWAM = render;
+render = function(lembut){
+  if(laluanAwam()){ paparDaftarUpta(); return; }
+  UPTA_SIAP=null; RENDER_AWAM(lembut);
+};
+function kadPautanUpta(){
+  var u=pautanDaftarUpta();
+  return '<div class="kad blok"><b>Pautan pendaftaran UPTA</b><p class="nota">Kongsi pautan ini kepada pelajar. Mereka boleh mendaftar tanpa akaun; jawapan masuk ke Sheets respons UPTA yang sama dengan Google Form.</p>'+
+    '<p class="num" style="word-break:break-all;font-size:13px;margin:6px 0">'+esc(u)+'</p><div class="lembar-k" style="justify-content:flex-start">'+
+    '<button class="btn kecil" type="button" data-act="upta-pautan">Salin pautan</button>'+
+    '<a class="btn kecil utama" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent("Assalamualaikum. Pelajar kesihatan tahun akhir & UPTA, sila daftar dengan Generasi Muda PAPISMA di pautan ini: "+u)+'">Kongsi WhatsApp</a></div></div>';
+}
+var HAL_UPTA_ASAL = HAL.upta;
+HAL.upta = function(){ var h=HAL_UPTA_ASAL(); if(isAhli()) return h; var i=h.indexOf("</div></div></div>"); return i<0? h : h.slice(0,i+18)+kadPautanUpta()+h.slice(i+18); };
 
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;
