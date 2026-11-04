@@ -515,7 +515,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.5.1";
+var VERSI = "4.6.0";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -1359,11 +1359,13 @@ HAL_MT.program = function(){
   var h='<div class="kepala"><div><h1>Perancangan Program</h1><div class="sub">'+DATA.program.length+' program · bajet '+rm(jum)+(bel?' · dibelanja '+rm(bel):'')+'</div></div></div>'+blokAnjakProgram();
   if(!DATA.program.length) return h+kosong("Tiada program","Isi data asas dari halaman Utama.");
   return h+FASA.map(function(f,i){
-    var x=DATA.program.filter(function(p){return fasaProgram(p)===i;}).sort(function(a,b){return a.bulan<b.bulan?-1:a.bulan>b.bulan?1:urut(a,b);});
+    var x=DATA.program.filter(function(p){return !p.negeri && fasaProgram(p)===i;}).sort(function(a,b){return a.bulan<b.bulan?-1:a.bulan>b.bulan?1:urut(a,b);});
     if(!x.length) return "";
     return '<section class="blok"><div class="fasa-h"><b>'+f.k+'</b><span>'+f.n+'</span><em>'+fmtBulan(f.d)+' – '+fmtBulan(f.h)+' · '+rm(x.reduce(function(a,p){return a+num(p.bajet);},0))+(i===fk?' · fasa semasa':'')+'</em></div>'+
       '<div class="senarai">'+x.map(kadProgram).join("")+'</div></section>';
-  }).join("");
+  }).join("")+(function(){ var pn=DATA.program.filter(function(p){return p.negeri;}).sort(function(a,b){return (a.negeri+a.bulan)<(b.negeri+b.bulan)?-1:1;});
+    return pn.length? '<section class="blok"><div class="fasa-h"><b>NG</b><span>Program negeri</span><em>'+pn.length+' program · diurus oleh AJK negeri masing-masing</em></div><div class="senarai">'+pn.map(function(p){
+      return kadProgram(p).replace('<span class="kod">'+esc(p.id)+'</span>','<span class="kod">'+esc(p.id)+'</span><span class="tag-ng saya">'+esc(namaNegeri(p.negeri))+'</span>'); }).join("")+'</div></section>' : ""; })();
 };
 HAL_MT.kpi = function(){
   var capai=DATA.kpi.filter(function(k){return num(k.sasaran) && nilaiKpi(k)>=num(k.sasaran);}).length;
@@ -3670,6 +3672,66 @@ function kadPautanUpta(){
 }
 var HAL_UPTA_ASAL = HAL.upta;
 HAL.upta = function(){ var h=HAL_UPTA_ASAL(); if(isAhli()) return h; var i=h.indexOf("</div></div></div>"); return i<0? h : h.slice(0,i+18)+kadPautanUpta()+h.slice(i+18); };
+
+/* ---------- Program negeri (untuk satu negeri sahaja) ---------- */
+HALAMAN.prognegeri = {t:"Program Negeri",i:"program",s:"Program khas untuk ahli negeri anda"};
+(function(){ var r=NAV.ng.rel, i=r.indexOf("acara"); if(r.indexOf("prognegeri")<0) r.splice(i<0?r.length:i+1,0,"prognegeri"); })();
+FAB.ng.prognegeri = {t:"Program",a:"program-baru"};
+function progNegeriSaya(p){ return !!p && !!p.negeri && p.negeri===ngSaya(); }
+function bolehUrusProgram(p){ return isMT() || (!isAhli() && progNegeriSaya(p)); }
+var BOLEH_UBAH_PN = bolehUbah;
+bolehUbah = function(jenis,r){ if(jenis==="program"){ if(isMT()) return true; return !isAhli() && (!r || progNegeriSaya(r)); } return BOLEH_UBAH_PN(jenis,r); };
+var SENARAI_ACARA_ASAL = senaraiAcara;
+senaraiAcara = function(){ var ng=ngSaya(); return SENARAI_ACARA_ASAL().filter(function(p){ return isMT() || !p.negeri || p.negeri===ng; }); };
+var KAD_ACARA_ASAL = kadAcara;
+kadAcara = function(p){
+  var h=KAD_ACARA_ASAL(p);
+  if(p.negeri) h=h.replace('<span class="kod">'+esc(p.id)+'</span>','<span class="kod">'+esc(p.id)+'</span><span class="tag-ng saya">'+esc(namaNegeri(p.negeri))+' sahaja</span>');
+  if(!isMT() && bolehUrusProgram(p)) h=h.replace('<div class="lembar-k">','<div class="lembar-k"><button class="btn kecil" type="button" data-act="program-buka" data-id="'+esc(p.id)+'">Urus</button>');
+  return h;
+};
+HAL_NG.prognegeri = function(){
+  var ng=ngSaya(), x=DATA.program.filter(function(p){return p.negeri===ng;}).sort(function(a,b){ var p1=a.tarikh||a.bulan||"", p2_=b.tarikh||b.bulan||""; return p1<p2_?1:-1; });
+  return '<div class="kepala"><div><h1>Program Negeri</h1><div class="sub">Program khas untuk ahli '+esc(namaNegeri(ng))+' · pendaftaran, kod kehadiran & sijil</div></div></div>'+
+    '<p class="nota">Program di sini hanya dipaparkan kepada ahli '+esc(namaNegeri(ng))+'. Tekan "Program" untuk menambah, kemudian isi tarikh, jana kod kehadiran dan buka pendaftaran.</p>'+
+    (x.length? '<div class="senarai">'+x.map(kadAcara).join("")+'</div>' : kosong("Belum ada program negeri",'Tekan "Program" untuk menambah program pertama negeri anda.'));
+};
+var LEMBAR_PROGRAM_PN = lembarProgram;
+lembarProgram = function(p){
+  LEMBAR_PROGRAM_PN(p);
+  var form=document.getElementById("fLembar"); if(!form) return;
+  var nama=form.querySelector("#iNamaProg"); if(!nama) return;
+  var d=document.createElement("div");
+  d.innerHTML = isMT()?
+    medan("iNegeriProg","Untuk negeri",'<select id="iNegeriProg"><option value="">Semua negeri (program kebangsaan)</option>'+opsyenNegeri(p.negeri||"")+'</select>')+
+      '<p class="nota" style="margin-top:-6px">Jika satu negeri dipilih, hanya ahli negeri itu nampak dan boleh mendaftar. AJK negeri itu boleh mengurusnya.</p>'
+    : '<input type="hidden" id="iNegeriProg" value="'+esc(ngSaya())+'"><p class="nota">Program ini untuk ahli <b>'+esc(namaNegeri(ngSaya()))+'</b> sahaja.</p>';
+  var medanNama=nama.closest(".medan"); medanNama.parentNode.insertBefore(d, medanNama.nextSibling);
+  if(!isMT()){   // AJK negeri: tiada tugasan Pusat / peneraju jawatan Pusat / laporan program
+    [].slice.call(form.querySelectorAll(".kad.blok")).forEach(function(k){ if(/Tugasan program/.test(k.textContent)) k.remove(); });
+    var pj=form.querySelector("#iPeneraju"); if(pj){ var m=pj.closest(".medan"); if(m) m.hidden=true; }
+    var kaki=form.lastElementChild;
+    if(cari("program",p.id) && kaki && !kaki.querySelector('[data-act="program-padam"]')) kaki.insertAdjacentHTML("beforeend",butangPadam("program-padam",p.id));
+  }
+};
+var KOD_NG = {"ng-perlis":"PLS","ng-kedah":"KDH","ng-pulau-pinang":"PNG","ng-perak":"PRK","ng-selangor":"SGR","ng-w-p-kuala-lumpur":"KUL","ng-negeri-sembilan":"NSN",
+  "ng-melaka":"MLK","ng-johor":"JHR","ng-pahang":"PHG","ng-terengganu":"TRG","ng-kelantan":"KTN","ng-sabah":"SBH","ng-sarawak":"SWK","ng-jik-luar-negara":"JLN"};
+var ID_PROGRAM_ASAL = idProgramBaru;
+idProgramBaru = function(){
+  if(isMT()) return ID_PROGRAM_ASAL();
+  var k=KOD_NG[ngSaya()]||"NG", n=0, re=new RegExp("^"+k+"(\\d+)$");
+  DATA.program.forEach(function(p){ var m=re.exec(p.id); if(m) n=Math.max(n,+m[1]); });
+  return k+p2(n+1);
+};
+var BORANG_PROGRAM_PN = BORANG.program;
+BORANG.program = function(form,btn){
+  var p=cari("program",v("iId"))||{}, ng=isMT()? v("iNegeriProg") : ngSaya();
+  if(!isMT() && p.id && p.negeri!==ngSaya()){ toast("Program ini diurus oleh Majlis Tertinggi"); return false; }
+  var asal=simpan; var r;
+  simpan=function(jenis,rekod,mesej){ simpan=asal; return asal(jenis,Object.assign(rekod,{negeri:ng}),mesej); };
+  try{ r=BORANG_PROGRAM_PN(form,btn); } finally { simpan=asal; }
+  return r;
+};
 
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;

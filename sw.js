@@ -1,7 +1,7 @@
 /* Service worker — Aplikasi GMP
  * Tukar VERSI setiap kali fail aplikasi dikemas kini supaya telefon AJK menerima versi baharu.
  */
-const VERSI = 'gmp-v4.5.1';
+const VERSI = 'gmp-v4.6.0';
 const ASET = [
   './',
   './index.html',
