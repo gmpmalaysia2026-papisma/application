@@ -501,7 +501,7 @@ details.pelayan .medan{margin-top:8px}
   </a>
   <div class="kanan">
     <button class="seg-pill demo" id="segPill" data-act="ke" data-ke="tetapan" type="button"><i></i><span id="segTeks">Demo</span></button>
-    <button class="ikon-btn" data-act="segerak" type="button" aria-label="Segerak sekarang" id="btnSegerak"></button>
+    <button class="ikon-btn" data-act="segerak" type="button" aria-label="Muat semula" id="btnSegerak"></button>
   </div>
 </div></div>
 
@@ -515,7 +515,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.2.1";
+var VERSI = "4.4.0";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -538,27 +538,27 @@ var NEGERI = ["Perlis","Kedah","Pulau Pinang","Perak","Selangor","W.P. Kuala Lum
   "Melaka","Johor","Pahang","Terengganu","Kelantan","Sabah","Sarawak","JIK Luar Negara"];
 function slugNegeri(n){return "ng-"+n.replace(/[^A-Za-z0-9]+/g,"-").replace(/^-|-$/g,"").toLowerCase();}
 var PROGRAM = [
-  ["P01","Mesyuarat Agung Tahunan GMP 1.0","2026-02","T1","sua",3500],
-  ["P02","Bengkel Tatakelola & Masterplan GMP","2026-03","T1","jpp",5200],
-  ["P03","GMP Database Drive — Fasa 1","2026-03","T2","jpp",800],
-  ["P04","Roadshow GMP Negeri — Zon Utara & Timur","2026-04","T5","jdk",4800],
-  ["P05","Usrah Ukhwah Syawal","2026-04","T3","jdm",1200],
-  ["P06","Latihan AJK: Kewangan, Logistik & Kertas Kerja","2026-05","T1","bendahari",2600],
-  ["P07","Mock Test Professional Exam 1.0","2026-06","T4","jpp",1500],
-  ["P08","Tamrin UPTA Batch 1","2026-08","T3","jdm",8900],
-  ["P09","Roadshow GMP Negeri — Zon Tengah & Selatan","2026-09","T5","jdk",4800],
-  ["P10","Islamic Leadership Summit 2.0","2026-12","T3","presiden",9600],
-  ["P11","Mesyuarat Agung Tahunan GMP 2.0","2027-02","T1","sua",3800],
-  ["P12","Database Drive Fasa 2 + integrasi JIK luar negara","2027-03","T2","jpp",1200],
-  ["P14","Usrah Ukhwah Syawal 2.0","2027-03","T3","jdm",1400],
-  ["P13","Bengkel Media & Dakwah Digital","2027-04","T5","jdm",2400],
-  ["P15","Mock Test Professional Exam 2.0","2027-05","T4","jpp",2000],
-  ["P16","Tamrin UPTA Batch 2","2027-08","T3","jdm",10500],
-  ["P17","Alumni Ukhwah Homecoming","2027-09","T5","jdk",5500],
-  ["P18","Khidmat Masyarakat bersama Lajnah Kesihatan","2027-10","T5","jdk",6000],
-  ["P19","Islamic Leadership Summit 3.0","2027-12","T3","presiden",12000],
-  ["P20","Konvensyen & Muhasabah GMP Semalaysia","2028-02","T1","presiden",7500],
-  ["P21","Passover Kepimpinan & Serah Tugas","2028-03","T1","sua",1800]
+  ["P01","Mesyuarat Agung Tahunan GMP 1.0","2027-01","T1","sua",3500],
+  ["P02","Bengkel Tatakelola & Masterplan GMP","2027-02","T1","jpp",5200],
+  ["P03","GMP Database Drive — Fasa 1","2027-02","T2","jpp",800],
+  ["P04","Roadshow GMP Negeri — Zon Utara & Timur","2027-03","T5","jdk",4800],
+  ["P05","Usrah Ukhwah Syawal","2027-03","T3","jdm",1200],
+  ["P06","Latihan AJK: Kewangan, Logistik & Kertas Kerja","2027-04","T1","bendahari",2600],
+  ["P07","Mock Test Professional Exam 1.0","2027-05","T4","jpp",1500],
+  ["P08","Tamrin UPTA Batch 1","2027-07","T3","jdm",8900],
+  ["P09","Roadshow GMP Negeri — Zon Tengah & Selatan","2027-08","T5","jdk",4800],
+  ["P10","Islamic Leadership Summit 2.0","2027-11","T3","presiden",9600],
+  ["P11","Mesyuarat Agung Tahunan GMP 2.0","2028-01","T1","sua",3800],
+  ["P12","Database Drive Fasa 2 + integrasi JIK luar negara","2028-02","T2","jpp",1200],
+  ["P14","Usrah Ukhwah Syawal 2.0","2028-02","T3","jdm",1400],
+  ["P13","Bengkel Media & Dakwah Digital","2028-03","T5","jdm",2400],
+  ["P15","Mock Test Professional Exam 2.0","2028-04","T4","jpp",2000],
+  ["P16","Tamrin UPTA Batch 2","2028-07","T3","jdm",10500],
+  ["P17","Alumni Ukhwah Homecoming","2028-08","T5","jdk",5500],
+  ["P18","Khidmat Masyarakat bersama Lajnah Kesihatan","2028-09","T5","jdk",6000],
+  ["P19","Islamic Leadership Summit 3.0","2028-11","T3","presiden",12000],
+  ["P20","Konvensyen & Muhasabah GMP Semalaysia","2029-01","T1","presiden",7500],
+  ["P21","Passover Kepimpinan & Serah Tugas","2029-02","T1","sua",1800]
 ];
 var KPI = [
   ["K01","Graduan tahun akhir dalam pangkalan data",800,"orang","T2"],
@@ -595,16 +595,17 @@ var TEMPLAT = [
   [-6,"Poster program & bahan multimedia","jdm"],
   [-5,"Mula promosi & buka pendaftaran","jdm"],
   [-2,"Muktamad logistik, tempat & jamuan","bendahari"],
-  [-1,"Guide direction kepada pengisi & taklimat AJK","suk"],
+  [-1,"Panduan arah lokasi kepada pengisi & taklimat AJK","suk"],
   [2,"Laporan program lengkap (dalam 14 hari)","suk"],
   [3,"Tuntutan & penyata kewangan program","bendahari"]
 ];
+var SESI = "2026–2028";   // label sesi kepimpinan
 var FASA = [
-  {k:"F1",n:"Asas & Struktur",d:"2026-01",h:"2026-06"},
-  {k:"F2",n:"Aktivasi",d:"2026-07",h:"2026-12"},
-  {k:"F3",n:"Pengembangan",d:"2027-01",h:"2027-06"},
-  {k:"F4",n:"Pemantapan",d:"2027-07",h:"2027-12"},
-  {k:"F5",n:"Muhasabah & Passover",d:"2028-01",h:"2028-03"}
+  {k:"F1",n:"Asas & Struktur",d:"2027-01",h:"2027-06"},
+  {k:"F2",n:"Aktivasi",d:"2027-07",h:"2027-12"},
+  {k:"F3",n:"Pengembangan",d:"2028-01",h:"2028-06"},
+  {k:"F4",n:"Pemantapan",d:"2028-07",h:"2028-12"},
+  {k:"F5",n:"Muhasabah & Passover",d:"2029-01",h:"2029-03"}
 ];
 var TERAS = {T1:"Tanzim & Tatakelola",T2:"Data & Digital",T3:"Tarbiah & Kepimpinan",T4:"Transisi Kerjaya & Lapangan",T5:"Jaringan & Kemasyarakatan"};
 var ST_TUGAS = {belum:"Belum mula",buat:"Sedang dibuat",siap:"Selesai",sekat:"Tersekat"};
@@ -696,7 +697,7 @@ function tambahHari(iso,n){var d=new Date(iso+"T00:00:00Z");d.setUTCDate(d.getUT
 function fmtTarikh(iso){if(!iso||!/^\d{4}-\d{2}-\d{2}/.test(iso))return "Tiada tarikh";var p=iso.split("-");return parseInt(p[2],10)+" "+BULAN[+p[1]-1]+" "+p[0];}
 function fmtBulan(b){if(!b)return "—";var p=b.split("-");return BULAN[+p[1]-1]+" "+p[0];}
 function fmtBulanP(b){if(!b)return "—";var p=b.split("-");return BULAN_P[+p[1]-1]+" "+p[0];}
-function tarikhProgram(p){return (p.bulan||"2026-01")+"-15";}
+function tarikhProgram(p){return (p.bulan||FASA[0].d)+"-15";}
 function tarikhAkhirLap(b){return bulanSelepas(b)+"-07";}
 function bakiTeks(b){if(b===null)return "";if(b<0)return "lewat "+(-b)+" hari";if(b===0)return "hari ini";if(b===1)return "esok";return b+" hari lagi";}
 function laluTeks(b){if(b===null)return "";if(b===0)return "hari ini";if(b===1)return "semalam";return b+" hari lalu";}
@@ -745,6 +746,8 @@ var OUTBOX = lsGet("gmp.outbox",[]);
 var META = lsGet("gmp.meta",{masa:null,kosong:false});
 var UI = Object.assign({mod:"saya",prog:"",cari:"",dalamNg:false,ngTapis:"semua",aktSemua:false}, lsGet("gmp.ui",{}));
 var SEG = {status:"demo",ralat:"",ulang:false};
+if(CFG.demo){ CFG.demo=false; try{ localStorage.setItem("gmp.cfg",JSON.stringify(CFG)); }catch(e){} }
+if(!CFG.url){ DATA=null; OUTBOX=[]; try{ localStorage.removeItem("gmp.data"); localStorage.removeItem("gmp.outbox"); }catch(e){} }
 var pasangAcara = null;
 
 function isMT(){ return CFG.url? CFG.peranan!=="negeri" : CFG.demoPeranan!=="negeri"; }
@@ -752,7 +755,7 @@ function ngSaya(){ return CFG.url? CFG.negeri : CFG.demoNegeri; }
 
 if(!DATA){
   DATA = binaAsas();
-  if(!CFG.url){ binaContoh(DATA); DATA.tugas = janaTugasan(DATA.program.filter(function(p){return p.id==="P10";})[0], true); }
+
 }
 if(!CFG.url && (!Array.isArray(DATA.aktiviti) || !Array.isArray(DATA.ahli) || !Array.isArray(DATA.pengumuman))) binaContoh(DATA);
 JENIS.forEach(function(j){ if(!Array.isArray(DATA[j])) DATA[j]=[]; });
@@ -840,7 +843,7 @@ function api(tindakan,tambahan,url,kod){
   return fetch(url||CFG.url,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},
       body:JSON.stringify(badan),
       redirect:"follow",signal:ctrl?ctrl.signal:undefined})
-    .then(function(r){ if(!r.ok) throw new Error("Pelayan membalas HTTP "+r.status); return r.json(); })
+    .then(function(r){ if(!r.ok) throw new Error("Pelayan membalas dengan kod HTTP "+r.status); return r.json(); })
     .then(function(j){ clearTimeout(t); if(!j.ok){ var e=new Error(j.ralat||"Ralat pelayan"); e.kod=j.kodRalat; throw e; } return j; },
           function(e){ clearTimeout(t); if(e&&e.name==="AbortError") e=new Error("Tiada jawapan daripada pelayan (45 saat)"); else if(e instanceof TypeError) e=new Error("Tidak dapat menghubungi Google. Semak URL /exec dan sambungan internet."); throw e; });
 }
@@ -886,9 +889,9 @@ function kemasStatus(){
   var pill=$("#segPill"), t=$("#segTeks");
   var tunggu = OUTBOX.length? " · "+OUTBOX.length+" menunggu" : "";
   var teks = {
-    demo:"Mod demo",
-    sedia: META.masa? "Disegerak "+new Date(META.masa).toLocaleTimeString("ms-MY",{hour:"2-digit",minute:"2-digit"})+tunggu : "Bersambung"+tunggu,
-    segerak:"Menyegerak…", luar:"Luar talian"+tunggu, ralat:"Gagal segerak"+tunggu, akses:"Kod akses salah"
+    demo:"Belum log masuk",
+    sedia: META.masa? "Dimuat semula "+new Date(META.masa).toLocaleTimeString("ms-MY",{hour:"2-digit",minute:"2-digit"})+tunggu : "Tersambung"+tunggu,
+    segerak:"Memuat semula…", luar:"Luar talian"+tunggu, ralat:"Gagal dimuat semula"+tunggu, akses:"Kod akses salah"
   }[SEG.status];
   pill.className="seg-pill "+SEG.status; t.textContent=teks; pill.title=SEG.ralat||"";
   $("#brandNama").textContent = isMT()? "GMP Malaysia" : "GMP "+namaNegeri(ngSaya());
@@ -1000,8 +1003,8 @@ var HALAMAN = {
   utama:{t:"Utama",i:"utama"}, tugas:{t:"Tugas",i:"tugas"}, tetapan:{t:"Tetapan",i:"tetapan",s:"Akaun, pasang aplikasi, paparan"}, lagi:{t:"Lagi",i:"lagi"},
   peta:{t:"Peta AJK",i:"peta",s:"Lokasi anggaran ahli berdaftar"}, profil:{t:"Profil saya",i:"profil",s:"Maklumat peribadi & kata laluan"},
   negeri:{t:"Negeri",i:"negeri",mt:1,s:"Pemantauan & skor 15 wilayah"}, semakan:{t:"Semakan",i:"semakan",mt:1,s:"Laporan bulanan negeri"},
-  kewangan:{t:"Kewangan",i:"kewangan",mt:1,s:"Bajet vs belanja sebenar"}, mesyuarat:{t:"Mesyuarat",i:"mesyuarat",mt:1,s:"Mesyuarat MT & kehadiran"},
-  program:{t:"Program",i:"program",mt:1,s:"21 program blueprint"}, kpi:{t:"KPI",i:"kpi",mt:1,s:"12 petunjuk prestasi"},
+  kewangan:{t:"Kewangan",i:"kewangan",mt:1,s:"Bajet berbanding belanja sebenar"}, mesyuarat:{t:"Mesyuarat",i:"mesyuarat",mt:1,s:"Mesyuarat MT & kehadiran"},
+  program:{t:"Program",i:"program",mt:1,s:"Senarai program, bajet & tugasan"}, kpi:{t:"KPI",i:"kpi",mt:1,s:"12 petunjuk prestasi"},
   laporan:{t:"Laporan program",i:"laporan",mt:1,s:"Laporan 14 hari & muhasabah"}, ahli:{t:"Ahli",i:"ahli",mt:1,s:"Kelulusan pendaftaran, direktori, jawatan"},
   aktiviti:{t:"Aktiviti",i:"aktiviti",ng:1,s:"Log aktiviti cawangan"}, lapbulan:{t:"Laporan",i:"laporan",ng:1,s:"Laporan bulanan ke Pusat"},
   data:{t:"Data graduan",i:"data",ng:1,s:"Rekod & pemindahan ke PAPISMA negeri"}, ajk:{t:"AJK negeri",i:"ahli",ng:1,s:"Ketua & barisan AJK"},
@@ -1063,12 +1066,12 @@ var HAL={}, HAL_MT={}, HAL_NG={};
 function amaranMod(){
   if(!CFG.url) return '<div class="amaran"><span><b>Mod demo · '+(isMT()?"Majlis Tertinggi":"AJK "+esc(namaNegeri(ngSaya())))+'.</b> Rekod bertanda "Contoh" ialah data contoh dalam peranti ini sahaja. Tukar paparan di Tetapan.</span><button class="btn kecil" type="button" data-act="demo-keluar">Log masuk</button></div>';
   if(SEG.status==="akses") return '<div class="amaran bahaya"><span><b>Kod akses ditolak.</b> Kod mungkin telah ditukar. Masukkan kod baharu dalam Tetapan.</span><a class="btn kecil" href="#tetapan">Tetapan</a></div>';
-  if(isMT() && META.kosong && SEG.status==="sedia") return '<div class="amaran"><span><b>Google Sheets masih kosong.</b> Isi data asas blueprint (ahli, 21 program, 12 KPI, 15 wilayah) sekali sahaja.</span><button class="btn kecil utama" data-act="isi-asas" type="button">Isi data asas</button></div>';
+  if(isMT() && META.kosong && SEG.status==="sedia") return '<div class="amaran"><span><b>Google Sheets masih kosong.</b> Isi data asas (jawatan, perancangan program, 12 KPI, 15 wilayah) sekali sahaja.</span><button class="btn kecil utama" data-act="isi-asas" type="button">Isi data asas</button></div>';
   return "";
 }
 function sambut(nama,peranan){
   var d=new Date();
-  var mula=hariKe("2026-01-01"), tamat=hariKe("2028-03-31"), sek=hariKe(hariIni());
+  var mula=hariKe(FASA[0].d+"-01"), tamat=hariKe(bulanSelepas(FASA[FASA.length-1].h)+"-01")-1, sek=hariKe(hariIni());
   var hariSesi=Math.min(Math.max(sek-mula+1,0),tamat-mula+1), jum=tamat-mula+1, fi=fasaKini();
   var trek = FASA.map(function(f){
     var a=hariKe(f.d+"-01"), z=hariKe(bulanSelepas(f.h)+"-01");
@@ -1079,7 +1082,7 @@ function sambut(nama,peranan){
   return '<section class="sambut">'+
     '<div class="eyebrow">'+HARI[d.getDay()]+', '+fmtTarikh(hariIni())+' &nbsp;'+peranan+'</div>'+
     '<h1>'+nama+'</h1>'+
-    '<div class="sesi"><div class="baris"><span>'+(fi>=0&&fi<FASA.length? '<b>'+FASA[fi].k+' · '+FASA[fi].n+'</b>' : 'Sesi 2026–2028')+'</span><span class="num">Hari '+hariSesi+' / '+jum+'</span></div>'+
+    '<div class="sesi"><div class="baris"><span>'+(fi>=0&&fi<FASA.length? '<b>'+FASA[fi].k+' · '+FASA[fi].n+'</b>' : (fi<0?'Perancangan bermula '+fmtBulan(FASA[0].d):'Sesi '+SESI))+'</span><span class="num">Hari '+hariSesi+' / '+jum+'</span></div>'+
     '<div class="fasa-trek" aria-hidden="true">'+trek+'</div><div class="fasa-label" aria-hidden="true">'+label+'</div></div></section>';
 }
 function itemTindakan(href,n,tajuk,sub,kelas){
@@ -1202,14 +1205,14 @@ HAL.tetapan = function(){
     (CFG.demo? '<section class="blok"><h2>Cuba paparan</h2><div class="kad demo-peranan">'+
       '<div class="segmen">'+[["mt","Majlis Tertinggi"],["negeri","AJK negeri"],["ahli","Ahli"]].map(function(m){return '<button type="button" data-act="demo-peranan" data-p="'+m[0]+'" class="'+(CFG.demoPeranan===m[0]?"on":"")+'">'+m[1]+'</button>';}).join("")+'</div>'+
       (CFG.demoPeranan!=="mt"?'<div class="medan"><label for="demoNg">Negeri</label><select id="demoNg">'+NEGERI.map(function(n){var id=slugNegeri(n);return '<option value="'+id+'"'+(CFG.demoNegeri===id?" selected":"")+'>'+n+'</option>';}).join("")+'</select></div>':'')+
-      '<p class="nota">Selepas bersambung dengan Google Sheets, paparan ditentukan oleh kod akses: kod MT membuka dashboard MT, kod negeri membuka sistem negeri itu.</p></div></section>' : '')+
+      '<p class="nota">Selepas bersambung dengan Google Sheets, paparan ditentukan oleh kod akses: kod MT membuka papan pemuka MT, kod negeri membuka sistem negeri itu.</p></div></section>' : '')+
     (isMT() && !(CFG.akaun&&CFG.akaun.jawatanId)?'<section class="blok"><h2>Siapa saya</h2><div class="kad blok">'+pilihOrang("pilihSaya",CFG.saya)+
       '<p class="nota">Menentukan "Tugas saya". Ditetapkan automatik apabila MT mengaitkan akaun anda dengan jawatan.</p><button class="btn" type="button" data-act="tetap-saya">Simpan</button></div></section>':'')+
     '<section class="blok"><h2>Akaun</h2><div class="kad blok">'+
       (CFG.demo? '<p class="nota">Anda sedang melihat demo. Data contoh disimpan dalam peranti ini sahaja.</p><div class="lembar-k"><button class="btn utama" type="button" data-act="demo-keluar">Log masuk / daftar</button></div>'
       : (CFG.akaun? '<p style="font-size:15px"><b>'+esc(CFG.akaun.nama||"")+'</b><br><span class="nota">'+esc(CFG.akaun.emel||"")+'</span></p>' : '<p class="nota">Log masuk menggunakan kod akses lama.</p>')+
         '<p><span class="status '+(SEG.status==="sedia"?"siap":SEG.status==="akses"||SEG.status==="ralat"?"sekat":"buat")+'"><i></i>'+esc($("#segTeks").textContent)+'</span></p>'+(SEG.ralat?'<p class="nota" style="color:var(--crit)">'+esc(SEG.ralat)+'</p>':'')+
-        '<div class="lembar-k">'+(CFG.akaun?'<a class="btn" href="#profil">Profil saya</a>':'')+'<button class="btn" type="button" data-act="segerak">Segerak sekarang</button><button class="btn bahaya" type="button" data-act="log-keluar">Log keluar</button></div>'+
+        '<div class="lembar-k">'+(CFG.akaun?'<a class="btn" href="#profil">Profil saya</a>':'')+'<button class="btn" type="button" data-act="segerak">Muat semula</button><button class="btn bahaya" type="button" data-act="log-keluar">Log keluar</button></div>'+
         (!GAS&&CFG.api?'<p class="nota">Pelayan: <span class="num" style="overflow-wrap:anywhere">'+esc(CFG.api)+'</span></p>':''))+
     '</div></section>'+
     (GAS? '<section class="blok"><h2>Letak di skrin utama</h2><div class="kad blok"><p class="nota">'+(ios?'Safari: butang Kongsi → <b>Tambah ke Skrin Utama</b>.':'Chrome: menu ⋮ → <b>Tambah ke skrin utama</b>. Di komputer: tanda buku (bookmark) pautan ini.')+'</p></div></section>'
@@ -1315,7 +1318,7 @@ HAL_MT.kewangan = function(){
   var tahun=["2026","2027","2028"].map(function(y){var x=P.filter(function(p){return p.bulan.slice(0,4)===y;});return bar("Tahun "+y,jum(x,"bajet"),jum(x,"belanja"),x.length+" program");}).join("");
   var teras=Object.keys(TERAS).map(function(t){var x=P.filter(function(p){return p.teras===t;});return x.length?bar(t+" · "+TERAS[t],jum(x,"bajet"),jum(x,"belanja")):"";}).join("");
   var lepas=P.filter(function(p){return p.status==="selesai" && !num(p.belanja);});
-  return '<div class="kepala"><div><h1>Kewangan & Bajet</h1><div class="sub">Bajet blueprint vs belanja sebenar yang direkod pada program</div></div></div>'+
+  return '<div class="kepala"><div><h1>Kewangan & Bajet</h1><div class="sub">Bajet perancangan berbanding belanja sebenar yang direkod pada program</div></div></div>'+
     '<div class="jubin4">'+
       '<div class="statistik"><span class="n">'+rm(bajet).replace("RM ","")+'</span><span class="l">Bajet sesi (RM)</span></div>'+
       '<div class="statistik"><span class="n">'+rm(bel).replace("RM ","")+'</span><span class="l">Belanja direkod (RM)</span></div>'+
@@ -1353,8 +1356,8 @@ HAL_MT.mesyuarat = function(){
 
 HAL_MT.program = function(){
   var jum=DATA.program.reduce(function(a,p){return a+num(p.bajet);},0), bel=DATA.program.reduce(function(a,p){return a+num(p.belanja);},0), fk=fasaKini();
-  var h='<div class="kepala"><div><h1>Program</h1><div class="sub">'+DATA.program.length+' program · bajet '+rm(jum)+(bel?' · dibelanja '+rm(bel):'')+'</div></div></div>';
-  if(!DATA.program.length) return h+kosong("Tiada program","Isi data asas blueprint dari halaman Tetapan.");
+  var h='<div class="kepala"><div><h1>Perancangan Program</h1><div class="sub">'+DATA.program.length+' program · bajet '+rm(jum)+(bel?' · dibelanja '+rm(bel):'')+'</div></div></div>'+blokAnjakProgram();
+  if(!DATA.program.length) return h+kosong("Tiada program","Isi data asas dari halaman Utama.");
   return h+FASA.map(function(f,i){
     var x=DATA.program.filter(function(p){return fasaProgram(p)===i;}).sort(function(a,b){return a.bulan<b.bulan?-1:a.bulan>b.bulan?1:urut(a,b);});
     if(!x.length) return "";
@@ -1369,7 +1372,7 @@ HAL_MT.kpi = function(){
     (DATA.kpi.length? Object.keys(TERAS).map(function(t){
       var x=DATA.kpi.filter(function(k){return k.teras===t;}).sort(urut);
       return x.length? '<section class="blok"><h2>'+t+' · '+TERAS[t]+'</h2><div class="senarai">'+x.map(kadKpi).join("")+'</div></section>' : "";
-    }).join("") : kosong("Tiada KPI","Isi data asas blueprint dari halaman Tetapan."));
+    }).join("") : kosong("Tiada KPI","Isi data asas dari halaman Utama."));
 };
 HAL_MT.laporan = function(){
   var t=laporanTertunggak(), l=DATA.laporan.slice().sort(ikutTarikhTurun);
@@ -1563,23 +1566,25 @@ function radioStatus(s){
 function lembarProgram(p){
   var t=DATA.tugas.filter(function(x){return x.kod===p.id;}), s=t.filter(function(x){return x.status==="siap";}).length;
   var adaAuto=t.some(function(x){return x.auto==="ya";}), lap=DATA.laporan.filter(function(l){return l.kod===p.id;})[0];
-  var lepas=janaTugasan(p,false).filter(function(x){return x.tarikh<hariIni();}).length;
-  bukaLembar('<span class="kod" style="font-size:12px;vertical-align:middle">'+esc(p.id)+'</span> '+esc(p.nama),
+  var lepas=janaTugasan(p,false).filter(function(x){return x.tarikh<hariIni();}).length, baru=!cari("program",p.id);
+  bukaLembar('<span class="kod" style="font-size:12px;vertical-align:middle">'+esc(p.id)+'</span> '+(baru?"Program baharu":esc(p.nama)),
     '<input type="hidden" id="iId" value="'+esc(p.id)+'">'+
-    '<div class="info-baris"><div><b>'+fmtBulan(p.bulan)+'</b><span>Tarikh sasaran</span></div><div><b>'+rm(p.bajet)+'</b><span>Bajet blueprint</span></div>'+
-    '<div><b>'+esc(p.teras)+'</b><span>'+esc(TERAS[p.teras]||"")+'</span></div><div><b>'+s+'/'+t.length+'</b><span>Tugasan selesai</span></div></div>'+
-    '<div class="grid2">'+medan("iStatusP","Status",pilih("iStatusP",ST_PROG,p.status))+medan("iBulan","Bulan program",inp("iBulan","text",p.bulan,' pattern="\\d{4}-\\d{2}" placeholder="2026-12"'))+'</div>'+
+    medan("iNamaProg","Nama program",'<input type="text" id="iNamaProg" required maxlength="150" value="'+esc(p.nama)+'" placeholder="cth Islamic Leadership Summit 2.0">')+
+    '<div class="grid2">'+medan("iTerasP","Teras",'<select id="iTerasP">'+opsyen(Object.keys(TERAS).map(function(k){return [k,k+" · "+TERAS[k]];}),p.teras)+'</select>')+
+      medan("iBajetP","Bajet dirancang (RM)",inp("iBajetP","number",p.bajet,' inputmode="decimal" min="0" step="0.01"'))+'</div>'+
+    (baru?'':'<div class="info-baris"><div><b>'+s+'/'+t.length+'</b><span>Tugasan selesai</span></div><div><b>'+rm(p.belanja||0)+'</b><span>Belanja direkod</span></div></div>')+
+    '<div class="grid2">'+medan("iStatusP","Status",pilih("iStatusP",ST_PROG,p.status))+medan("iBulan","Bulan program",inp("iBulan","text",p.bulan,' pattern="\\d{4}-\\d{2}" placeholder="2027-01"'))+'</div>'+
     medan("iPeneraju","Peneraju",pilihOrang("iPeneraju",p.peneraju))+
     '<div class="grid2">'+medan("iBelanja","Belanja sebenar (RM)",inp("iBelanja","number",p.belanja,' inputmode="decimal" min="0"'))+medan("iPeserta","Peserta",inp("iPeserta","number",p.peserta,' inputmode="numeric" min="0"'))+'</div>'+
     medan("iCatatanP","Catatan",'<textarea id="iCatatanP">'+esc(p.catatan)+'</textarea>')+
     '<div class="kad blok" style="background:var(--surface-2);border:0"><b>Tugasan program</b>'+
       (adaAuto? '<p class="nota">Templat 13 langkah sudah dijana untuk program ini.</p>' :
-       '<p class="nota">Jana 13 langkah ACTION PLAN, dari minggu ke-16 sebelum program hingga tuntutan kewangan minggu ke-3 selepasnya.</p>'+
+       '<p class="nota">Jana 13 langkah pelan tindakan, dari minggu ke-16 sebelum program hingga tuntutan kewangan minggu ke-3 selepasnya.</p>'+
        (lepas?'<label class="suis" style="border:0;padding:0">Langkau '+lepas+' langkah yang tarikhnya sudah lepas<input type="checkbox" id="iLangkau" checked></label>':''))+
       '<div class="lembar-k">'+(adaAuto?'':'<button class="btn" type="button" data-act="jana" data-id="'+esc(p.id)+'">Jana tugasan</button>')+
       (t.length?'<button class="btn" type="button" data-act="lihat-tugas" data-id="'+esc(p.id)+'">Lihat '+t.length+' tugasan</button>':'')+
       '<button class="btn" type="button" data-act="'+(lap?"laporan-buka":"laporan-baru")+'" data-id="'+esc(lap?lap.id:"")+'" data-kod="'+esc(p.id)+'">'+(lap?"Buka laporan":"Tulis laporan")+'</button></div></div>',
-    '<button class="btn utama" type="submit">Simpan</button>',"program");
+    '<button class="btn utama" type="submit">'+(baru?"Tambah program":"Simpan")+'</button>'+(!baru&&isMT()?butangPadam("program-padam",p.id):''),"program");
 }
 function lembarKpi(k){
   var auto=KPI_AUTO[k.id], u=k.unit==="%"?"%":"";
@@ -1676,8 +1681,8 @@ function lembarAjk(a){
 function pemegangJawatan(id){ return (DATA.ahli||[]).filter(function(a){return a.jawatanId===id && a.statusAkaun==="aktif";})[0]||null; }
 function barisPemegang(x){
   var a=pemegangJawatan(x.id);
-  return a? '<div class="e">Akaun: '+esc(a.nama)+' · peringatan push aktif</div>'
-          : '<div class="e tiada">Belum dikaitkan dengan akaun: peringatan push tidak sampai</div>';
+  return a? '<div class="e">Akaun: '+esc(a.nama)+' · peringatan notifikasi aktif</div>'
+          : '<div class="e tiada">Belum dikaitkan dengan akaun: peringatan notifikasi tidak sampai</div>';
 }
 function lembarKetua(){
   var o=cari("orang",ngSaya()); if(!o){ toast("Rekod Ketua belum wujud. Hubungi MT."); return; }
@@ -1685,7 +1690,7 @@ function lembarKetua(){
     '<input type="hidden" id="iId" value="'+esc(o.id)+'">'+
     medan("iNama","Nama Ketua GMP negeri",'<input type="text" id="iNama" value="'+esc(o.nama)+'" autocomplete="name">')+
     '<div class="grid2">'+medan("iEmel","E-mel",inp("iEmel","email",o.emel,' autocomplete="email"'))+medan("iTel","Telefon (WhatsApp)",inp("iTel","tel",o.telefon,' autocomplete="tel"'))+'</div>'+
-    '<p class="nota">Peringatan tugasan dihantar sebagai notifikasi push kepada akaun yang dikaitkan dengan jawatan ini (MT: Ahli → buka profil → Jawatan).</p>',
+    '<p class="nota">Peringatan tugasan dihantar sebagai notifikasi telefon kepada akaun yang dikaitkan dengan jawatan ini (MT: Ahli → buka profil → Jawatan).</p>',
     '<button class="btn utama" type="submit">Simpan</button>',"ahli");
 }
 
@@ -1761,7 +1766,7 @@ function buka(jenis,fn){return function(el){var r=cari(jenis,el.getAttribute("da
 function padamAct(jenis,mesej){return function(el){ sahDua(el,function(){ padam(jenis,el.getAttribute("data-id"),mesej); tutupLembar(); }); };}
 var ACT = {
   ke:function(el){ location.hash=el.getAttribute("data-ke"); },
-  segerak:function(){ if(!CFG.url){ toast("Mod demo: sambungkan Google Sheets di Tetapan"); return; } segerak().then(function(){ if(SEG.status==="sedia") toast("Data terkini dimuat"); }); },
+  segerak:function(){ if(!CFG.url){ toast("Sila log masuk dahulu"); return; } segerak().then(function(){ if(SEG.status==="sedia") toast("Data terkini dimuat"); }); },
   tutup:tutupLembar,
   mod:function(el){ UI.mod=el.getAttribute("data-mod"); simpanUI(); render(); },
   "ng-tapis":function(el){ UI.ngTapis=el.getAttribute("data-v"); simpanUI(); render(); },
@@ -1842,7 +1847,7 @@ var ACT = {
         baris(h[2]&&h[3],"Ikon aplikasi (icons/icon-192.png, icon-512.png)",h[2]&&h[3]?"":"folder icons/ tidak dimuat naik")+
         baris(h[4],"Logo (icons/logo.png)",h[4]?"":"folder icons/ tidak dimuat naik")+
         baris(h[5],"sw.js ditemui",h[5]?"":"fail tiada di GitHub")+
-        baris(h[6],"Service worker aktif",h[6]?"":"muat semula halaman sekali; jika masih ✗, semak item di atas");
+        baris(h[6],"Sistem luar talian (service worker) aktif",h[6]?"":"muat semula halaman sekali; jika masih ✗, semak item di atas");
       var semua=h.every(Boolean);
       html+='<p class="nota" style="padding-top:8px">'+(ios? 'iPhone/iPad: Safari tidak memaparkan butang pasang. Gunakan butang Kongsi → <b>Tambah ke Skrin Utama</b> (mesti dalam Safari).'
         : semua? (pasangAcara?'Semua lulus. Tekan <b>Pasang aplikasi GMP</b> di atas.':'Semua lulus. Gunakan menu ⋮ Chrome → <b>Pasang aplikasi</b> / <b>Tambah ke skrin utama</b>. Jika aplikasi pernah dipasang, buang dahulu.')
@@ -1853,7 +1858,7 @@ var ACT = {
   pasang:function(){ if(!pasangAcara) return; pasangAcara.prompt(); pasangAcara.userChoice.then(function(){ pasangAcara=null; render(); }); },
   putus:function(el){ sahDua(el,function(){
     CFG.url=""; CFG.kod=""; CFG.peranan=""; CFG.negeri=""; simpanCfg(); OUTBOX=[]; META={masa:null,kosong:false};
-    DATA=binaAsas(); binaContoh(DATA); simpanLokal(); SEG.status="demo"; SEG.ralat=""; location.hash="utama"; render(); toast(GAS?"Anda telah log keluar":"Kembali ke mod demo");
+    DATA=binaAsas(); binaContoh(DATA); simpanLokal(); SEG.status="demo"; SEG.ralat=""; location.hash="utama"; render(); toast("Anda telah log keluar");
   }); },
   "isi-asas":function(el){
     el.disabled=true;
@@ -1964,7 +1969,7 @@ var BORANG = {
       var tukar = url!==CFG.url || kod!==CFG.kod;
       CFG.url=url; CFG.kod=kod; CFG.peranan=j.peranan; CFG.negeri=j.negeri||""; CFG.namaNegeri=j.namaNegeri||""; CFG.urlApp=j.urlApp||CFG.urlApp||""; simpanCfg();
       if(tukar){ OUTBOX=[]; JENIS.forEach(function(k){DATA[k]=[];}); META={masa:null,kosong:false}; simpanLokal(); }
-      toast(j.peranan==="mt"?"Bersambung sebagai Majlis Tertinggi":"Bersambung sebagai AJK "+(j.namaNegeri||""));
+      toast(j.peranan==="mt"?"Tersambung sebagai Majlis Tertinggi":"Tersambung sebagai AJK "+(j.namaNegeri||""));
       location.hash="utama";
       return segerak();
     }).catch(function(e){ toast(e.kod==="AKSES"?"Kod akses tidak sah":e.message); btn.disabled=false; btn.textContent=GAS?"Masuk":"Sambung"; })
@@ -2048,7 +2053,7 @@ function blokLokasi(a,idDiv){
   return '<div class="medan"><span class="label">Kawasan anda pada peta</span>'+
     '<div id="'+idDiv+'" class="peta-pilih" role="application" aria-label="Peta: ketik untuk menanda kawasan"></div>'+
     '<input type="hidden" id="iLat" value="'+esc(a.lat||"")+'"><input type="hidden" id="iLng" value="'+esc(a.lng||"")+'">'+
-    '<div class="baris-lokasi"><span id="teksLokasi" class="nota">'+(a.lat?'Kawasan ditanda: <b class="num">'+esc(a.lat)+', '+esc(a.lng)+'</b> (±1 km)':'Ketik pada peta untuk menanda kawasan anda.')+'</span>'+
+    '<div class="baris-lokasi"><span id="teksLokasi" class="nota">'+(a.lat?'Kawasan ditanda: <b class="num">'+esc(a.lat)+', '+esc(a.lng)+'</b> (±1 km)':'Tekan pada peta untuk menanda kawasan anda.')+'</span>'+
     '<button class="btn kecil" type="button" data-act="lokasi-saya">Guna lokasi semasa</button></div>'+
     '<p class="nota">Lokasi dibundarkan kepada ±1 km sebelum disimpan. Tanda kawasan tempat kerja atau pengajian; alamat rumah tidak diperlukan.</p></div>';
 }
@@ -2134,7 +2139,7 @@ function paparMasuk(){
       '</form>'+
       '<div class="kad blok daftar-ajak"><b>Belum ada akaun?</b><p class="nota">Daftar sebagai ahli GMP. Akaun diaktifkan selepas kelulusan Majlis Tertinggi.</p>'+
         '<button class="btn" type="button" data-act="masuk-mod" data-mod="daftar">Daftar ahli baharu</button></div>'+
-      '<button class="pautan" type="button" data-act="demo-masuk">Lihat demo tanpa log masuk</button></section>';
+      '</section>';
   }
   $("#isi").innerHTML=h; document.title="Aplikasi GMP";
   if(UI_MASUK==="daftar") pasangPemilih("petaDaftar");
@@ -2153,7 +2158,7 @@ function bersihSesi(){
 }
 function butangSibuk(form,teks){ var b=form.querySelector('button[type=submit]'); if(b){ b.disabled=true; b.setAttribute("data-asal",b.textContent); b.textContent=teks; } return function(){ if(b){ b.disabled=false; b.textContent=b.getAttribute("data-asal"); } }; }
 function urlUntukMasuk(){
-  var u=apiUrl(); if(!u){ var i=v("iApi"); if(i){ if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(i)){ toast("URL pelayan mesti bermula https://script.google.com/ dan berakhir /exec"); return null; } CFG.api=i; simpanCfg(); u=i; } }
+  var u=apiUrl(); if(!u){ var i=v("iApi"); if(i){ if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(i)){ toast(/\/library\//.test(i)? "Ini URL Library, bukan Aplikasi web. Apps Script → Terapkan → Penerapan baharu → jenis: Aplikasi web, kemudian salin URL /exec." : "URL pelayan mesti bermula https://script.google.com/ dan berakhir /exec"); return null; } CFG.api=i; simpanCfg(); u=i; } }
   if(!u){ toast("Isi URL pelayan dalam Tetapan pelayan"); return null; }
   return u;
 }
@@ -2296,12 +2301,12 @@ Object.assign(ACT,{
   },
   putus:function(el){ sahDua(el,function(){ ACT["log-keluar"](); }); },
   "lokasi-saya":function(el){
-    if(!navigator.geolocation){ toast("Peranti ini tidak menyokong lokasi. Ketik pada peta."); return; }
+    if(!navigator.geolocation){ toast("Peranti ini tidak menyokong lokasi. Tekan pada peta."); return; }
     el.disabled=true; el.textContent="Mencari…";
     navigator.geolocation.getCurrentPosition(function(p){
       el.disabled=false; el.textContent="Guna lokasi semasa";
       if(PEMILIH) PEMILIH.letak(p.coords.latitude,p.coords.longitude,true);
-    },function(){ el.disabled=false; el.textContent="Guna lokasi semasa"; toast("Lokasi tidak dibenarkan. Ketik pada peta untuk menanda kawasan."); },{enableHighAccuracy:false,timeout:15000,maximumAge:600000});
+    },function(){ el.disabled=false; el.textContent="Guna lokasi semasa"; toast("Lokasi tidak dibenarkan. Tekan pada peta untuk menanda kawasan."); },{enableHighAccuracy:false,timeout:15000,maximumAge:600000});
   },
   "peta-negeri":function(el){ var id=el.getAttribute("data-id"); UI.petaNg = UI.petaNg===id? "" : id; simpanUI(); render(); },
   "ahli-semak":function(el){ var a=cari("ahli",el.getAttribute("data-id")); if(a) lembarSemakAhli(a); },
@@ -2385,7 +2390,7 @@ var FB = null, JANJI_FB = null;
 PERANAN.ahli = "Ahli";
 HALAMAN.acara = {t:"Program",i:"program",s:"Pendaftaran, kehadiran & sijil"};
 HALAMAN.pengumuman = {t:"Pengumuman",i:"pengumuman",s:"Makluman & notifikasi"};
-HALAMAN.program.t = "Blueprint"; HALAMAN.program.s = "21 program, bajet & tugasan";
+HALAMAN.program.t = "Perancangan Program"; HALAMAN.program.s = "Senarai program, bajet & tugasan";
 IKON.pengumuman = '<path d="M4 10v4a1 1 0 0 0 1 1h2l5 4V5L7 9H5a1 1 0 0 0-1 1z"/><path d="M16 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>';
 IKON.sijil = '<circle cx="12" cy="9" r="5"/><path d="m9 13.5-1.5 7L12 18l4.5 2.5-1.5-7"/>';
 IKON.wang = IKON.kewangan;
@@ -2415,9 +2420,9 @@ function kemasStatus(){
   var pill=$("#segPill"), t=$("#segTeks");
   var tunggu = OUTBOX.length? " · "+OUTBOX.length+" menunggu" : "";
   var teks = {
-    demo:"Mod demo",
-    sedia: META.masa? "Disegerak "+new Date(META.masa).toLocaleTimeString("ms-MY",{hour:"2-digit",minute:"2-digit"})+tunggu : "Bersambung"+tunggu,
-    segerak:"Menyegerak…", luar:"Luar talian"+tunggu, ralat:"Gagal segerak"+tunggu, akses:"Sesi tamat"
+    demo:"Belum log masuk",
+    sedia: META.masa? "Dimuat semula "+new Date(META.masa).toLocaleTimeString("ms-MY",{hour:"2-digit",minute:"2-digit"})+tunggu : "Tersambung"+tunggu,
+    segerak:"Memuat semula…", luar:"Luar talian"+tunggu, ralat:"Gagal dimuat semula"+tunggu, akses:"Sesi tamat"
   }[SEG.status];
   pill.className="seg-pill "+SEG.status; t.textContent=teks; pill.title=SEG.ralat||"";
   $("#brandNama").textContent = isMT()? "GMP Malaysia" : "GMP "+(namaNegeri(ngSaya())||"Malaysia");
@@ -2475,6 +2480,13 @@ function render(lembut){
 }
 
 /* ---------- Firebase ---------- */
+function sebabConfig(){
+  if(window.GMP_FIREBASE===undefined && window.GMP_API_URL===undefined) return "Fail <b>config.js</b> tidak dapat dibaca: sama ada tiada dalam folder yang sama dengan index.html, atau ada ralat taip (contohnya tanda petik berganda \"\"). Buka "+esc(location.href.replace(/[#?].*$/,"").replace(/[^\/]*$/,""))+"config.js untuk menyemak.";
+  var c=window.GMP_FIREBASE||{};
+  if(!/^AIza/.test(c.apiKey||"")) return "Nilai <b>apiKey</b> dalam config.js kosong atau tidak bermula dengan AIza.";
+  if(!c.projectId) return "Nilai <b>projectId</b> dalam config.js kosong.";
+  return "Semak GMP_FIREBASE dalam config.js.";
+}
 function fbSedia(){ return /^AIza/.test(FBCFG.apiKey||"") && !!FBCFG.projectId; }
 function muatFirebase(){
   if(FB) return Promise.resolve(FB);
@@ -2526,7 +2538,7 @@ function hantarApi(url,badan){
   var ctrl = window.AbortController? new AbortController():null;
   var t = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 60000);
   return fetch(url,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(badan),redirect:"follow",signal:ctrl?ctrl.signal:undefined})
-    .then(function(r){ if(!r.ok) throw new Error("Pelayan membalas HTTP "+r.status); return r.json(); })
+    .then(function(r){ if(!r.ok) throw new Error("Pelayan membalas dengan kod HTTP "+r.status); return r.json(); })
     .then(function(j){ clearTimeout(t); if(!j.ok){ var e=new Error(j.ralat||"Ralat pelayan"); e.kod=j.kodRalat; throw e; } return j; },
           function(e){ clearTimeout(t); if(e&&e.name==="AbortError") e=new Error("Tiada jawapan daripada pelayan (60 saat)"); else if(e instanceof TypeError) e=new Error(navigator.onLine?"Tidak dapat menghubungi pelayan GMP.":"Tiada sambungan internet."); throw e; });
 }
@@ -2552,7 +2564,7 @@ function paparMasuk(){
   var pill=$("#segPill"); pill.className="seg-pill"; $("#segTeks").textContent="Belum log masuk";
   var ada=$("#masukMod"); if(ada && ada.getAttribute("data-mod")===UI_MASUK && !NOTIS_MASUK) return;
   var notis = NOTIS_MASUK? '<div class="amaran"><span>'+esc(NOTIS_MASUK)+'</span></div>' : ''; NOTIS_MASUK="";
-  var tiadaFb = fbSedia()? '' : '<div class="amaran bahaya"><span><b>Firebase belum dikonfigurasi.</b> Pentadbir perlu mengisi GMP_FIREBASE dalam config.js. Anda masih boleh melihat demo.</span></div>';
+  var tiadaFb = fbSedia()? '' : '<div class="amaran bahaya"><span><b>Firebase belum dikonfigurasi.</b> '+sebabConfig()+'</span></div>';
   var emelFb = FB&&FB.auth.currentUser? FB.auth.currentUser.email : "";
   var h, M=UI_MASUK;
   if(M==="daftar"){
@@ -2568,7 +2580,7 @@ function paparMasuk(){
   } else if(M==="sahkan"){
     h='<section class="masuk" id="masukMod" data-mod="sahkan">'+kepalaMasuk()+'<p class="sub">Langkah 2 daripada 3 · Sahkan e-mel</p>'+notis+
       '<div class="kad blok"><p style="font-size:14.5px">Pautan pengesahan telah dihantar ke <b>'+esc(emelFb)+'</b>. Buka e-mel itu dan klik pautan, kemudian kembali ke sini.</p>'+
-      '<p class="nota">Tidak jumpa? Semak folder spam atau promosi.</p>'+
+      '<p class="nota">Tiada dalam peti masuk? Semak folder spam atau promosi.</p>'+
       '<button class="btn utama" type="button" data-act="fb-semak-sah">Saya sudah sahkan</button>'+
       '<button class="btn" type="button" data-act="fb-hantar-sah">Hantar semula e-mel</button></div>'+
       '<button class="pautan" type="button" data-act="fb-keluar">Guna e-mel lain</button></section>';
@@ -2601,13 +2613,13 @@ function paparMasuk(){
       '</form>'+
       '<div class="kad blok daftar-ajak"><b>Belum ada akaun?</b><p class="nota">Daftar sebagai ahli GMP. Akaun diaktifkan selepas kelulusan Majlis Tertinggi.</p>'+
         '<button class="btn" type="button" data-act="masuk-mod" data-mod="daftar">Daftar ahli baharu</button></div>'+
-      '<button class="pautan" type="button" data-act="demo-masuk">Lihat demo tanpa log masuk</button></section>';
+      '</section>';
   }
   $("#isi").innerHTML=h; document.title="Aplikasi GMP";
   if(M==="profil") pasangPemilih("petaDaftar");
 }
 function urlUntukMasuk(){
-  var u=apiUrl(); if(!u){ var i=v("iApi"); if(i){ if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(i)){ toast("URL pelayan mesti bermula https://script.google.com/ dan berakhir /exec"); return null; } CFG.api=i; simpanCfg(); u=i; } }
+  var u=apiUrl(); if(!u){ var i=v("iApi"); if(i){ if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(i)){ toast(/\/library\//.test(i)? "Ini URL Library, bukan Aplikasi web. Apps Script → Terapkan → Penerapan baharu → jenis: Aplikasi web, kemudian salin URL /exec." : "URL pelayan mesti bermula https://script.google.com/ dan berakhir /exec"); return null; } CFG.api=i; simpanCfg(); u=i; } }
   if(!u){ toast("Isi URL pelayan dalam Tetapan pelayan"); return null; }
   return u;
 }
@@ -2658,14 +2670,14 @@ function kadPush(penuh){
   if(!penuh && s!=="sedia") return "";
   var m={
     demo:"Notifikasi tersedia selepas log masuk.",
-    tiada:"Notifikasi push belum dikonfigurasi oleh pentadbir (GMP_VAPID dalam config.js).",
+    tiada:"Notifikasi belum dikonfigurasi oleh pentadbir (GMP_VAPID dalam config.js).",
     ios:"Di iPhone/iPad, pasang aplikasi ke Skrin Utama dahulu (Safari → Kongsi → Tambah ke Skrin Utama), kemudian buka dari ikon untuk mengaktifkan notifikasi.",
-    tidak:"Pelayar ini tidak menyokong notifikasi push. Cuba Chrome (Android/komputer) atau Safari (iOS 16.4+, selepas dipasang).",
+    tidak:"Pelayar ini tidak menyokong notifikasi. Cuba Chrome (Android/komputer) atau Safari (iOS 16.4+, selepas dipasang).",
     ditolak:"Notifikasi disekat oleh pelayar. Benarkan dalam tetapan laman (ikon 🔒 di bar alamat), kemudian cuba lagi.",
     sedia:"Terima makluman pengumuman, kelulusan, laporan dan program baharu walaupun aplikasi ditutup.",
     aktif:"Notifikasi aktif pada peranti ini."
   }[s];
-  return '<div class="kad blok kad-push"><div class="baris-push">'+svg("pengumuman")+'<div><b>Notifikasi push</b><p class="nota">'+m+'</p></div></div>'+
+  return '<div class="kad blok kad-push"><div class="baris-push">'+svg("pengumuman")+'<div><b>Notifikasi telefon</b><p class="nota">'+m+'</p></div></div>'+
     (s==="sedia"?'<div class="lembar-k"><button class="btn utama" type="button" data-act="push-hidup">Aktifkan notifikasi</button></div>':'')+
     (s==="aktif"?'<div class="lembar-k"><button class="btn" type="button" data-act="push-uji">Hantar ujian</button><button class="btn" type="button" data-act="push-mati">Matikan</button></div>':'')+'</div>';
 }
@@ -2677,11 +2689,11 @@ function hidupkanPush(el){
   }).then(function(x){
     var fb=x[0], m=x[1], reg=x[2];
     return m.isSupported().then(function(ok){
-      if(!ok) throw new Error("Pelayar ini tidak menyokong notifikasi push Firebase.");
+      if(!ok) throw new Error("Pelayar ini tidak menyokong notifikasi.");
       return m.getToken(m.getMessaging(fb.app),{vapidKey:VAPID, serviceWorkerRegistration:reg});
     });
   }).then(function(tok){
-    if(!tok) throw new Error("Token peranti tidak diterima.");
+    if(!tok) throw new Error("Kod pendaftaran peranti tidak diterima.");
     return api("daftarPush",{token:tok}).then(function(j){ lsSet("gmp.push",tok); toast(j.aktif?"Notifikasi diaktifkan":"Peranti didaftar. Pentadbir belum mengaktifkan penghantaran (FCM_SA)."); });
   }).catch(function(e){ toast(e.message||"Gagal mengaktifkan notifikasi"); }).then(function(){ render(); });
 }
@@ -2732,11 +2744,11 @@ HAL.acara = function(){
   var lepas=semua.filter(function(p){return (p.tarikhTamat||p.tarikh) && (p.tarikhTamat||p.tarikh)<h;}).reverse();
   var sijil=DATA.penyertaan.filter(function(x){return x.ahli===idSaya() && ya(x.hadir);});
   return '<div class="kepala"><div><h1>Program</h1><div class="sub">Daftar program, rekod kehadiran dan muat turun sijil penyertaan</div></div></div>'+
-    (isMT() && !semua.length? '<div class="amaran"><span>Belum ada program dengan tarikh. Buka program di <b>Blueprint</b>, isi tarikh & tempat, kemudian buka pendaftaran.</span><a class="btn kecil" href="#program">Blueprint</a></div>' : '')+
+    (isMT() && !semua.length? '<div class="amaran"><span>Belum ada program dengan tarikh. Buka program di <b>Perancangan Program</b>, isi tarikh & tempat, kemudian buka pendaftaran.</span><a class="btn kecil" href="#program">Perancangan Program</a></div>' : '')+
     (datang.length? '<section class="blok"><h2>Akan datang <span class="kira">'+datang.length+'</span></h2><div class="senarai">'+datang.map(kadAcara).join("")+'</div></section>'
       : kosong("Tiada program akan datang","Program yang dibuka untuk pendaftaran akan muncul di sini."))+
     (sijil.length? '<section class="blok"><h2>Sijil saya <span class="kira">'+sijil.length+'</span></h2><div class="senarai">'+sijil.map(function(r){var p=cari("program",r.program)||{nama:r.program};
-      return '<div class="tg" data-act="sijil" data-id="'+esc(r.id)+'" role="button" tabindex="0" style="grid-template-columns:auto minmax(0,1fr) auto"><span class="ikon-sijil">'+svg("sijil")+'</span><div style="min-width:0"><div class="tg-t" style="text-decoration:none;color:var(--ink)">'+esc(p.nama)+'</div><div class="tg-m"><span class="num">'+esc(r.sijilNo||"Nombor dijana selepas segerak")+'</span></div></div><span class="baki">Cetak</span></div>';}).join("")+'</div></section>':'')+
+      return '<div class="tg" data-act="sijil" data-id="'+esc(r.id)+'" role="button" tabindex="0" style="grid-template-columns:auto minmax(0,1fr) auto"><span class="ikon-sijil">'+svg("sijil")+'</span><div style="min-width:0"><div class="tg-t" style="text-decoration:none;color:var(--ink)">'+esc(p.nama)+'</div><div class="tg-m"><span class="num">'+esc(r.sijilNo||"Nombor sijil dijana selepas data dihantar")+'</span></div></div><span class="baki">Cetak</span></div>';}).join("")+'</div></section>':'')+
     (lepas.length? '<details class="lipat"><summary>Program lepas · '+lepas.length+'</summary><div class="senarai">'+lepas.map(kadAcara).join("")+'</div></details>':'');
 };
 function lembarPeserta(p){
@@ -2750,7 +2762,7 @@ function lembarPeserta(p){
     '<div class="senarai-hadir">'+(peserta.length? peserta.map(function(x){
       return '<label class="hadir-baris"><input type="checkbox" data-act="tanda-hadir" data-id="'+esc(x.id)+'"'+(ya(x.hadir)?" checked":"")+'>'+
         '<span><b>'+esc(x.nama)+'</b><small>'+esc([namaNegeri(x.negeri),x.institusi].filter(Boolean).join(" · "))+(x.sijilNo?' · <span class="num">'+esc(x.sijilNo)+'</span>':'')+'</small></span></label>';}).join("") : '<p class="nota">Belum ada pendaftaran.</p>')+'</div>'+
-    '<div class="medan"><label for="iWalkin">Tambah peserta walk-in (ahli berdaftar)</label><div class="baris-lokasi"><select id="iWalkin" style="flex:1;min-width:0"><option value="">— Pilih ahli —</option>'+
+    '<div class="medan"><label for="iWalkin">Tambah peserta tanpa pendaftaran awal (ahli berdaftar)</label><div class="baris-lokasi"><select id="iWalkin" style="flex:1;min-width:0"><option value="">— Pilih ahli —</option>'+
       calon.map(function(a){return '<option value="'+esc(a.id)+'">'+esc(a.nama+" · "+namaNegeri(a.negeri))+'</option>';}).join("")+'</select>'+
       '<button class="btn kecil" type="button" data-act="walkin" data-id="'+esc(p.id)+'">Tambah & tanda hadir</button></div></div>'+
     '<button class="btn" type="button" data-act="peserta-csv" data-id="'+esc(p.id)+'">Salin senarai (CSV)</button>',"");
@@ -2806,7 +2818,7 @@ function kadPengumuman(p){
 }
 HAL.pengumuman = function(){
   var p=DATA.pengumuman.slice().sort(function(a,b){ return (ya(b.penting)?1:0)-(ya(a.penting)?1:0) || ((b.pada||"")<(a.pada||"")?-1:1); });
-  return '<div class="kepala"><div><h1>Pengumuman</h1><div class="sub">'+(isAhli()?"Makluman daripada Majlis Tertinggi dan AJK negeri anda":"Makluman kepada ahli; dihantar sebagai notifikasi push")+'</div></div></div>'+
+  return '<div class="kepala"><div><h1>Pengumuman</h1><div class="sub">'+(isAhli()?"Makluman daripada Majlis Tertinggi dan AJK negeri anda":"Makluman kepada ahli; dihantar sebagai notifikasi telefon")+'</div></div></div>'+
     kadPush(false)+
     (p.length? '<div class="senarai">'+p.map(kadPengumuman).join("")+'</div>' : kosong("Belum ada pengumuman", isStaf()?'Tekan "Pengumuman" untuk menerbitkan makluman pertama.':"Pengumuman daripada GMP akan muncul di sini."));
 };
@@ -2820,7 +2832,7 @@ function lembarPengumuman(p){
       medan("iNegeriPg","Negeri (jika satu negeri)",'<select id="iNegeriPg"><option value="">—</option>'+opsyenNegeri(p.negeri)+'</select>')+'</div>'
       : '<p class="nota">Sasaran: ahli dan AJK <b>'+esc(namaNegeri(ngSaya()))+'</b>.</p>')+
     '<label class="suis">Tanda sebagai penting (dipaparkan di atas)<input type="checkbox" id="iPenting"'+(ya(p.penting)?" checked":"")+'></label>'+
-    (baru?'<p class="nota">Notifikasi push dihantar kepada sasaran sebaik pengumuman disegerak.</p>':''),
+    (baru?'<p class="nota">Notifikasi dihantar kepada sasaran sebaik pengumuman disimpan.</p>':''),
     '<button class="btn utama" type="submit">'+(baru?"Terbitkan":"Simpan")+'</button>'+(baru?'':butangPadam("pengumuman-padam",p.id)),"pengumuman");
 }
 function blokPengumumanRingkas(){
@@ -2920,11 +2932,14 @@ lembarProgram = function(p){
 };
 Object.assign(BORANG,{
   program:function(){
-    var p=cari("program",v("iId")); if(!p) return;
+    var p=cari("program",v("iId"));
+    if(!v("iNamaProg")){ toast("Isi nama program"); return false; }
+    if(!/^\d{4}-\d{2}$/.test(v("iBulan")) && !v("iTarikhP")){ toast("Isi bulan program (cth 2027-03)"); return false; }
+    if(!p) p={id:v("iId"),status:"rancang",urutan:String(DATA.program.length+1),belanja:"",peserta:"",catatan:""};
     var bulan=/^\d{4}-\d{2}$/.test(v("iBulan"))? v("iBulan") : p.bulan;
     var tarikh=v("iTarikhP");
     if(tarikh) bulan=tarikh.slice(0,7);
-    simpan("program",Object.assign({},p,{status:v("iStatusP"),bulan:bulan,peneraju:v("iPeneraju"),belanja:v("iBelanja"),peserta:v("iPeserta"),catatan:v("iCatatanP"),
+    simpan("program",Object.assign({},p,{nama:v("iNamaProg"),teras:v("iTerasP"),bajet:v("iBajetP"),status:v("iStatusP"),bulan:bulan,peneraju:v("iPeneraju"),belanja:v("iBelanja"),peserta:v("iPeserta"),catatan:v("iCatatanP"),
       tarikh:tarikh,tarikhTamat:v("iTarikhTP"),tempat:v("iTempatP"),kapasiti:v("iKapasiti"),penerangan:v("iPenerangan"),buka:v("iBuka"),kodHadir:v("iKodHadirP").toUpperCase()}),
       v("iBuka")&&!ya(p.buka)?"Pendaftaran dibuka; ahli akan dimaklumkan":"Program dikemas kini");
   },
@@ -3306,7 +3321,7 @@ function mulaV4(){
   }
 }
 
-function binaContoh(D){
+function binaContoh(D){ return;   /* mod demo dibuang */
   binaContohAsas(D);
   var h=hariIni();
   D.program.forEach(function(p){
@@ -3391,7 +3406,7 @@ HAL.upta = function(){
   var semua=uptaSaya(), X=tapisUpta(), ng=ngSaya();
   var belum=semua.filter(function(u){return (u.susulan||"belum")==="belum";}).length;
   var kepala='<div class="kepala"><div><h1>Ahli UPTA</h1><div class="sub">'+(isMT()? semua.length+' pendaftar daripada borang UPTA' : semua.length+' pendaftar berkaitan '+esc(namaNegeri(ng)))+'</div></div></div>';
-  if(!DATA.upta.length) return kepala+kosong("Belum ada data UPTA", isMT()? 'Isi UPTA_SHEET (URL Sheets respons borang UPTA) di bahagian atas Code.gs, jalankan "sediakan", kemudian segerak semula.' : "Majlis Tertinggi belum menyambungkan borang UPTA, atau belum ada pendaftar dari negeri anda.");
+  if(!DATA.upta.length) return kepala+kosong("Belum ada data UPTA", isMT()? 'Isi UPTA_SHEET (URL Sheets respons borang UPTA) di bahagian atas Code.gs, jalankan "sediakan", kemudian muat semula aplikasi.' : "Majlis Tertinggi belum menyambungkan borang UPTA, atau belum ada pendaftar dari negeri anda.");
   var jubin = isMT()?
     [[semua.length,"Jumlah pendaftar"],[belum,"Belum dihubungi"],[semua.filter(function(u){return u.susulan==="aktif";}).length,"Aktif dalam GMP"],[semua.filter(uptaBaru).length,"Baharu (30 hari)"]] :
     [[semua.filter(function(u){return u.negeriAsal===ng;}).length,"Berasal dari "+namaNegeri(ng)],[semua.filter(function(u){return u.negeriKampus===ng;}).length,"Belajar di "+namaNegeri(ng)],[belum,"Belum dihubungi"],[semua.filter(uptaBaru).length,"Baharu (30 hari)"]];
@@ -3525,7 +3540,36 @@ function contohUpta(D){
     c(6,"Pelajar Dietetik F","Kedah","ng-kedah","IIUM Kuantan","ng-pahang","Dietetik","6","Media","3","aktif",90)
   ];
 }
-if(!CFG.url && !DATA.upta.length) contohUpta(DATA);
+
+
+/* ---------- Perancangan Program: tambah, padam & anjak tarikh ---------- */
+FAB.mt.program = {t:"Program",a:"program-baru"};
+function idProgramBaru(){ var n=0; DATA.program.forEach(function(p){ var m=/^P(\d+)$/.exec(p.id); if(m) n=Math.max(n,+m[1]); }); return "P"+p2(n+1); }
+function tambahBulan(b,n){ var x=b.split("-"), t=(+x[0])*12+(+x[1]-1)+n; return Math.floor(t/12)+"-"+p2(t%12+1); }
+function tambahBulanTarikh(t,n){ return t&&/^\d{4}-\d{2}-\d{2}/.test(t)? tambahBulan(t.slice(0,7),n)+t.slice(7) : t; }
+function bezaBulan(a,b){ var x=a.split("-"), y=b.split("-"); return ((+y[0])*12+(+y[1]))-((+x[0])*12+(+x[1])); }
+function blokAnjakProgram(){
+  if(!isMT() || !DATA.program.length) return "";
+  var awal=DATA.program.map(function(p){return p.bulan;}).filter(Boolean).sort()[0];
+  if(!awal || awal>=FASA[0].d) return "";
+  var n=bezaBulan(awal,FASA[0].d);
+  return '<div class="amaran"><span>Program dalam Google Sheets masih bermula <b>'+fmtBulan(awal)+'</b>. Anjak semua tarikh program (dan tarikh tugasannya yang belum selesai) sebanyak <b>'+n+' bulan</b> supaya bermula <b>'+fmtBulan(FASA[0].d)+'</b>?</span>'+
+    '<button class="btn kecil utama" type="button" data-act="anjak-program" data-n="'+n+'" data-sah="0">Anjak tarikh</button></div>';
+}
+Object.assign(ACT,{
+  "program-baru":function(){ lembarProgram({id:idProgramBaru(),nama:"",bulan:"",teras:"T1",peneraju:"",bajet:"",status:"rancang",catatan:""}); },
+  "program-padam":function(el){ var id=el.getAttribute("data-id");
+    if(DATA.penyertaan.some(function(x){return x.program===id;})){ toast("Program ini ada peserta berdaftar. Tukar status kepada Dibatalkan."); return; }
+    sahDua(el,function(){
+      var ops=[{op:"padam",jenis:"program",id:id}].concat(DATA.tugas.filter(function(t){return t.kod===id;}).map(function(t){return {op:"padam",jenis:"tugas",id:t.id};}));
+      laksana(ops,"Program dipadam"); tutupLembar(); }); },
+  "anjak-program":function(el){ var n=+el.getAttribute("data-n");
+    sahDua(el,function(){
+      var ops=DATA.program.map(function(p){ return {op:"simpan",jenis:"program",rekod:Object.assign({},p,{bulan:p.bulan?tambahBulan(p.bulan,n):p.bulan,tarikh:tambahBulanTarikh(p.tarikh,n),tarikhTamat:tambahBulanTarikh(p.tarikhTamat,n)})}; });
+      var kod={}; DATA.program.forEach(function(p){kod[p.id]=1;});
+      DATA.tugas.filter(function(t){return kod[t.kod] && t.tarikh && t.status!=="siap";}).forEach(function(t){ ops.push({op:"simpan",jenis:"tugas",rekod:Object.assign({},t,{tarikh:tambahBulanTarikh(t.tarikh,n)})}); });
+      laksana(ops,"Tarikh "+DATA.program.length+" program dianjak "+n+" bulan"); }); }
+});
 
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;
