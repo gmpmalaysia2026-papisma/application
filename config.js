@@ -1,6 +1,6 @@
    window.GMP_API_URL = "https://script.google.com/macros/s/…/exec";
    window.GMP_FIREBASE = {
-     apiKey: "AIza...",
+     apiKey: ""AIzaSyAyh1bgb1lAR4cILQTZtv6--Tl-Q7yKX9E",
      authDomain: "gmp-papisma.firebaseapp.com",
      projectId: "gmp-papisma",
      messagingSenderId: "1234567890",
