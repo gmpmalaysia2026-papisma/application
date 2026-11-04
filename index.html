@@ -515,7 +515,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.2.0";
+var VERSI = "4.2.1";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -2485,7 +2485,9 @@ function muatFirebase(){
     FB=Object.assign({}, m[1], {app:app, auth:m[1].getAuth(app)});
     try{ FB.auth.languageCode="ms"; }catch(e){}
     return FB.auth.authStateReady().then(function(){ return FB; });
-  }).catch(function(e){ JANJI_FB=null; FB=null; throw new Error("Tidak dapat memuatkan sistem log masuk. Semak sambungan internet."); });
+  }).catch(function(e){ JANJI_FB=null; FB=null; console.error(e);
+    var m=String(e&&e.message||e);
+    throw new Error(/fetch|import|network|load/i.test(m)? "Tidak dapat memuatkan sistem log masuk. Semak sambungan internet." : "Konfigurasi Firebase dalam config.js bermasalah: "+m); });
   return JANJI_FB;
 }
 var RALAT_FB = {
@@ -2498,7 +2500,21 @@ var RALAT_FB = {
   "auth/operation-not-allowed":"Log masuk e-mel belum diaktifkan dalam Firebase (Authentication → Sign-in method).",
   "auth/unauthorized-continue-uri":"Domain aplikasi belum dibenarkan dalam Firebase."
 };
-function mesejFb(e){ return RALAT_FB[e&&e.code] || (e&&e.message) || "Ralat sistem"; }
+Object.assign(RALAT_FB,{
+  "auth/configuration-not-found":"Firebase Authentication belum diaktifkan. Firebase console → Build → Authentication → Get started, kemudian hidupkan Email/Password.",
+  "auth/invalid-api-key":"apiKey dalam config.js tidak sah. Salin semula dari Firebase → Project settings → General → Your apps.",
+  "auth/api-key-not-valid.-please-pass-a-valid-api-key.":"apiKey dalam config.js tidak sah. Salin semula dari Firebase → Project settings → General → Your apps.",
+  "auth/admin-restricted-operation":"Pendaftaran akaun disekat dalam Firebase. Authentication → Settings → User actions → tandakan 'Enable create (sign-up)'.",
+  "auth/app-not-authorized":"Kunci API tidak dibenarkan untuk domain ini. Semak sekatan kunci API dalam Google Cloud Console → Credentials.",
+  "auth/internal-error":"Ralat dalaman Firebase. Semak config.js (apiKey, authDomain, projectId, appId) sepadan dengan projek Firebase."
+});
+function mesejFb(e){
+  var k=e&&e.code||"";
+  if(RALAT_FB[k]) return RALAT_FB[k];
+  if(/requests-from-referer|referer/i.test(k+" "+(e&&e.message))) return "Kunci API menyekat domain ini. Google Cloud Console → APIs & Services → Credentials → kunci Browser → tambah "+location.origin+"/* dalam Website restrictions.";
+  if(/api-key/i.test(k)) return RALAT_FB["auth/invalid-api-key"];
+  return ((e&&e.message)||"Ralat sistem")+(k?" ["+k+"]":"");
+}
 function tokenId(){
   return muatFirebase().then(function(fb){
     var u=fb.auth.currentUser;
