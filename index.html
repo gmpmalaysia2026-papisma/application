@@ -491,6 +491,13 @@ details.pelayan .medan{margin-top:8px}
 .tag-ng.saya{background:var(--green-soft);color:var(--green);font-weight:600}
 .tag-ng.tiada{color:var(--crit)}
 .penapis .baris+.baris{margin-top:8px}
+.acara.ada-poster .poster{grid-column:1/-1;margin:-14px -14px 0;border:0;padding:0;background:var(--surface-2);border-radius:12px 12px 0 0;overflow:hidden;cursor:zoom-in;display:block;min-height:120px}
+.poster img{display:block;width:100%;max-height:460px;object-fit:contain;background:var(--surface-2)}
+.poster.gagal{min-height:0}.poster.gagal img{display:none}
+.poster.kecil{max-width:220px;border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:8px}
+.poster.kecil img{max-height:300px}
+.poster.besar img{max-height:none;border-radius:8px}
+.poster-prevu{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:6px}
 </style>
 </head>
 <body>
@@ -515,7 +522,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.6.0";
+var VERSI = "4.7.0";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -3732,6 +3739,80 @@ BORANG.program = function(form,btn){
   try{ r=BORANG_PROGRAM_PN(form,btn); } finally { simpan=asal; }
   return r;
 };
+
+/* ---------- Poster & pautan dalam talian program ---------- */
+function urlSah(u){ return /^https:\/\/[^\s"'<>]+$/i.test(u||""); }
+function labelPautan(u){ return /zoom\.us/i.test(u)? "Sertai Zoom" : /meet\.google/i.test(u)? "Sertai Google Meet" : /teams\.microsoft|teams\.live/i.test(u)? "Sertai Teams" : "Pautan dalam talian"; }
+var KAD_ACARA_PO = kadAcara;
+kadAcara = function(p){
+  var h=KAD_ACARA_PO(p);
+  if(p.poster) h=h.replace(/^<article class="acara([^"]*)">/,'<article class="acara$1 ada-poster"><button type="button" class="poster" data-act="poster-buka" data-id="'+esc(p.id)+'" data-poster="'+esc(p.poster)+'" aria-label="Poster '+esc(p.nama)+'"><img alt="Poster '+esc(p.nama)+'"></button>');
+  if(urlSah(p.pautan)){
+    var lepas=(p.tarikhTamat||p.tarikh) && (p.tarikhTamat||p.tarikh)<hariIni();
+    var btn='<a class="btn kecil'+(hariAcara(p)?' utama':'')+'" target="_blank" rel="noopener" href="'+esc(p.pautan)+'">'+labelPautan(p.pautan)+'</a>';
+    if(!lepas) h = h.indexOf('<div class="lembar-k">')>=0? h.replace('<div class="lembar-k">','<div class="lembar-k">'+btn) : h.replace(/<\/div><\/article>$/,'<div class="lembar-k">'+btn+'</div></div></article>');
+  }
+  return h;
+};
+function muatPoster(akar){
+  [].slice.call((akar||document).querySelectorAll("[data-poster]")).forEach(function(el){
+    var img=el.querySelector("img"); if(!img || img.getAttribute("src")) return;
+    var id=el.getAttribute("data-poster");
+    if(urlSah(id)){ img.src=id; return; }
+    if(!CFG.url) return;
+    ambilGambar(id).then(function(g){ img.src="data:"+g.jenis+";base64,"+g.data; }).catch(function(){ el.classList.add("gagal"); });
+  });
+}
+var RENDER_PO = render;
+render = function(l){ RENDER_PO(l); try{ muatPoster($("#isi")); }catch(e){} };
+function lakarPoster(){
+  var w=document.getElementById("posterPrevu"); if(!w) return;
+  var id=v("iPosterP");
+  w.innerHTML = id? '<div class="poster kecil" data-poster="'+esc(id)+'"><img alt="Poster"></div><button class="btn kecil bahaya" type="button" data-act="poster-buang">Buang poster</button>'
+                  : '<label class="btn kecil"><input type="file" id="iFailPoster" accept="image/jpeg,image/png" hidden>Muat naik poster</label>';
+  muatPoster(w);
+}
+var LEMBAR_PROGRAM_PO = lembarProgram;
+lembarProgram = function(p){
+  LEMBAR_PROGRAM_PO(p);
+  var form=document.getElementById("fLembar"); if(!form) return;
+  var buka=form.querySelector("#iBuka"); if(!buka) return;
+  var d=document.createElement("div");
+  d.innerHTML='<div class="medan"><label>Poster program</label><input type="hidden" id="iPosterP" value="'+esc(p.poster||"")+'"><div id="posterPrevu" class="poster-prevu"></div>'+
+      '<p class="nota">JPEG/PNG. Poster dipaparkan pada kad program dalam tab Program. Boleh juga tampal pautan gambar (https://…) di bawah.</p>'+
+      '<input type="url" id="iPosterUrl" placeholder="atau pautan gambar poster (pilihan)" value="'+esc(urlSah(p.poster)?p.poster:"")+'"></div>'+
+    medan("iPautanP","Pautan Zoom / Google Meet (jika dalam talian)",'<input type="url" id="iPautanP" inputmode="url" placeholder="https://meet.google.com/… atau https://zoom.us/j/…" value="'+esc(p.pautan||"")+'">');
+  var label=buka.closest("label"); label.parentNode.insertBefore(d,label);
+  lakarPoster();
+};
+var BORANG_PROGRAM_PO = BORANG.program;
+BORANG.program = function(form,btn){
+  var url=v("iPosterUrl"), pautan=v("iPautanP");
+  if(url && !urlSah(url)){ toast("Pautan poster mesti bermula https://"); return false; }
+  if(pautan && !urlSah(pautan)){ toast("Pautan Zoom / Google Meet mesti bermula https://"); return false; }
+  var poster=url || v("iPosterP");
+  var asal=simpan, r;
+  simpan=function(jenis,rekod,mesej){ simpan=asal; return asal(jenis,Object.assign(rekod,{poster:poster,pautan:pautan}),mesej); };
+  try{ r=BORANG_PROGRAM_PO(form,btn); } finally { simpan=asal; }
+  return r;
+};
+Object.assign(ACT,{
+  "poster-buang":function(){ var h=document.getElementById("iPosterP"); if(h) h.value=""; var u=document.getElementById("iPosterUrl"); if(u) u.value=""; lakarPoster(); },
+  "poster-buka":function(el){ var p=cari("program",el.getAttribute("data-id")); if(!p) return;
+    var img=el.querySelector("img");
+    bukaLembar(esc(p.nama),'<div class="poster besar"><img alt="Poster '+esc(p.nama)+'" src="'+esc(img&&img.getAttribute("src")||"")+'"></div>'+
+      (img&&img.getAttribute("src")?'<div class="lembar-k"><a class="btn" download="poster-'+esc(p.id)+'.jpg" href="'+esc(img.getAttribute("src"))+'">Simpan poster</a></div>':''),"");
+  }
+});
+document.addEventListener("change",function(e){
+  if(e.target.id!=="iFailPoster") return;
+  var f=e.target.files&&e.target.files[0]; if(!f) return;
+  if(!CFG.url){ toast("Muat naik poster memerlukan log masuk"); return; }
+  toast("Memuat naik poster…");
+  mampat(f).then(function(b64){ return api("muatGambar",{data:b64,jenisFail:"image/jpeg",nama:"poster-"+f.name}).then(function(j){ GAMBAR[j.id]={jenis:"image/jpeg",data:b64}; return j.id; }); })
+    .then(function(id){ var h=document.getElementById("iPosterP"); if(h) h.value=id; var u=document.getElementById("iPosterUrl"); if(u) u.value=""; lakarPoster(); toast("Poster dimuat naik. Tekan Simpan."); })
+    .catch(function(err){ toast(err.message||"Muat naik gagal"); });
+});
 
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;
