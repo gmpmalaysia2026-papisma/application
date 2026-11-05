@@ -498,6 +498,8 @@ details.pelayan .medan{margin-top:8px}
 .poster.kecil img{max-height:300px}
 .poster.besar img{max-height:none;border-radius:8px}
 .poster-prevu{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:6px}
+.menu a span.lencana-dalam{display:inline-block;font-size:10px;color:#fff;line-height:16px}
+@media (max-width:440px){ .seg-pill .pj{display:none} .brand{flex:1 1 auto} .brand b,.brand span{overflow:hidden;text-overflow:ellipsis} }
 </style>
 </head>
 <body>
@@ -522,7 +524,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.7.0";
+var VERSI = "4.7.2";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -869,7 +871,7 @@ function segerak(){
     if(j.akses){ CFG.peranan=j.akses.peranan; CFG.negeri=j.akses.negeri||""; simpanCfg(); }
     terimaData(j.data);
     if(CFG.akaun){ var me=cari("ahli",CFG.akaun.id); if(me){ CFG.akaun=me; if(me.jawatanId) CFG.saya=me.jawatanId; simpanCfg(); } }
-    META.masa=j.masa; META.kosong=!(j.data.orang||[]).length;
+    META.masa=j.masa; META.kosong=!(j.data.orang||[]).length; META.versiPelayan=j.versi||"";
     simpanLokal();
     SEG.status="sedia"; SEG.ralat = gagal.length? gagal.length+" perubahan ditolak: "+gagal[0].ralat : "";
     render(true);
@@ -900,7 +902,7 @@ function kemasStatus(){
     sedia: META.masa? "Dimuat semula "+new Date(META.masa).toLocaleTimeString("ms-MY",{hour:"2-digit",minute:"2-digit"})+tunggu : "Tersambung"+tunggu,
     segerak:"Memuat semula…", luar:"Luar talian"+tunggu, ralat:"Gagal dimuat semula"+tunggu, akses:"Kod akses salah"
   }[SEG.status];
-  pill.className="seg-pill "+SEG.status; t.textContent=teks; pill.title=SEG.ralat||"";
+  pill.className="seg-pill "+SEG.status; t.innerHTML=/^Dimuat semula /.test(teks)? '<span class="pj">Dimuat semula </span>'+esc(teks.slice(14)) : esc(teks); pill.title=(SEG.ralat||teks);
   $("#brandNama").textContent = isMT()? "GMP Malaysia" : "GMP "+namaNegeri(ngSaya());
   $("#brandSub").textContent = isMT()? "MAJLIS TERTINGGI" : "AJK NEGERI";
 }
@@ -2433,7 +2435,7 @@ function kemasStatus(){
     sedia: META.masa? "Dimuat semula "+new Date(META.masa).toLocaleTimeString("ms-MY",{hour:"2-digit",minute:"2-digit"})+tunggu : "Tersambung"+tunggu,
     segerak:"Memuat semula…", luar:"Luar talian"+tunggu, ralat:"Gagal dimuat semula"+tunggu, akses:"Sesi tamat"
   }[SEG.status];
-  pill.className="seg-pill "+SEG.status; t.textContent=teks; pill.title=SEG.ralat||"";
+  pill.className="seg-pill "+SEG.status; t.innerHTML=/^Dimuat semula /.test(teks)? '<span class="pj">Dimuat semula </span>'+esc(teks.slice(14)) : esc(teks); pill.title=(SEG.ralat||teks);
   $("#brandNama").textContent = isMT()? "GMP Malaysia" : "GMP "+(namaNegeri(ngSaya())||"Malaysia");
   $("#brandSub").textContent = isMT()? "MAJLIS TERTINGGI" : isAhli()? "PORTAL AHLI" : "AJK NEGERI";
 }
@@ -3813,6 +3815,19 @@ document.addEventListener("change",function(e){
     .then(function(id){ var h=document.getElementById("iPosterP"); if(h) h.value=id; var u=document.getElementById("iPosterUrl"); if(u) u.value=""; lakarPoster(); toast("Poster dimuat naik. Tekan Simpan."); })
     .catch(function(err){ toast(err.message||"Muat naik gagal"); });
 });
+
+
+/* ---------- Amaran: Apps Script belum dikemas kini ---------- */
+var VERSI_PELAYAN_MIN = "4.5.1";
+function bandingVersi(a,b){ var x=String(a||"0").split("."), y=String(b||"0").split("."); for(var i=0;i<3;i++){ var d=(+x[i]||0)-(+y[i]||0); if(d) return d; } return 0; }
+function pelayanLama(){ return !!CFG.url && META.masa && bandingVersi(META.versiPelayan||"0", VERSI_PELAYAN_MIN)<0; }
+function amaranPelayan(){
+  if(!pelayanLama() || isAhli()) return "";
+  return '<div class="amaran bahaya"><span><b>Apps Script belum dikemas kini'+(META.versiPelayan?' (versi '+esc(META.versiPelayan)+')':'')+'.</b> '+
+    'Poster, pautan Zoom/Google Meet dan fungsi baharu lain tidak akan disimpan. '+(isMT()? 'Tampal Code.gs terkini, kemudian <b>Terapkan → Urus penerapan → ✏️ → Versi baharu → Terapkan</b>.' : 'Maklumkan kepada Majlis Tertinggi.')+'</span></div>';
+}
+var RENDER_VP = render;
+render = function(l){ RENDER_VP(l); try{ var a=amaranPelayan(), isi=$("#isi"); if(a && isi && !laluanAwam() && !document.body.classList.contains("log-masuk") && !isi.querySelector(".amaran-pelayan")){ isi.insertAdjacentHTML("afterbegin",a.replace('class="amaran bahaya"','class="amaran bahaya amaran-pelayan"')); } }catch(e){} };
 
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;
