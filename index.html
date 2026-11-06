@@ -500,6 +500,7 @@ details.pelayan .medan{margin-top:8px}
 .poster-prevu{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:6px}
 .menu a span.lencana-dalam{display:inline-block;font-size:10px;color:#fff;line-height:16px}
 @media (max-width:440px){ .seg-pill .pj{display:none} .brand{flex:1 1 auto} .brand b,.brand span{overflow:hidden;text-overflow:ellipsis} }
+.syarat-fasa{margin:-4px 0 8px;font-size:12.5px}
 </style>
 </head>
 <body>
@@ -524,7 +525,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.8.3";
+var VERSI = "4.9.0";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -546,52 +547,43 @@ var JAWATAN = [
 var NEGERI = ["Perlis","Kedah","Pulau Pinang","Perak","Selangor","W.P. Kuala Lumpur","Negeri Sembilan",
   "Melaka","Johor","Pahang","Terengganu","Kelantan","Sabah","Sarawak","JIK Luar Negara"];
 function slugNegeri(n){return "ng-"+n.replace(/[^A-Za-z0-9]+/g,"-").replace(/^-|-$/g,"").toLowerCase();}
-var PROGRAM = [
-  ["P01","Mesyuarat Agung Tahunan GMP 1.0","2027-01","T1","sua",3500],
-  ["P02","Bengkel Tatakelola & Masterplan GMP","2027-02","T1","jpp",5200],
-  ["P03","GMP Database Drive — Fasa 1","2027-02","T2","jpp",800],
-  ["P04","Roadshow GMP Negeri — Zon Utara & Timur","2027-03","T5","jdk",4800],
-  ["P05","Usrah Ukhwah Syawal","2027-03","T3","jdm",1200],
-  ["P06","Latihan AJK: Kewangan, Logistik & Kertas Kerja","2027-04","T1","bendahari",2600],
-  ["P07","Mock Test Professional Exam 1.0","2027-05","T4","jpp",1500],
-  ["P08","Tamrin UPTA Batch 1","2027-07","T3","jdm",8900],
-  ["P09","Roadshow GMP Negeri — Zon Tengah & Selatan","2027-08","T5","jdk",4800],
-  ["P10","Islamic Leadership Summit 2.0","2027-11","T3","presiden",9600],
-  ["P11","Mesyuarat Agung Tahunan GMP 2.0","2028-01","T1","sua",3800],
-  ["P12","Database Drive Fasa 2 + integrasi JIK luar negara","2028-02","T2","jpp",1200],
-  ["P14","Usrah Ukhwah Syawal 2.0","2028-02","T3","jdm",1400],
-  ["P13","Bengkel Media & Dakwah Digital","2028-03","T5","jdm",2400],
-  ["P15","Mock Test Professional Exam 2.0","2028-04","T4","jpp",2000],
-  ["P16","Tamrin UPTA Batch 2","2028-07","T3","jdm",10500],
-  ["P17","Alumni Ukhwah Homecoming","2028-08","T5","jdk",5500],
-  ["P18","Khidmat Masyarakat bersama Lajnah Kesihatan","2028-09","T5","jdk",6000],
-  ["P19","Islamic Leadership Summit 3.0","2028-11","T3","presiden",12000],
-  ["P20","Konvensyen & Muhasabah GMP Semalaysia","2029-01","T1","presiden",7500],
-  ["P21","Passover Kepimpinan & Serah Tugas","2029-02","T1","sua",1800]
+var PROGRAM = [   // ikut Minit Mesyuarat Exco PAPISMA Pusat, 12 Sep 2026 (P01–P07, P10); program lain dikekalkan & dijadual semula
+  ["P01","Pelantikan AJK GMP","2026-10","T1","sua",0],
+  ["P02","Mesyuarat GMP Pusat + Negeri","2026-11","T1","sua",0],
+  ["P03","GMP Database Drive — Fasa 1","2026-09","T2","jpp",0,"Tarikh dalam minit: Jan – Dis 2026"],
+  ["P04","Roadshow GMP Negeri — Zon Tengah","2026-10","T5","jdk",0,"Okt – Dis 2026. Bajet belum dinilai."],
+  ["P05","Sistem Pemantau Digital GMP","2026-10","T2","jpp",0,"Okt – Dis 2026"],
+  ["P07","MOU bersama JPM Pusat","2026-11","T5","presiden",0],
+  ["P06","E-Usrah GMP","2026-12","T3","jdm",0],
+  ["P10","Islamic Leadership Summit 2.0","2027-01","T3","presiden",5000,"Jan – Feb 2027"],
+  ["P14","Usrah Ukhwah Syawal 2.0","2027-03","T3","jdm",1400],
+  ["P09","Roadshow GMP Negeri — Zon Tengah & Selatan","2027-03","T5","jdk",4800],
+  ["P08","Tamrin UPTA Batch 1","2027-04","T3","jdm",8900],
+  ["P11","Mesyuarat Agung Tahunan GMP 2.0","2027-05","T1","sua",3800],
+  ["P12","Database Drive Fasa 2 + integrasi JIK luar negara","2027-06","T2","jpp",1200],
+  ["P13","Bengkel Media & Dakwah Digital","2027-07","T5","jdm",2400],
+  ["P15","Mock Test Professional Exam 2.0","2027-08","T4","jpp",2000],
+  ["P16","Tamrin UPTA Batch 2","2027-10","T3","jdm",10500],
+  ["P17","Alumni Ukhwah Homecoming","2027-11","T5","jdk",5500],
+  ["P18","Khidmat Masyarakat bersama Lajnah Kesihatan","2027-12","T5","jdk",6000],
+  ["P19","Islamic Leadership Summit 3.0","2028-01","T3","presiden",12000],
+  ["P20","Konvensyen & Muhasabah GMP Semalaysia","2028-05","T3","presiden",7500],
+  ["P21","Passover Kepimpinan & Serah Tugas","2028-08","T1","sua",1800]
 ];
-var KPI = [
-  ["K01","Graduan tahun akhir dalam pangkalan data",800,"orang","T2"],
-  ["K02","Negeri dengan Ketua GMP dilantik & aktif",14,"negeri","T1"],
-  ["K03","Negeri disempurnakan roadshow",14,"negeri","T5"],
-  ["K04","Kadar pemindahan data ke PAPISMA negeri",70,"%","T4"],
-  ["K05","Peserta ILS (tahun akhir sesi)",100,"orang","T3"],
-  ["K06","Peserta Tamrin UPTA (kumulatif 2 batch)",120,"orang","T3"],
-  ["K07","Mesyuarat maya MT (kumulatif 24 bulan)",24,"kali","T1"],
-  ["K08","Purata kehadiran mesyuarat maya",75,"%","T1"],
-  ["K09","Negeri melaksana aktiviti cawangan 1x/2 bulan",14,"negeri","T5"],
-  ["K10","Kadar ahli berinfaq 0.5%",60,"%","T1"],
-  ["K11","Retensi batch ILS menjadi AJK sesi berikutnya",50,"%","T3"],
-  ["K12","Dokumen tatakelola teras diluluskan",4,"dokumen","T1"]
+var KPI = [   // Lapan sasaran sesi (minit Exco 12 Sep 2026)
+  ["O1","Struktur GMP di 14 negeri",14,"negeri","T1","Ketua dan AJK dilantik menjelang Oktober 2026."],
+  ["O2","Pangkalan data graduan",100,"rekod","T2","50 rekod (Januari 2027); 100 rekod (Jun 2027)."],
+  ["O3","Pemindahan data ke PAPISMA negeri",90,"%","T2","≥90% dalam tempoh tiga bulan selepas Tamrin UPTA."],
+  ["O4","ILS sebagai program tahunan (Tamrin UPTA)",50,"%","T3","Pertumbuhan peserta sebanyak 50% setiap tahun."],
+  ["O5","Peningkatan pengkaderan JIK Kesihatan",20,"%","T5","Peningkatan pengkaderan kampus sekurang-kurangnya 20%."],
+  ["O6","MOU GMP bersama JPM",1,"dokumen","T5","Pelan hala tuju pengkaderan mahasiswa kampus kesihatan."],
+  ["O7","Sistem Digital GMP",1,"sistem","T2","Membangunkan Sistem Pemantauan Digital GMP."],
+  ["O8","Passover berdokumentasi",1,"dokumen","T1","Serah tugas lengkap menjelang Ogos 2028."]
 ];
 var KPI_AUTO = {
-  K01:"Jumlah rekod graduan semua negeri",
-  K02:"Negeri bertanda Struktur lengkap",
-  K03:"Negeri bertanda Roadshow selesai",
-  K04:"Rekod dipindah ÷ rekod graduan",
-  K06:"Peserta P08 + P16",
-  K07:"Mesyuarat maya MT yang direkod",
-  K08:"Purata kehadiran mesyuarat maya MT",
-  K09:"Negeri dengan aktiviti cawangan dalam 60 hari"
+  O1:"Negeri bertanda Struktur lengkap",
+  O2:"Jumlah rekod graduan semua negeri",
+  O3:"Rekod dipindah ÷ rekod graduan"
 };
 var TEMPLAT = [
   [-16,"Pembentukan jawatankuasa program","*"],
@@ -609,14 +601,21 @@ var TEMPLAT = [
   [3,"Tuntutan & penyata kewangan program","bendahari"]
 ];
 var SESI = "2026–2028";   // label sesi kepimpinan
-var FASA = [
-  {k:"F1",n:"Asas & Struktur",d:"2027-01",h:"2027-06"},
-  {k:"F2",n:"Aktivasi",d:"2027-07",h:"2027-12"},
-  {k:"F3",n:"Pengembangan",d:"2028-01",h:"2028-06"},
-  {k:"F4",n:"Pemantapan",d:"2028-07",h:"2028-12"},
-  {k:"F5",n:"Muhasabah & Passover",d:"2029-01",h:"2029-03"}
+var FASA = [   // Lima fasa pelaksanaan (minit Exco 12 Sep 2026)
+  {k:"F1",n:"Pembentukan Struktur",d:"2026-09",h:"2026-12",syarat:"Mempunyai 14 ahli GMP; mengadakan Mesyuarat Pertama GMP seluruh negeri."},
+  {k:"F2",n:"Permulaan",d:"2027-01",h:"2027-06",syarat:"ILS 2.0 diadakan; 100 rekod data graduan tahun akhir."},
+  {k:"F3",n:"Pengembangan",d:"2027-06",h:"2027-12",syarat:"50% strategi dijalankan."},
+  {k:"F4",n:"Pemantapan",d:"2028-01",h:"2028-06",syarat:"Semua petunjuk prestasi (KPI) diukur dan direkodkan."},
+  {k:"F5",n:"Penyerahan",d:"2028-06",h:"2028-08",syarat:"Serah tugas berdokumentasi lengkap."}
 ];
-var TERAS = {T1:"Tanzim & Tatakelola",T2:"Data & Digital",T3:"Tarbiah & Kepimpinan",T4:"Transisi Kerjaya & Lapangan",T5:"Jaringan & Kemasyarakatan"};
+var TERAS = {T1:"Tanzim & Tatakelola",T2:"Data & Digital",T3:"Tarbiah & Kepimpinan",T4:"Kerjaya & Akademik",T5:"Pengkaderan Kampus"};
+var TERAS_FOKUS = {
+  T1:"Pelantikan AJK GMP serta portfolio yang jelas; pemantapan dokumentasi; sistem penyerahan tugas kepada kepimpinan seterusnya.",
+  T2:"Pangkalan data graduan tahun akhir (UPTA); membangunkan Sistem Pemantauan Digital GMP; Modul Usrah Digital.",
+  T3:"ILS sebagai program tahunan (Tamrin UPTA); E-Usrah GMP; Konvensyen GMP.",
+  T4:"GMP Masterclass; Seminar Career Pathway; Program Mentor Mentee/Buddyz.",
+  T5:"ILS sebagai program tahunan (Tamrin UPTA); MOU bersama JPM Pusat; Roadshow GMP."
+};
 var ST_TUGAS = {belum:"Belum mula",buat:"Sedang dibuat",siap:"Selesai",sekat:"Tersekat"};
 var ST_PROG = {"":"Status belum diisi",rancang:"Dirancang",sedia:"Persediaan",jalan:"Sedang berjalan",selesai:"Selesai",tangguh:"Ditangguh",batal:"Dibatalkan"};
 var ST_LAP = {"":"Belum ditulis",draf:"Draf",dihantar:"Menunggu semakan",pembetulan:"Perlu pembetulan",lulus:"Diluluskan"};
@@ -634,9 +633,9 @@ function binaAsas(){
     return {id:slugNegeri(n),nama:"",jawatan:"Ketua GMP "+n,unit:"Negeri",emel:"",telefon:"",urutan:String(100+i)};
   }));
   var program = PROGRAM.map(function(p,i){
-    return {id:p[0],nama:p[1],bulan:p[2],teras:p[3],peneraju:p[4],bajet:String(p[5]),belanja:"",peserta:"",status:"",catatan:"",urutan:String(i+1)};
+    return {id:p[0],nama:p[1],bulan:p[2],teras:p[3],peneraju:p[4],bajet:String(p[5]),belanja:"",peserta:"",status:"",catatan:p[6]||"",urutan:String(i+1)};
   });
-  var kpi = KPI.map(function(k,i){return {id:k[0],petunjuk:k[1],sasaran:String(k[2]),semasa:"",unit:k[3],teras:k[4],catatan:"",urutan:String(i+1)};});
+  var kpi = KPI.map(function(k,i){return {id:k[0],petunjuk:k[1],sasaran:String(k[2]),semasa:"",unit:k[3],teras:k[4],catatan:k[5]||"",urutan:String(i+1)};});
   var negeri = NEGERI.map(function(n,i){return {id:slugNegeri(n),nama:n,struktur:"",roadshow:"",aktiviti:"",rekod:"",dipindah:"",catatan:"",urutan:String(i+1)};});
   return {orang:orang,tugas:[],program:program,kpi:kpi,negeri:negeri,laporan:[],aktiviti:[],ajk:[],lapbulan:[],mesyuarat:[],ahli:[],pengumuman:[],penyertaan:[],transaksi:[],upta:[],bayaran:[],komitmen:[]};
 }
@@ -978,19 +977,14 @@ function nilaiKpi(k){
   var n=DATA.negeri, s=function(f){return n.reduce(function(a,x){return a+num(x[f]);},0);},
       c=function(f){return n.filter(function(x){return ya(x[f]);}).length;};
   switch(k.id){
-    case "K01": return s("rekod");
-    case "K02": return c("struktur");
-    case "K03": return c("roadshow");
-    case "K04": var r=s("rekod"); return r? Math.round(s("dipindah")/r*100) : 0;
-    case "K06": var a=cari("program","P08"), b=cari("program","P16"); return num(a&&a.peserta)+num(b&&b.peserta);
-    case "K07": return statMesyuarat().bil;
-    case "K08": return statMesyuarat().purata;
-    case "K09": return n.filter(function(x){return aktif60(x.id);}).length;
+    case "O1": return c("struktur");
+    case "O2": return s("rekod");
+    case "O3": var r=s("rekod"); return r? Math.round(s("dipindah")/r*100) : 0;
     default: return num(k.semasa);
   }
 }
 function fasaKini(){ var b=bulanIni(); for(var i=0;i<FASA.length;i++) if(b>=FASA[i].d && b<=FASA[i].h) return i; return b<FASA[0].d? -1 : FASA.length; }
-function fasaProgram(p){ for(var i=0;i<FASA.length;i++) if(p.bulan>=FASA[i].d && p.bulan<=FASA[i].h) return i; return FASA.length-1; }
+function fasaProgram(p){ if(!p.bulan || p.bulan<FASA[0].d) return 0; for(var i=0;i<FASA.length;i++) if(p.bulan>=FASA[i].d && p.bulan<=FASA[i].h) return i; return FASA.length-1; }
 function laporanTertunggak(){
   var ada={}; DATA.laporan.forEach(function(l){ada[l.kod]=true;});
   return DATA.program.filter(function(p){
@@ -1013,7 +1007,7 @@ var HALAMAN = {
   peta:{t:"Peta AJK",i:"peta",s:"Lokasi anggaran ahli berdaftar"}, profil:{t:"Profil saya",i:"profil",s:"Maklumat peribadi & kata laluan"},
   negeri:{t:"Negeri",i:"negeri",mt:1,s:"Pemantauan & skor 15 wilayah"}, semakan:{t:"Semakan",i:"semakan",mt:1,s:"Laporan bulanan negeri"},
   kewangan:{t:"Kewangan",i:"kewangan",mt:1,s:"Bajet berbanding belanja sebenar"}, mesyuarat:{t:"Mesyuarat",i:"mesyuarat",mt:1,s:"Mesyuarat MT & kehadiran"},
-  program:{t:"Program",i:"program",mt:1,s:"Senarai program, bajet & tugasan"}, kpi:{t:"KPI",i:"kpi",mt:1,s:"12 petunjuk prestasi"},
+  program:{t:"Program",i:"program",mt:1,s:"Senarai program, bajet & tugasan"}, kpi:{t:"KPI",i:"kpi",mt:1,s:"8 sasaran sesi"},
   laporan:{t:"Laporan program",i:"laporan",mt:1,s:"Laporan 14 hari & muhasabah"}, ahli:{t:"Ahli",i:"ahli",mt:1,s:"Kelulusan pendaftaran, direktori, jawatan"},
   aktiviti:{t:"Aktiviti",i:"aktiviti",ng:1,s:"Log aktiviti cawangan"}, lapbulan:{t:"Laporan",i:"laporan",ng:1,s:"Laporan bulanan ke Pusat"},
   data:{t:"Data graduan",i:"data",ng:1,s:"Rekod & pemindahan ke PAPISMA negeri"}, ajk:{t:"AJK negeri",i:"ahli",ng:1,s:"Ketua & barisan AJK"},
@@ -1075,7 +1069,7 @@ var HAL={}, HAL_MT={}, HAL_NG={};
 function amaranMod(){
   if(!CFG.url) return '<div class="amaran"><span><b>Mod demo · '+(isMT()?"Majlis Tertinggi":"AJK "+esc(namaNegeri(ngSaya())))+'.</b> Rekod bertanda "Contoh" ialah data contoh dalam peranti ini sahaja. Tukar paparan di Tetapan.</span><button class="btn kecil" type="button" data-act="demo-keluar">Log masuk</button></div>';
   if(SEG.status==="akses") return '<div class="amaran bahaya"><span><b>Kod akses ditolak.</b> Kod mungkin telah ditukar. Masukkan kod baharu dalam Tetapan.</span><a class="btn kecil" href="#tetapan">Tetapan</a></div>';
-  if(isMT() && META.kosong && SEG.status==="sedia") return '<div class="amaran"><span><b>Google Sheets masih kosong.</b> Isi data asas (jawatan, perancangan program, 12 KPI, 15 wilayah) sekali sahaja.</span><button class="btn kecil utama" data-act="isi-asas" type="button">Isi data asas</button></div>';
+  if(isMT() && META.kosong && SEG.status==="sedia") return '<div class="amaran"><span><b>Google Sheets masih kosong.</b> Isi data asas (jawatan, perancangan program, 8 sasaran KPI, 15 wilayah) sekali sahaja.</span><button class="btn kecil utama" data-act="isi-asas" type="button">Isi data asas</button></div>';
   return "";
 }
 function sambut(nama,peranan){
@@ -1258,7 +1252,7 @@ HAL_MT.utama = function(){
   if(tak.length) t.push(itemTindakan("negeri",tak.length,"Negeri tiada aktiviti dalam 60 hari",tak.slice(0,4).map(function(n){return n.nama;}).join(", ")+(tak.length>4?"…":""),"crit"));
   if(tiadaLap.length && lewatLap) t.push(itemTindakan("semakan",tiadaLap.length,"Belum hantar laporan "+fmtBulan(bl),"Tarikh akhir "+fmtTarikh(tarikhAkhirLap(bl)),"crit"));
   if(tug.lewat) t.push(itemTindakan("tugas",tug.lewat,"Tugasan Pusat lewat tarikh akhir","","crit"));
-  if(!mesBulan) t.push(itemTindakan("mesyuarat","0","Mesyuarat maya MT "+fmtBulanP(bulanIni())+" belum direkod","Sasaran K07: bulanan","warn"));
+  if(!mesBulan) t.push(itemTindakan("mesyuarat","0","Mesyuarat maya MT "+fmtBulanP(bulanIni())+" belum direkod","Rentak kerja: mesyuarat maya MT bulanan","warn"));
   if(lp.length) t.push(itemTindakan("laporan",lp.length,"Laporan program melepasi 14 hari",lp.slice(0,4).map(function(p){return p.id;}).join(", ")+(lp.length>4?"…":""),""));
 
   var akan=DATA.program.filter(function(p){return p.bulan>=bulanIni() && p.status!=="batal" && p.status!=="selesai";})
@@ -1275,7 +1269,7 @@ HAL_MT.utama = function(){
     '</div></section>'+
     '<section class="blok"><h2>Negeri perlu perhatian <a href="#negeri">15 wilayah</a></h2><div class="senarai">'+lemah.map(function(x){return kadNegeri(x,ked.indexOf(x));}).join("")+'</div></section>'+
     '<section class="blok"><h2>Program seterusnya <a href="#program">Semua program</a></h2>'+(akan.length?'<div class="senarai">'+akan.map(kadProgram).join("")+'</div>':kosong("Tiada program akan datang",""))+'</section>'+
-    '<section class="blok"><h2>KPI utama <a href="#kpi">12 KPI</a></h2><div class="senarai">'+["K01","K02","K07","K09"].map(function(id){return cari("kpi",id);}).filter(Boolean).map(kadKpi).join("")+'</div></section>';
+    '<section class="blok"><h2>KPI utama <a href="#kpi">Semua KPI</a></h2><div class="senarai">'+["O1","O2","O3","O4"].map(function(id){return cari("kpi",id);}).filter(Boolean).map(kadKpi).join("")+'</div></section>';
 };
 
 HAL_MT.negeri = function(){
@@ -1350,7 +1344,7 @@ HAL_MT.mesyuarat = function(){
     return {o:o,j:j.length,h:h.length};
   }).filter(function(r){return r.j;});
   return '<div class="kepala"><div><h1>Mesyuarat</h1><div class="sub">Rentak kerja: maya MT bulanan · penuh MT + Exco setiap suku tahun</div></div></div>'+
-    '<div class="info-baris"><div><b>'+st.bil+'/24</b><span>Mesyuarat maya (K07)</span></div><div><b>'+st.purata+'%</b><span>Purata kehadiran (K08, sasaran 75%)</span></div>'+
+    '<div class="info-baris"><div><b>'+st.bil+'</b><span>Mesyuarat maya MT direkod</span></div><div><b>'+st.purata+'%</b><span>Purata kehadiran</span></div>'+
     '<div><b>'+DATA.mesyuarat.filter(function(x){return x.jenis==="penuh";}).length+'</b><span>Mesyuarat penuh</span></div></div>'+
     (m.length? kumpulan("Rekod mesyuarat",m,function(x){
       var j=senaraiId(x.jemputan).length, h=senaraiId(x.hadir).length;
@@ -1370,7 +1364,7 @@ HAL_MT.program = function(){
   return h+FASA.map(function(f,i){
     var x=DATA.program.filter(function(p){return !p.negeri && fasaProgram(p)===i;}).sort(function(a,b){return a.bulan<b.bulan?-1:a.bulan>b.bulan?1:urut(a,b);});
     if(!x.length) return "";
-    return '<section class="blok"><div class="fasa-h"><b>'+f.k+'</b><span>'+f.n+'</span><em>'+fmtBulan(f.d)+' – '+fmtBulan(f.h)+' · '+rm(x.reduce(function(a,p){return a+num(p.bajet);},0))+(i===fk?' · fasa semasa':'')+'</em></div>'+
+    return '<section class="blok"><div class="fasa-h"><b>'+f.k+'</b><span>'+f.n+'</span><em>'+fmtBulan(f.d)+' – '+fmtBulan(f.h)+' · '+rm(x.reduce(function(a,p){return a+num(p.bajet);},0))+(i===fk?' · fasa semasa':'')+'</em></div>'+(f.syarat?'<p class="nota syarat-fasa">Syarat keluar: '+esc(f.syarat)+'</p>':'')+
       '<div class="senarai">'+x.map(kadProgram).join("")+'</div></section>';
   }).join("")+(function(){ var pn=DATA.program.filter(function(p){return p.negeri;}).sort(function(a,b){return (a.negeri+a.bulan)<(b.negeri+b.bulan)?-1:1;});
     return pn.length? '<section class="blok"><div class="fasa-h"><b>NG</b><span>Program negeri</span><em>'+pn.length+' program · diurus oleh AJK negeri masing-masing</em></div><div class="senarai">'+pn.map(function(p){
@@ -1382,7 +1376,7 @@ HAL_MT.kpi = function(){
     '<p class="nota">KPI bertanda AUTO dikira terus daripada data negeri, aktiviti, program dan mesyuarat. KPI lain dikemas kini manual oleh jabatan peneraju.</p>'+
     (DATA.kpi.length? Object.keys(TERAS).map(function(t){
       var x=DATA.kpi.filter(function(k){return k.teras===t;}).sort(urut);
-      return x.length? '<section class="blok"><h2>'+t+' · '+TERAS[t]+'</h2><div class="senarai">'+x.map(kadKpi).join("")+'</div></section>' : "";
+      return x.length? '<section class="blok"><h2>'+t+' · '+TERAS[t]+'</h2>'+(TERAS_FOKUS[t]?'<p class="nota" style="margin-top:-4px">'+esc(TERAS_FOKUS[t])+'</p>':'')+'<div class="senarai">'+x.map(kadKpi).join("")+'</div></section>' : "";
     }).join("") : kosong("Tiada KPI","Isi data asas dari halaman Utama."));
 };
 HAL_MT.laporan = function(){
@@ -1458,7 +1452,7 @@ HAL_NG.aktiviti = function(){
   var ng=ngSaya(), semua=UI.aktSemua;
   var arr=(semua? DATA.aktiviti.slice() : DATA.aktiviti.filter(function(a){return a.negeri===ng;})).sort(ikutTarikhTurun);
   var g={}; arr.forEach(function(a){var b=(a.tarikh||"").slice(0,7)||"—"; (g[b]=g[b]||[]).push(a);});
-  return '<div class="kepala"><div><h1>Aktiviti Cawangan</h1><div class="sub">Sasaran: sekurang-kurangnya 1 aktiviti setiap 2 bulan (KPI K09)</div></div></div>'+
+  return '<div class="kepala"><div><h1>Aktiviti Cawangan</h1><div class="sub">Sasaran: sekurang-kurangnya 1 aktiviti setiap 2 bulan</div></div></div>'+
     '<div class="segmen">'+[[false,"Negeri saya"],[true,"Semua negeri"]].map(function(m){return '<button type="button" data-act="akt-skop" data-v="'+(m[0]?1:0)+'" class="'+(semua===m[0]?"on":"")+'">'+m[1]+'</button>';}).join("")+'</div>'+
     (arr.length? Object.keys(g).map(function(b){return kumpulan(fmtBulanP(b),g[b],function(a){return itemAktiviti(a,semua);});}).join("")
       : kosong("Belum ada aktiviti",'Tekan "Aktiviti" untuk merekod usrah, khidmat masyarakat, mesyuarat AJK atau program cawangan.'));
@@ -1483,7 +1477,7 @@ HAL_NG.data = function(){
   var jum=DATA.negeri.reduce(function(a,x){return a+num(x.rekod);},0);
   return '<div class="kepala"><div><h1>Data Graduan</h1><div class="sub">Kitaran: kumpul (tahun akhir) → simpan (GMP Pusat + HEMAT) → pindah ke PAPISMA negeri</div></div></div>'+
     '<div class="info-baris"><div><b>'+r.toLocaleString("en-MY")+'</b><span>Rekod '+esc(n.nama)+'</span></div><div><b>'+(r?Math.round(d/r*100):0)+'%</b><span>Dipindah (sasaran 70%)</span></div>'+
-    '<div><b>'+(jum?Math.round(r/jum*100):0)+'%</b><span>Sumbangan kepada K01 kebangsaan ('+jum.toLocaleString("en-MY")+'/800)</span></div></div>'+
+    '<div><b>'+(jum?Math.round(r/jum*100):0)+'%</b><span>Sumbangan kepada sasaran O2 kebangsaan ('+jum.toLocaleString("en-MY")+'/'+num((cari("kpi","O2")||{}).sasaran||100).toLocaleString("en-MY")+')</span></div></div>'+
     '<form class="kad blok" data-form="ngdata">'+
       '<div class="grid2"><div class="medan"><label for="iRekod">Rekod graduan tahun akhir</label><input type="number" inputmode="numeric" min="0" id="iRekod" value="'+esc(n.rekod)+'"></div>'+
       '<div class="medan"><label for="iDipindah">Telah dipindah ke PAPISMA negeri</label><input type="number" inputmode="numeric" min="0" id="iDipindah" value="'+esc(n.dipindah)+'"></div></div>'+
@@ -3561,6 +3555,7 @@ function tambahBulan(b,n){ var x=b.split("-"), t=(+x[0])*12+(+x[1]-1)+n; return 
 function tambahBulanTarikh(t,n){ return t&&/^\d{4}-\d{2}-\d{2}/.test(t)? tambahBulan(t.slice(0,7),n)+t.slice(7) : t; }
 function bezaBulan(a,b){ var x=a.split("-"), y=b.split("-"); return ((+y[0])*12+(+y[1]))-((+x[0])*12+(+x[1])); }
 function blokAnjakProgram(){
+  return blokMinit();
   if(!isMT() || !DATA.program.length) return "";
   var awal=DATA.program.map(function(p){return p.bulan;}).filter(Boolean).sort()[0];
   if(!awal || awal>=FASA[0].d) return "";
@@ -4017,7 +4012,7 @@ var NILAI_KPI_ASAL = nilaiKpi;
 nilaiKpi = function(k){ return KPI_AUTO[k.id] && ya(k.manual)? num(k.semasa) : NILAI_KPI_ASAL(k); };
 var KAD_KPI_ASAL = kadKpi;
 kadKpi = function(k){ var h=KAD_KPI_ASAL(k); return KPI_AUTO[k.id] && ya(k.manual)? h.replace(/<span class="auto">[\s\S]*?<\/span>/,'') : h; };
-function idKpiBaru(){ var n=0; DATA.kpi.forEach(function(k){ var m=/^K(\d+)$/.exec(k.id); if(m) n=Math.max(n,+m[1]); }); return "K"+p2(n+1); }
+function idKpiBaru(){ var n=0; DATA.kpi.forEach(function(k){ var m=/^O(\d+)$/.exec(k.id); if(m) n=Math.max(n,+m[1]); }); return "O"+(n+1); }
 lembarKpi = function(k){
   var baru=!cari("kpi",k.id), auto=KPI_AUTO[k.id], u=k.unit==="%"?"%":"";
   bukaLembar('<span class="kod" style="font-size:12px;vertical-align:middle">'+esc(k.id)+'</span> '+(baru?"KPI baharu":esc(k.petunjuk)),
@@ -4075,6 +4070,32 @@ BORANG.program = function(form,btn){
   try{ r=BORANG_PROGRAM_AJK(form,btn); } finally { simpan=asal; }
   return r;
 };
+
+
+/* ---------- Selaraskan data sedia ada dengan minit Exco 12 Sep 2026 ---------- */
+function perluMinit(){ return isMT() && !!CFG.url && DATA.program.length>0 && (!cari("kpi","O1") || DATA.program.some(function(p){ var b=PROGRAM.filter(function(x){return x[0]===p.id;})[0]; return b && p.id<="P07" && p.nama!==b[1]; })); }
+function blokMinit(){
+  if(!perluMinit()) return "";
+  return '<div class="amaran"><span><b>Selaraskan dengan minit Exco 12 Sep 2026?</b> Kemas kini nama, bulan, teras dan bajet program (P01–P07 & P10 ikut minit; program lain dijadual semula dalam Fasa 2–5), gantikan 12 KPI lama dengan 8 sasaran sesi O1–O8, dan anjak tarikh tugasan program yang belum selesai. Tarikh acara, tempat, peserta, poster dan pautan dikekalkan.</span>'+
+    '<button class="btn kecil utama" type="button" data-act="selaras-minit" data-sah="0">Selaraskan</button></div>';
+}
+ACT["selaras-minit"]=function(el){ sahDua(el,function(){
+  var ops=[];
+  PROGRAM.forEach(function(b,i){
+    var p=cari("program",b[0]), baru={nama:b[1],bulan:b[2],teras:b[3],peneraju:b[4],bajet:String(b[5]),urutan:String(i+1)};
+    if(p){
+      if(p.bulan && p.bulan!==b[2]){ var n=bezaBulan(p.bulan,b[2]);
+        DATA.tugas.filter(function(t){return t.kod===p.id && t.auto==="ya" && t.status!=="siap" && t.tarikh;}).forEach(function(t){ ops.push({op:"simpan",jenis:"tugas",rekod:Object.assign({},t,{tarikh:tambahBulanTarikh(t.tarikh,n)})}); }); }
+      ops.push({op:"simpan",jenis:"program",rekod:Object.assign({},p,baru,{catatan:p.catatan||b[6]||""})});
+    } else ops.push({op:"simpan",jenis:"program",rekod:Object.assign({id:b[0],status:"",belanja:"",peserta:"",catatan:b[6]||""},baru)});
+  });
+  KPI.forEach(function(k,i){ var ada=cari("kpi",k[0]);
+    ops.push({op:"simpan",jenis:"kpi",rekod:Object.assign({semasa:"",manual:""},ada||{},{id:k[0],petunjuk:k[1],sasaran:String(k[2]),unit:k[3],teras:k[4],catatan:(ada&&ada.catatan)||k[5]||"",urutan:String(i+1)})}); });
+  DATA.kpi.filter(function(k){return /^K(0[1-9]|1[0-2])$/.test(k.id);}).forEach(function(k){ ops.push({op:"padam",jenis:"kpi",id:k.id}); });
+  laksana(ops,"Perancangan, fasa dan KPI diselaraskan dengan minit");
+}); };
+var HAL_KPI_MINIT = HAL_MT.kpi;
+HAL_MT.kpi = function(){ var h=HAL_KPI_MINIT(), i=h.indexOf("</div></div></div>"); return i<0? h : h.slice(0,i+18)+blokMinit()+h.slice(i+18); };
 
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;
