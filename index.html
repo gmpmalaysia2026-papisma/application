@@ -524,7 +524,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.7.2";
+var VERSI = "4.8.2";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -625,7 +625,7 @@ var JENIS_MES = {maya:"Mesyuarat maya MT",penuh:"Mesyuarat penuh MT + Exco",lain
 var BULAN = ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ogos","Sep","Okt","Nov","Dis"];
 var BULAN_P = ["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember"];
 var HARI = ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"];
-var JENIS = ["orang","tugas","program","kpi","negeri","laporan","aktiviti","ajk","lapbulan","mesyuarat","ahli","pengumuman","penyertaan","transaksi","upta"];
+var JENIS = ["orang","tugas","program","kpi","negeri","laporan","aktiviti","ajk","lapbulan","mesyuarat","ahli","pengumuman","penyertaan","transaksi","upta","bayaran","komitmen"];
 
 function binaAsas(){
   var orang = JAWATAN.map(function(j,i){
@@ -638,7 +638,7 @@ function binaAsas(){
   });
   var kpi = KPI.map(function(k,i){return {id:k[0],petunjuk:k[1],sasaran:String(k[2]),semasa:"",unit:k[3],teras:k[4],catatan:"",urutan:String(i+1)};});
   var negeri = NEGERI.map(function(n,i){return {id:slugNegeri(n),nama:n,struktur:"",roadshow:"",aktiviti:"",rekod:"",dipindah:"",catatan:"",urutan:String(i+1)};});
-  return {orang:orang,tugas:[],program:program,kpi:kpi,negeri:negeri,laporan:[],aktiviti:[],ajk:[],lapbulan:[],mesyuarat:[],ahli:[],pengumuman:[],penyertaan:[],transaksi:[],upta:[]};
+  return {orang:orang,tugas:[],program:program,kpi:kpi,negeri:negeri,laporan:[],aktiviti:[],ajk:[],lapbulan:[],mesyuarat:[],ahli:[],pengumuman:[],penyertaan:[],transaksi:[],upta:[],bayaran:[],komitmen:[]};
 }
 
 /* Data contoh — mod demo SAHAJA (tidak pernah dihantar ke Google Sheets) */
@@ -2773,7 +2773,7 @@ function lembarPeserta(p){
     (!p.kodHadir && isMT()?'<p class="nota">Tiada kod kehadiran. Jana kod di <b>Urus</b> supaya peserta boleh merekod kehadiran sendiri.</p>':'')+
     '<div class="senarai-hadir">'+(peserta.length? peserta.map(function(x){
       return '<label class="hadir-baris"><input type="checkbox" data-act="tanda-hadir" data-id="'+esc(x.id)+'"'+(ya(x.hadir)?" checked":"")+'>'+
-        '<span><b>'+esc(x.nama)+'</b><small>'+esc([namaNegeri(x.negeri),x.institusi].filter(Boolean).join(" · "))+(x.sijilNo?' · <span class="num">'+esc(x.sijilNo)+'</span>':'')+'</small></span></label>';}).join("") : '<p class="nota">Belum ada pendaftaran.</p>')+'</div>'+
+        '<span><b>'+esc(x.nama)+'</b><small>'+esc([namaNegeri(x.negeri),x.institusi].filter(Boolean).join(" · "))+(x.sijilNo?' · <span class="num">'+esc(x.sijilNo)+'</span>':'')+(num(p.yuran)>0?(x.bayar?' · <b style="color:var(--ok)">Yuran '+(x.bayar==="tunai"?"tunai":"dibayar")+'</b>':' · <b style="color:var(--crit)">Yuran belum dibayar</b>'):'')+'</small></span></label>';}).join("") : '<p class="nota">Belum ada pendaftaran.</p>')+'</div>'+
     '<div class="medan"><label for="iWalkin">Tambah peserta tanpa pendaftaran awal (ahli berdaftar)</label><div class="baris-lokasi"><select id="iWalkin" style="flex:1;min-width:0"><option value="">— Pilih ahli —</option>'+
       calon.map(function(a){return '<option value="'+esc(a.id)+'">'+esc(a.nama+" · "+namaNegeri(a.negeri))+'</option>';}).join("")+'</select>'+
       '<button class="btn kecil" type="button" data-act="walkin" data-id="'+esc(p.id)+'">Tambah & tanda hadir</button></div></div>'+
@@ -3571,7 +3571,7 @@ function blokAnjakProgram(){
 Object.assign(ACT,{
   "program-baru":function(){ lembarProgram({id:idProgramBaru(),nama:"",bulan:"",teras:"T1",peneraju:"",bajet:"",status:"rancang",catatan:""}); },
   "program-padam":function(el){ var id=el.getAttribute("data-id");
-    if(DATA.penyertaan.some(function(x){return x.program===id;})){ toast("Program ini ada peserta berdaftar. Tukar status kepada Dibatalkan."); return; }
+    if(DATA.penyertaan.some(function(x){return x.program===id;})){ lembarPadamProgram(id); return; }
     sahDua(el,function(){
       var ops=[{op:"padam",jenis:"program",id:id}].concat(DATA.tugas.filter(function(t){return t.kod===id;}).map(function(t){return {op:"padam",jenis:"tugas",id:t.id};}));
       laksana(ops,"Program dipadam"); tutupLembar(); }); },
@@ -3818,7 +3818,7 @@ document.addEventListener("change",function(e){
 
 
 /* ---------- Amaran: Apps Script belum dikemas kini ---------- */
-var VERSI_PELAYAN_MIN = "4.5.1";
+var VERSI_PELAYAN_MIN = "4.6.1";
 function bandingVersi(a,b){ var x=String(a||"0").split("."), y=String(b||"0").split("."); for(var i=0;i<3;i++){ var d=(+x[i]||0)-(+y[i]||0); if(d) return d; } return 0; }
 function pelayanLama(){ return !!CFG.url && META.masa && bandingVersi(META.versiPelayan||"0", VERSI_PELAYAN_MIN)<0; }
 function amaranPelayan(){
@@ -3828,6 +3828,225 @@ function amaranPelayan(){
 }
 var RENDER_VP = render;
 render = function(l){ RENDER_VP(l); try{ var a=amaranPelayan(), isi=$("#isi"); if(a && isi && !laluanAwam() && !document.body.classList.contains("log-masuk") && !isi.querySelector(".amaran-pelayan")){ isi.insertAdjacentHTML("afterbegin",a.replace('class="amaran bahaya"','class="amaran bahaya amaran-pelayan"')); } }catch(e){} };
+
+/* ---------- Infak & yuran program (ToyyibPay) ---------- */
+HALAMAN.infak = {t:"Infak",i:"wang",s:"Infak, komitmen bulanan & resit"};
+(function(){
+  var sisip=function(r,selepas){ if(r.indexOf("infak")>=0) return; var i=r.indexOf(selepas); if(i<0) i=r.indexOf("|")-1; r.splice(i+1,0,"infak"); };
+  sisip(NAV.mt.rel,"kewangan"); sisip(NAV.ng.rel,"pengumuman"); sisip(NAV.ah.rel,"pengumuman");
+})();
+if(!Array.isArray(DATA.bayaran)) DATA.bayaran=[];
+if(!Array.isArray(DATA.komitmen)) DATA.komitmen=[];
+var ST_BAYAR = {menunggu:"Menunggu bayaran",berjaya:"Berjaya",gagal:"Gagal"};
+var ST_BAYAR_K = {menunggu:"buat",berjaya:"siap",gagal:"sekat"};
+function rmT(n){ return "RM "+num(n).toLocaleString("en-MY",{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function pautanKembali(){ return location.origin+location.pathname; }
+function mulaBayar(el, data){
+  if(!CFG.url){ toast("Sila log masuk dahulu"); return; }
+  if(!navigator.onLine){ toast("Tiada sambungan internet"); return; }
+  var asal=el? el.textContent : "";
+  if(el){ el.disabled=true; el.textContent="Membuka ToyyibPay…"; }
+  api("bayar",Object.assign({kembali:pautanKembali()},data)).then(function(j){
+    try{ lsSet("gmp.bayarAkhir",{id:j.id,hal:data.jenis==="yuran"?"acara":"infak",pada:Date.now()}); }catch(e){}
+    location.href=j.url;
+  },function(e){ toast(e.message||"Pembayaran gagal dimulakan"); if(el){ el.disabled=false; el.textContent=asal; } });
+}
+function komitmenSaya(){ return DATA.komitmen.filter(function(k){return k.ahli===idSaya();})[0]||null; }
+function bayaranSaya(){ return DATA.bayaran.filter(function(b){return b.ahli===idSaya();}).sort(function(a,b){return (b.dicipta||"")<(a.dicipta||"")?-1:1;}); }
+function bulanIniBayarKomitmen(){ var b=bulanIni(); return bayaranSaya().some(function(x){return x.jenis==="komitmen" && x.status==="berjaya" && (x.dibayarPada||"").slice(0,7)===b;}); }
+function itemBayaran(b, mt){
+  var p=b.program? cari("program",b.program) : null;
+  var tajuk = b.jenis==="yuran"? "Yuran: "+(p?p.nama:b.program) : b.jenis==="komitmen"? "Infak bulanan" : "Infak";
+  return '<div class="tg" style="grid-template-columns:minmax(0,1fr) auto"><div style="min-width:0"><div class="tg-t" style="text-decoration:none;color:var(--ink)">'+esc(tajuk)+(mt?' · '+esc(b.nama):'')+'</div>'+
+    '<div class="tg-m"><span>'+fmtTarikh((b.dibayarPada||b.dicipta||"").slice(0,10))+'</span><span class="num">'+esc(b.id)+'</span><span class="status '+(ST_BAYAR_K[b.status]||"")+'"><i></i>'+esc(ST_BAYAR[b.status]||b.status)+'</span>'+
+      (b.catatan?'<span>'+esc(b.catatan)+'</span>':'')+'</div></div>'+
+    '<div style="text-align:right"><div class="amaun masuk">'+rmT(b.amaun).replace("RM ","RM")+'</div>'+
+      (b.status==="berjaya"?'<button class="btn kecil" type="button" data-act="resit" data-id="'+esc(b.id)+'">Resit</button>':
+       b.status==="menunggu" && b.ahli===idSaya()?'<button class="btn kecil" type="button" data-act="bayar-semak" data-id="'+esc(b.id)+'">Semak</button>':'')+'</div></div>';
+}
+HAL.infak = function(){
+  var k=komitmenSaya(), saya=bayaranSaya(), pilih=[10,20,50,100];
+  var h='<div class="kepala"><div><h1>Infak</h1><div class="sub">Infak kepada Generasi Muda PAPISMA melalui FPX (perbankan dalam talian)</div></div></div>';
+  if(isMT()){
+    var ok=DATA.bayaran.filter(function(b){return b.status==="berjaya";}), bl=bulanIni();
+    var jum=function(f){ return ok.filter(f).reduce(function(s,b){return s+num(b.amaun);},0); };
+    var km=DATA.komitmen.filter(function(x){return x.aktif==="ya";});
+    h+='<div class="jubin4">'+
+      '<div class="statistik"><span class="n">'+rmT(jum(function(b){return b.jenis!=="yuran" && (b.dibayarPada||"").slice(0,7)===bl;})).replace("RM ","")+'</span><span class="l">Infak bulan ini (RM)</span></div>'+
+      '<div class="statistik"><span class="n">'+rmT(jum(function(b){return b.jenis!=="yuran";})).replace("RM ","")+'</span><span class="l">Jumlah infak (RM)</span></div>'+
+      '<div class="statistik"><span class="n">'+km.length+'</span><span class="l">Komitmen bulanan aktif · '+rmT(km.reduce(function(s,x){return s+num(x.amaun);},0))+'/bulan</span></div>'+
+      '<div class="statistik"><span class="n">'+rmT(jum(function(b){return b.jenis==="yuran";})).replace("RM ","")+'</span><span class="l">Yuran program (RM)</span></div></div>'+
+      '<p class="nota">Setiap bayaran yang berjaya direkod terus dalam <a href="#kewangan">Kewangan → Lejar</a>.</p>';
+  }
+  h+='<section class="blok"><h2>Infak sekali</h2><form class="kad blok" data-form="infakSekali" id="fInfak">'+
+      '<div class="cip-baris" role="group" aria-label="Pilih amaun">'+pilih.map(function(n){return '<button type="button" class="cip" data-act="infak-amaun" data-v="'+n+'">RM'+n+'</button>';}).join("")+'</div>'+
+      '<div class="grid2" style="margin-top:10px">'+medan("iInfakAmaun","Amaun (RM)",'<input type="number" id="iInfakAmaun" inputmode="decimal" min="1" max="10000" step="1" required placeholder="cth 20">')+
+      medan("iInfakNiat","Catatan / niat (pilihan)",'<input type="text" id="iInfakNiat" maxlength="200" placeholder="cth Untuk program ILS">')+'</div>'+
+      '<div class="lembar-k"><button class="btn utama" type="submit">Bayar dengan FPX</button></div>'+
+      '<p class="nota">Anda akan dibawa ke halaman ToyyibPay yang selamat untuk memilih bank. Resit tersedia di sini selepas bayaran berjaya.</p></form></section>';
+  h+='<section class="blok"><h2>Komitmen infak bulanan</h2><form class="kad blok" data-form="komitmen" id="fKomitmen">'+
+      '<p class="nota" style="margin-top:0">Tetapkan jumlah infak setiap bulan. Aplikasi menghantar notifikasi peringatan pada hari yang dipilih; anda menekan untuk membayar.</p>'+
+      '<div class="grid2">'+medan("iKomAmaun","Amaun bulanan (RM)",'<input type="number" id="iKomAmaun" inputmode="decimal" min="1" max="10000" step="1" required value="'+esc(k?num(k.amaun):"")+'">')+
+      medan("iKomHari","Hari peringatan setiap bulan",'<select id="iKomHari">'+opsyen(Array.apply(null,Array(28)).map(function(_,i){return [String(i+1),"Hari ke-"+(i+1)];}),k?k.hari:"1")+'</select>')+'</div>'+
+      '<label class="suis">Komitmen aktif<input type="checkbox" id="iKomAktif"'+(!k||ya(k.aktif)?" checked":"")+'></label>'+
+      '<div class="lembar-k"><button class="btn" type="submit">'+(k?"Simpan komitmen":"Mula komitmen")+'</button>'+
+      (k&&ya(k.aktif)? (bulanIniBayarKomitmen()? '<span class="status siap"><i></i>Bulan ini sudah dibayar</span>' : '<button class="btn utama" type="button" data-act="bayar-komitmen">Bayar infak bulan ini · '+rmT(k.amaun)+'</button>') : '')+'</div></form></section>';
+  h+='<section class="blok"><h2>Sejarah pembayaran saya <span class="kira">'+saya.length+'</span></h2>'+
+    (saya.length? '<div class="senarai">'+saya.slice(0,30).map(function(b){return itemBayaran(b,false);}).join("")+'</div>' : kosong("Belum ada pembayaran","Infak dan yuran program yang anda bayar akan disenaraikan di sini."))+'</section>';
+  if(isMT()){
+    var semua=DATA.bayaran.slice().sort(function(a,b){return (b.dicipta||"")<(a.dicipta||"")?-1:1;}), f=UI.bayarTapis||"";
+    var X=semua.filter(function(b){return !f || (f==="berjaya"? b.status==="berjaya" : b.jenis===f || (f==="infak" && b.jenis==="komitmen"));});
+    h+='<section class="blok"><h2>Semua pembayaran <span class="kira">'+X.length+'</span></h2><div class="cip-baris">'+
+      [["","Semua"],["berjaya","Berjaya sahaja"],["infak","Infak"],["yuran","Yuran program"]].map(function(c){return '<button type="button" class="cip'+(f===c[0]?' on':'')+'" data-act="bayar-tapis" data-v="'+c[0]+'">'+c[1]+'</button>';}).join("")+'</div>'+
+      (X.length? '<div class="senarai" style="margin-top:10px">'+X.slice(0,100).map(function(b){return itemBayaran(b,true);}).join("")+'</div><div class="lembar-k"><button class="btn" type="button" data-act="bayar-csv">Salin senarai (CSV)</button></div>' : kosong("Tiada rekod",""))+'</section>';
+  }
+  return h;
+};
+BORANG.infakSekali = function(){
+  var n=num(v("iInfakAmaun")); if(!(n>=1 && n<=10000)){ toast("Amaun mesti antara RM1 dan RM10,000"); return false; }
+  mulaBayar(document.querySelector('#fInfak button[type=submit]'),{jenis:"infak",amaun:n,catatan:v("iInfakNiat")}); return false;
+};
+BORANG.komitmen = function(){
+  var n=num(v("iKomAmaun")); if(!(n>=1 && n<=10000)){ toast("Amaun mesti antara RM1 dan RM10,000"); return false; }
+  var a=sayaAhli()||{}, lama=komitmenSaya()||{};
+  simpan("komitmen",Object.assign({},lama,{id:"k-"+idSaya(),ahli:idSaya(),nama:a.nama||"",negeri:a.negeri||"",amaun:String(n),hari:v("iKomHari"),aktif:v("iKomAktif"),mula:lama.mula||hariIni()}),
+    v("iKomAktif")?"Komitmen disimpan. Peringatan setiap hari ke-"+v("iKomHari")+".":"Komitmen dihentikan");
+  return false;
+};
+function cetakResit(b){
+  var p=b.program? cari("program",b.program) : null;
+  var gaya='@page{size:A5;margin:12mm}body{font-family:Arial,sans-serif;color:#16241C;font-size:11pt}.h{display:flex;align-items:center;gap:12px;border-bottom:2px solid #1E6B3C;padding-bottom:10px}'+
+    '.h img{width:64px}.h b{display:block;font-size:13pt}h1{font-size:16pt;letter-spacing:.08em;color:#1E6B3C;margin:18px 0 10px}table{width:100%;border-collapse:collapse}td{padding:7px 0;border-bottom:1px solid #e3e8e5;vertical-align:top}'+
+    'td:first-child{color:#5b6b61;width:42%}.j{font-size:18pt;font-weight:bold;color:#1E6B3C}.k{margin-top:18px;font-size:9pt;color:#5b6b61}';
+  var baris=function(a,c){return '<tr><td>'+a+'</td><td>'+c+'</td></tr>';};
+  cetakHtml("Resit "+b.id,'<div class="h"><img src="'+logoDataUri()+'"><div><b>Generasi Muda PAPISMA Malaysia</b>Resit pembayaran dalam talian</div></div>'+
+    '<h1>RESIT</h1><table>'+baris("No. resit",esc(b.id))+baris("Tarikh",esc(fmtTarikh((b.dibayarPada||"").slice(0,10))))+baris("Diterima daripada",esc(b.nama))+
+    baris("Untuk",esc(b.jenis==="yuran"? "Yuran program "+(p?p.nama:b.program) : b.jenis==="komitmen"? "Infak bulanan" : "Infak"))+(b.catatan?baris("Catatan",esc(b.catatan)):"")+
+    baris("Saluran",esc(b.saluran||"FPX"))+baris("Rujukan bank",esc(b.refno||"-"))+baris("Amaun",'<span class="j">'+rmT(b.amaun)+'</span>')+'</table>'+
+    '<p class="k">Resit ini dijana oleh sistem dan sah tanpa tandatangan. Jazakumullahu khairan kathira.</p>',gaya);
+}
+Object.assign(ACT,{
+  "infak-amaun":function(el){ var i=$("#iInfakAmaun"); if(i){ i.value=el.getAttribute("data-v"); } [].slice.call(document.querySelectorAll('[data-act="infak-amaun"]')).forEach(function(b){b.classList.toggle("on",b===el);}); },
+  "bayar-komitmen":function(el){ mulaBayar(el,{jenis:"komitmen"}); },
+  "bayar-yuran":function(el){ mulaBayar(el,{jenis:"yuran",program:el.getAttribute("data-id")}); },
+  "bayar-semak":function(el){ semakBayaran(el.getAttribute("data-id"),true); },
+  "bayar-tapis":function(el){ UI.bayarTapis=el.getAttribute("data-v"); simpanUI(); render(); },
+  "resit":function(el){ var b=cari("bayaran",el.getAttribute("data-id")); if(b) cetakResit(b); },
+  "bayar-csv":function(){
+    var rows=[["No. rujukan","Jenis","Nama","Negeri","Program","Amaun (RM)","Status","Rujukan bank","Dibayar pada","Catatan"]].concat(DATA.bayaran.map(function(b){return [b.id,b.jenis,b.nama,namaNegeri(b.negeri),b.program,b.amaun,ST_BAYAR[b.status]||b.status,b.refno,(b.dibayarPada||"").slice(0,16).replace("T"," "),b.catatan];}));
+    var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c||"").replace(/"/g,'""')+'"';}).join(",");}).join("\n");
+    try{ navigator.clipboard.writeText(csv).then(function(){toast("Senarai disalin. Tampal ke Google Sheets.");},function(){toast("Tidak dapat menyalin");}); }catch(e){ toast("Tidak dapat menyalin"); }
+  }
+});
+function semakBayaran(id, papar){
+  return api("semakBayaran",{id:id}).then(function(j){
+    var b=j.bayaran; if(b){ var i=DATA.bayaran.findIndex(function(x){return x.id===b.id;}); if(i>=0) DATA.bayaran[i]=b; else DATA.bayaran.push(b); simpanLokal(); }
+    if(papar) toast(b&&b.status==="berjaya"? "Pembayaran "+rmT(b.amaun)+" berjaya. Jazakumullahu khairan." : b&&b.status==="gagal"? "Pembayaran tidak berjaya." : "Pembayaran belum diterima. Jika anda sudah membayar, semak semula sebentar lagi.");
+    segerak(); return b;
+  }).catch(function(e){ if(papar) toast(e.message||"Tidak dapat menyemak pembayaran"); });
+}
+/* Kembali dari ToyyibPay: ?status_id=1&billcode=…&order_id=BY… */
+(function(){
+  var q=new URLSearchParams(location.search), id=q.get("order_id");
+  if(!id) return;
+  var akhir=lsGet("gmp.bayarAkhir",{})||{}, hal=akhir.id===id? akhir.hal : "infak";
+  try{ history.replaceState(null,"",location.pathname+"#"+hal); }catch(e){}
+  setTimeout(function(){ if(CFG.url) semakBayaran(id,true); }, 1200);
+})();
+/* Yuran pada kad program & senarai peserta */
+var KAD_ACARA_BY = kadAcara;
+kadAcara = function(p){
+  var h=KAD_ACARA_BY(p), y=num(p.yuran);
+  if(!(y>0)) return h;
+  h=h.replace(/(<div class="tg-m">)/,'$1<span class="tag-ng saya">Yuran '+rmT(y)+'</span>');
+  var r=penyertaanSaya(p.id);
+  if(r && !r.bayar && !isMT()){
+    var btn='<button class="btn kecil utama" type="button" data-act="bayar-yuran" data-id="'+esc(p.id)+'">Bayar yuran '+rmT(y)+'</button>';
+    h = h.indexOf('<div class="lembar-k">')>=0? h.replace('<div class="lembar-k">','<div class="lembar-k">'+btn) : h.replace(/<\/div><\/article>$/,'<div class="lembar-k">'+btn+'</div></div></article>');
+  } else if(r && r.bayar) h=h.replace(/(<div class="tg-m">)/,'$1<span class="status siap"><i></i>Yuran dibayar</span>');
+  return h;
+};
+var LEMBAR_PROGRAM_BY = lembarProgram;
+lembarProgram = function(p){
+  LEMBAR_PROGRAM_BY(p);
+  var kap=document.getElementById("iKapasiti"); if(!kap) return;
+  var m=kap.closest(".medan"), d=document.createElement("div");
+  d.innerHTML=medan("iYuranP","Yuran program (RM, 0 = percuma)",'<input type="number" id="iYuranP" inputmode="decimal" min="0" max="10000" step="0.5" value="'+esc(p.yuran||"")+'" placeholder="0">')+
+    '<p class="nota" style="margin-top:-6px">Jika ada yuran, ahli yang mendaftar dipaparkan butang "Bayar yuran" (FPX melalui ToyyibPay).</p>';
+  m.parentNode.parentNode.insertBefore(d, m.parentNode.nextSibling);
+};
+var BORANG_PROGRAM_BY = BORANG.program;
+BORANG.program = function(form,btn){
+  var y=v("iYuranP"); if(y && !(num(y)>=0 && num(y)<=10000)){ toast("Yuran tidak sah"); return false; }
+  var asal=simpan, r;
+  simpan=function(jenis,rekod,mesej){ simpan=asal; return asal(jenis,Object.assign(rekod,{yuran:y?String(num(y)):""}),mesej); };
+  try{ r=BORANG_PROGRAM_BY(form,btn); } finally { simpan=asal; }
+  return r;
+};
+
+
+/* ---------- Padam program yang ada peserta (dengan pengesahan) ---------- */
+function lembarPadamProgram(id){
+  var p=cari("program",id); if(!p) return;
+  var pen=DATA.penyertaan.filter(function(x){return x.program===id;}), hadir=pen.filter(function(x){return ya(x.hadir);}).length;
+  var byr=DATA.bayaran.filter(function(b){return b.program===id && b.status==="berjaya";});
+  bukaLembar("Padam program?",
+    '<input type="hidden" id="iId" value="'+esc(id)+'">'+
+    '<p><b>'+esc(p.nama)+'</b> <span class="kod">'+esc(p.id)+'</span></p>'+
+    '<div class="amaran bahaya"><span>Tindakan ini <b>tidak boleh dibatalkan</b>. Yang akan dipadam:<br>• '+pen.length+' pendaftaran peserta'+(hadir?' (termasuk '+hadir+' rekod kehadiran dan sijil)':'')+
+      '<br>• '+DATA.tugas.filter(function(t){return t.kod===id;}).length+' tugasan program'+
+      (byr.length?'<br><br><b>'+byr.length+' bayaran yuran berjaya</b> ('+rmT(byr.reduce(function(s,b){return s+num(b.amaun);},0))+') <b>kekal</b> dalam rekod Pembayaran dan Lejar. Pemulangan wang perlu diurus secara manual.':'')+'</span></div>'+
+    '<p class="nota">Jika program sekadar tidak jadi, lebih baik tukar <b>Status → Dibatalkan</b> supaya rekod peserta dan sijil kekal.</p>'+
+    medan("iSahKod",'Taip kod program <b>'+esc(p.id)+'</b> untuk mengesahkan','<input type="text" id="iSahKod" autocomplete="off" autocapitalize="characters" required>'),
+    '<button class="btn bahaya" type="submit">Padam program & '+pen.length+' peserta</button><button class="btn" type="button" data-act="tutup">Batal</button>',"padamProgram");
+}
+BORANG.padamProgram = function(){
+  var id=v("iId"); if(v("iSahKod").toUpperCase()!==id.toUpperCase()){ toast("Kod program tidak sepadan"); return false; }
+  // padam peserta dahulu, kemudian tugasan dan program (pelayan menyemak dalam susunan ini)
+  var ops=DATA.penyertaan.filter(function(x){return x.program===id;}).map(function(x){return {op:"padam",jenis:"penyertaan",id:x.id};})
+    .concat(DATA.tugas.filter(function(t){return t.kod===id;}).map(function(t){return {op:"padam",jenis:"tugas",id:t.id};}))
+    .concat([{op:"padam",jenis:"program",id:id}]);
+  laksana(ops,"Program dan pesertanya dipadam");
+};
+
+
+/* ---------- KPI: sunting, tambah & padam ---------- */
+FAB.mt.kpi = {t:"KPI",a:"kpi-baru"};
+function kpiAuto(k){ return !!KPI_AUTO[k.id] && !ya(k.manual); }
+var NILAI_KPI_ASAL = nilaiKpi;
+nilaiKpi = function(k){ return KPI_AUTO[k.id] && ya(k.manual)? num(k.semasa) : NILAI_KPI_ASAL(k); };
+var KAD_KPI_ASAL = kadKpi;
+kadKpi = function(k){ var h=KAD_KPI_ASAL(k); return KPI_AUTO[k.id] && ya(k.manual)? h.replace(/<span class="auto">[\s\S]*?<\/span>/,'') : h; };
+function idKpiBaru(){ var n=0; DATA.kpi.forEach(function(k){ var m=/^K(\d+)$/.exec(k.id); if(m) n=Math.max(n,+m[1]); }); return "K"+p2(n+1); }
+lembarKpi = function(k){
+  var baru=!cari("kpi",k.id), auto=KPI_AUTO[k.id], u=k.unit==="%"?"%":"";
+  bukaLembar('<span class="kod" style="font-size:12px;vertical-align:middle">'+esc(k.id)+'</span> '+(baru?"KPI baharu":esc(k.petunjuk)),
+    '<input type="hidden" id="iId" value="'+esc(k.id)+'">'+
+    (baru?'':'<div class="info-baris"><div><b>'+nilaiKpi(k).toLocaleString("en-MY")+u+'</b><span>Pencapaian</span></div><div><b>'+num(k.sasaran).toLocaleString("en-MY")+u+'</b><span>Sasaran sesi</span></div></div>')+
+    medan("iPetunjuk","Petunjuk prestasi",'<input type="text" id="iPetunjuk" required maxlength="160" value="'+esc(k.petunjuk)+'" placeholder="cth Peserta program kerjaya">')+
+    '<div class="grid2">'+medan("iTerasK","Teras",'<select id="iTerasK">'+opsyen(Object.keys(TERAS).map(function(t){return [t,t+" · "+TERAS[t]];}),k.teras||"T1")+'</select>')+
+      medan("iUnitK","Unit",'<input type="text" id="iUnitK" required maxlength="20" list="dlUnitK" value="'+esc(k.unit||"")+'" placeholder="orang, negeri, %, kali"><datalist id="dlUnitK"><option value="orang"><option value="negeri"><option value="%"><option value="kali"><option value="dokumen"><option value="program"></datalist>')+'</div>'+
+    '<div class="grid2">'+medan("iSasaran","Sasaran sesi",inp("iSasaran","number",k.sasaran,' inputmode="decimal" min="0" required'))+
+      '<div id="blokSemasa"'+(auto&&!ya(k.manual)?' hidden':'')+'>'+medan("iSemasa","Pencapaian semasa",inp("iSemasa","number",k.semasa,' inputmode="decimal" min="0"'))+'</div></div>'+
+    (auto? '<label class="suis">Kira automatik ('+esc(auto)+')<input type="checkbox" id="iAutoK"'+(ya(k.manual)?'':' checked')+'></label><p class="nota" style="margin-top:-4px">Matikan untuk memasukkan pencapaian secara manual.</p>' : '')+
+    medan("iCatatanK","Catatan & sumber data",'<textarea id="iCatatanK">'+esc(k.catatan||"")+'</textarea>'),
+    '<button class="btn utama" type="submit">'+(baru?"Tambah KPI":"Simpan")+'</button>'+(baru?'':butangPadam("kpi-padam",k.id)),"kpi");
+};
+BORANG.kpi = function(){
+  var id=v("iId"), k=cari("kpi",id)||{id:id,urutan:String(DATA.kpi.length+1),semasa:""};
+  if(!v("iPetunjuk")){ toast("Isi petunjuk prestasi"); return false; }
+  if(!v("iUnitK")){ toast("Isi unit"); return false; }
+  var el=document.getElementById("iAutoK"), manual= el? (el.checked?"":"ya") : (k.manual||"");
+  var r=Object.assign({},k,{petunjuk:v("iPetunjuk"),teras:v("iTerasK"),unit:v("iUnitK"),sasaran:v("iSasaran"),catatan:v("iCatatanK"),manual:manual});
+  if(!KPI_AUTO[id] || manual) r.semasa=v("iSemasa");
+  simpan("kpi",r,cari("kpi",id)?"KPI dikemas kini":"KPI ditambah");
+};
+Object.assign(ACT,{
+  "kpi-buka":function(el){ var k=cari("kpi",el.getAttribute("data-id")); if(k) lembarKpi(k); },
+  "kpi-baru":function(){ lembarKpi({id:idKpiBaru(),petunjuk:"",sasaran:"",semasa:"",unit:"",teras:"T1",catatan:""}); },
+  "kpi-padam":function(el){ sahDua(el,function(){ padam("kpi",el.getAttribute("data-id"),"KPI dipadam"); tutupLembar(); }); }
+});
+document.addEventListener("change",function(e){ if(e.target.id==="iAutoK"){ var b=document.getElementById("blokSemasa"); if(b) b.hidden=e.target.checked; } });
 
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;
