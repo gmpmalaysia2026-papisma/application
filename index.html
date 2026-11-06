@@ -524,7 +524,7 @@ details.pelayan .medan{margin-top:8px}
 <script>
 (function(){
 "use strict";
-var VERSI = "4.8.2";
+var VERSI = "4.8.3";
 /* Mod Apps Script: halaman dihoskan oleh Apps Script (HtmlService) dan bercakap dengan pelayan
    melalui google.script.run. Mod PWA: halaman di GitHub Pages, bercakap melalui fetch ke /exec. */
 var GAS = !!(window.google && google.script && google.script.run);
@@ -3713,7 +3713,7 @@ lembarProgram = function(p){
   var d=document.createElement("div");
   d.innerHTML = isMT()?
     medan("iNegeriProg","Untuk negeri",'<select id="iNegeriProg"><option value="">Semua negeri (program kebangsaan)</option>'+opsyenNegeri(p.negeri||"")+'</select>')+
-      '<p class="nota" style="margin-top:-6px">Jika satu negeri dipilih, hanya ahli negeri itu nampak dan boleh mendaftar. AJK negeri itu boleh mengurusnya.</p>'
+      '<p class="nota" style="margin:4px 0 12px">Jika satu negeri dipilih, hanya ahli negeri itu nampak dan boleh mendaftar. AJK negeri itu boleh mengurusnya.</p>'
     : '<input type="hidden" id="iNegeriProg" value="'+esc(ngSaya())+'"><p class="nota">Program ini untuk ahli <b>'+esc(namaNegeri(ngSaya()))+'</b> sahaja.</p>';
   var medanNama=nama.closest(".medan"); medanNama.parentNode.insertBefore(d, medanNama.nextSibling);
   if(!isMT()){   // AJK negeri: tiada tugasan Pusat / peneraju jawatan Pusat / laporan program
@@ -3818,7 +3818,7 @@ document.addEventListener("change",function(e){
 
 
 /* ---------- Amaran: Apps Script belum dikemas kini ---------- */
-var VERSI_PELAYAN_MIN = "4.6.1";
+var VERSI_PELAYAN_MIN = "4.6.2";
 function bandingVersi(a,b){ var x=String(a||"0").split("."), y=String(b||"0").split("."); for(var i=0;i<3;i++){ var d=(+x[i]||0)-(+y[i]||0); if(d) return d; } return 0; }
 function pelayanLama(){ return !!CFG.url && META.masa && bandingVersi(META.versiPelayan||"0", VERSI_PELAYAN_MIN)<0; }
 function amaranPelayan(){
@@ -3972,7 +3972,7 @@ lembarProgram = function(p){
   var kap=document.getElementById("iKapasiti"); if(!kap) return;
   var m=kap.closest(".medan"), d=document.createElement("div");
   d.innerHTML=medan("iYuranP","Yuran program (RM, 0 = percuma)",'<input type="number" id="iYuranP" inputmode="decimal" min="0" max="10000" step="0.5" value="'+esc(p.yuran||"")+'" placeholder="0">')+
-    '<p class="nota" style="margin-top:-6px">Jika ada yuran, ahli yang mendaftar dipaparkan butang "Bayar yuran" (FPX melalui ToyyibPay).</p>';
+    '<p class="nota" style="margin:4px 0 12px">Jika ada yuran, ahli yang mendaftar dipaparkan butang "Bayar yuran" (FPX melalui ToyyibPay).</p>';
   m.parentNode.parentNode.insertBefore(d, m.parentNode.nextSibling);
 };
 var BORANG_PROGRAM_BY = BORANG.program;
@@ -4047,6 +4047,34 @@ Object.assign(ACT,{
   "kpi-padam":function(el){ sahDua(el,function(){ padam("kpi",el.getAttribute("data-id"),"KPI dipadam"); tutupLembar(); }); }
 });
 document.addEventListener("change",function(e){ if(e.target.id==="iAutoK"){ var b=document.getElementById("blokSemasa"); if(b) b.hidden=e.target.checked; } });
+
+
+/* ---------- Program untuk AJK sahaja ---------- */
+function progAjk(p){ return !!p && p.sasaran==="ajk"; }
+var SENARAI_ACARA_AJK = senaraiAcara;
+senaraiAcara = function(){ return SENARAI_ACARA_AJK().filter(function(p){ return !isAhli() || !progAjk(p); }); };
+var KAD_ACARA_AJK = kadAcara;
+kadAcara = function(p){ var h=KAD_ACARA_AJK(p); return progAjk(p)? h.replace(/(<div class="tg-m">)/,'$1<span class="tag-ng saya">AJK sahaja</span>') : h; };
+var KAD_PROGRAM_AJK = kadProgram;
+kadProgram = function(p){ var h=KAD_PROGRAM_AJK(p); return progAjk(p)? h.replace('<span class="kod">'+esc(p.id)+'</span>','<span class="kod">'+esc(p.id)+'</span><span class="tag-ng saya">AJK sahaja</span>') : h; };
+var LEMBAR_PROGRAM_AJK = lembarProgram;
+lembarProgram = function(p){
+  LEMBAR_PROGRAM_AJK(p);
+  var form=document.getElementById("fLembar"), ng=form&&form.querySelector("#iNegeriProg"); if(!ng) return;
+  var d=document.createElement("div");
+  d.innerHTML=medan("iSasaranProg","Untuk siapa",'<select id="iSasaranProg">'+opsyen([["","Semua ahli"],["ajk","AJK sahaja (MT & AJK negeri)"]],p.sasaran||"")+'</select>')+
+    '<p class="nota" style="margin:4px 0 12px">"AJK sahaja": ahli biasa tidak nampak program ini, tidak boleh mendaftar dan tidak menerima notifikasinya.</p>';
+  var tempat = ng.type==="hidden"? ng.nextSibling : (ng.closest(".medan")||ng).nextSibling;
+  (tempat&&tempat.parentNode? tempat.parentNode : ng.parentNode).insertBefore(d, tempat? tempat.nextSibling : null);
+};
+var BORANG_PROGRAM_AJK = BORANG.program;
+BORANG.program = function(form,btn){
+  var sas=v("iSasaranProg")==="ajk"? "ajk" : "";
+  var asal=simpan, r;
+  simpan=function(jenis,rekod,mesej){ simpan=asal; return asal(jenis,Object.assign(rekod,{sasaran:sas}),mesej); };
+  try{ r=BORANG_PROGRAM_AJK(form,btn); } finally { simpan=asal; }
+  return r;
+};
 
 document.addEventListener("click",function(e){
   var el=e.target.closest("[data-act]"); if(!el) return;
